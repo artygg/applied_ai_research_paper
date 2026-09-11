@@ -1,0 +1,25 @@
+@comment{Add verified bibliographic records here as the literature review develops.}
+https://openai.com/index/duolingo/
+https://blog.duolingo.com/chatbot-language-practice/
+https://blog.duolingo.com/ai-and-video-call/
+https://blog.duolingo.com/video-call/
+https://blog.duolingo.com/explain-my-answer-now-free/
+https://blog.duolingo.com/beginner-video-call-with-falstaff/
+https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full
+https://doi.org/10.1017/S095834402510044X
+https://doi.org/10.1016/j.system.2024.103529
+https://doi.org/10.1016/j.caeai.2024.100230
+https://doi.org/10.1111/ijal.12668
+https://www.nature.com/articles/s41599-024-03543-y
+https://arxiv.org/abs/2303.08774
+https://blog.duolingo.com/world-character-visemes/
+https://duolingo-papers.s3.amazonaws.com/reports/Duolingo_whitepaper_language_video_call_improves_speaking_2025.pdf
+https://doi.org/10.1177/00336882251386530
+https://doi.org/10.1016/j.csl.2023.101567
+PDF: https://repository.tudelft.nl/file/File_b190505f-99cd-4b41-9997-eb8d8e07bf63
+https://aclanthology.org/2024.tacl-1.47/
+https://doi.org/10.1016/j.system.2024.103254
+https://www.coe.int/en/web/common-european-framework-reference-languages/cefr-companion-volume-and-its-language-versions
+https://doi.org/10.1017/S0958344023000265
+https://duolingo-papers.s3.amazonaws.com/reports/Duolingo_whitepaper_duolingo_method_2023.pdf
+https://www.duolingo.com/privacy

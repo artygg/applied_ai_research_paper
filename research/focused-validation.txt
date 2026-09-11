@@ -1,0 +1,21 @@
+Focused manuscript validation — September 11, 2026
+
+Build: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+Result: successful; latest output retained in focused-build.log.
+LaTeX log: no warnings, overfull boxes, undefined references/citations, or errors detected.
+Bibliography: 34 distinct cited keys; zero missing keys; zero duplicate entry keys.
+Evidence matrix: 13 valid CSV records (records are not necessarily independent studies).
+PDF: 22 total pages, including title, abstract, contents, surrounding sections, and references.
+Results/body: numbered pages 5–14 inclusive, 10 pages; conclusion starts page 15.
+Results text count (TeXcount): 4,140 words, excluding headers and captions.
+RQ1 text: 996 words; RQ2: 1,855 words; RQ3: 1,289 words.
+RQ2 share of Results text: 44.8%.
+Visual inspection: title, all three tables, and analytical diagram rendered and inspected;
+no clipping or overlapping content observed on these pages.
+Resource paths: no absolute LaTeX input/include/graphics/bibliography paths detected.
+Git whitespace check: git diff --check passed.
+
+Limits: automated and visual checks are not independent scholarly peer review.
+Source-specific access limitations remain documented in focused-review-audit.md.
+Author names, student numbers, citation/interpretation review, and required course
+peer review must be completed by the authors before submission.

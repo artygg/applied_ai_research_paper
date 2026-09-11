@@ -1,0 +1,847 @@
+<title>Eleven Ways In</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;600&display=swap">
+<style>
+:root{
+  --paper:#F6F7F4; --panel:#FFFFFF; --sunk:#EDEFEA;
+  --ink:#131A18; --ink-2:#3D4A46; --ink-3:#6B7873;
+  --rule:#D8DDD6; --rule-2:#C3CAC1;
+  --accent:#0E5C54; --accent-soft:#DCE9E5; --accent-on:#F4F7F5;
+  --p-duolingo:#A9701A; --p-mixed:#9E4B2C; --p-independent:#1F6F5C; --p-press:#5D6870;
+  --shadow:0 1px 2px rgba(19,26,24,.05);
+  --measure:68ch;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1211; --panel:#141B19; --sunk:#1A2321;
+    --ink:#E5EAE6; --ink-2:#AFBAB5; --ink-3:#7E8B86;
+    --rule:#28322F; --rule-2:#3A4642;
+    --accent:#5BC5B6; --accent-soft:#183430; --accent-on:#07100E;
+    --p-duolingo:#D9A24E; --p-mixed:#D3775A; --p-independent:#4FB79C; --p-press:#93A0A6;
+    --shadow:0 1px 2px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1211; --panel:#141B19; --sunk:#1A2321;
+  --ink:#E5EAE6; --ink-2:#AFBAB5; --ink-3:#7E8B86;
+  --rule:#28322F; --rule-2:#3A4642;
+  --accent:#5BC5B6; --accent-soft:#183430; --accent-on:#07100E;
+  --p-duolingo:#D9A24E; --p-mixed:#D3775A; --p-independent:#4FB79C; --p-press:#93A0A6;
+  --shadow:0 1px 2px rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--paper); color:var(--ink);
+  font:450 16px/1.6 "IBM Plex Sans","Segoe UI",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px 96px}
+h1,h2,h3,h4,h5{
+  font-family:"Fraunces",Georgia,"Times New Roman",serif;
+  font-variation-settings:"SOFT" 20,"WONK" 1;
+  text-wrap:balance; margin:0; font-weight:600; letter-spacing:-.012em;
+}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+.mono,code{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.c,.yr,.facts dd,.val,.ax{font-variant-numeric:tabular-nums}
+
+/* ---------- masthead ---------- */
+.mast{padding:64px 0 34px;border-bottom:2px solid var(--ink)}
+.mast .kicker{
+  font:500 11px/1 "IBM Plex Mono",monospace; letter-spacing:.14em; text-transform:uppercase;
+  color:var(--ink-3); margin-bottom:20px;
+}
+.mast h1{font-size:clamp(38px,6.4vw,64px);line-height:1.02;font-weight:700;font-variation-settings:"SOFT" 12,"WONK" 1;max-width:15ch}
+.mast .dek{margin-top:20px;max-width:var(--measure);font-size:18px;line-height:1.55;color:var(--ink-2)}
+.mast .dek strong{color:var(--ink);font-weight:600}
+
+.tally{display:flex;flex-wrap:wrap;gap:0;margin-top:30px;border-top:1px solid var(--rule)}
+.tally div{flex:1 1 128px;padding:14px 18px 14px 0;border-right:1px solid var(--rule)}
+.tally div:last-child{border-right:0}
+.tally dt{font:500 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.tally dd{margin:7px 0 0;font-family:"Fraunces",serif;font-size:30px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.tally dd small{font-family:"IBM Plex Sans",sans-serif;font-size:12px;font-weight:450;color:var(--ink-3);display:block;margin-top:5px;letter-spacing:0}
+
+/* ---------- shared section head ---------- */
+section{margin-top:60px}
+.shead{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--rule-2);padding-bottom:9px;margin-bottom:22px}
+.shead h2{font-size:23px}
+.shead .note{font-size:13px;color:var(--ink-3);margin-left:auto;text-align:right}
+.lede{max-width:var(--measure);color:var(--ink-2);margin-bottom:22px}
+
+/* ---------- meter (structural, no hue) ---------- */
+.meter{display:inline-flex;gap:2.5px;vertical-align:middle}
+.meter .seg{width:7px;height:13px;background:var(--rule-2);border-radius:1px}
+.meter .seg.on{background:var(--accent)}
+.meter-lab{margin-left:8px;font:500 11.5px/1 "IBM Plex Mono",monospace;letter-spacing:.02em;color:var(--ink-2);white-space:nowrap}
+
+/* ---------- provenance bar ---------- */
+.provbar{display:flex;width:100%;min-width:78px;height:9px;border-radius:1px;overflow:hidden;background:var(--sunk)}
+.pv{display:block;height:100%}
+.pv-duolingo{background:var(--p-duolingo)}
+.pv-mixed{background:var(--p-mixed)}
+.pv-independent{background:var(--p-independent)}
+.pv-press{background:var(--p-press)}
+.pv-t-duolingo{color:var(--p-duolingo)}
+.pv-t-mixed{color:var(--p-mixed)}
+.pv-t-independent{color:var(--p-independent)}
+.pv-t-press{color:var(--p-press)}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend i{width:11px;height:11px;border-radius:1px;display:block}
+
+/* ---------- kind chips ---------- */
+.kind{
+  display:inline-block;font:500 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.05em;
+  padding:4px 7px;border:1px solid var(--rule-2);border-radius:2px;color:var(--ink-2);white-space:nowrap;
+}
+.k-evidence{border-color:var(--accent);color:var(--accent)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:16px}
+.filters .lab{font:500 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);margin-right:4px}
+.chip{
+  font:500 12px/1 "IBM Plex Mono",monospace;padding:7px 11px;border:1px solid var(--rule-2);
+  background:transparent;color:var(--ink-2);border-radius:2px;cursor:pointer;
+}
+.chip:hover{border-color:var(--ink-3);color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-on)}
+
+/* ---------- ledger ---------- */
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);background:var(--panel);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:760px}
+thead th{
+  font:500 10px/1.3 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);text-align:left;padding:12px 12px 10px;border-bottom:1px solid var(--rule-2);
+  vertical-align:bottom;font-weight:500;
+}
+thead th.c{text-align:center}
+tbody tr{border-bottom:1px solid var(--rule)}
+tbody tr:last-child{border-bottom:0}
+tbody tr.dim{opacity:.26}
+tbody th{font-weight:450;text-align:left;padding:13px 12px;max-width:400px}
+tbody th a{text-decoration:none;display:block;margin-bottom:6px}
+tbody th a:hover .rt{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+.rk{font:600 11px/1 "IBM Plex Mono",monospace;color:var(--ink-3);margin-right:9px;vertical-align:1px}
+.rt{font-size:14.5px;line-height:1.35;color:var(--ink)}
+tbody td{padding:13px 12px;font-size:14px;color:var(--ink-2)}
+td.c{text-align:center;font-weight:600;color:var(--ink);font-family:"IBM Plex Mono",monospace;font-size:13.5px}
+td.c.zero{color:var(--ink-3);font-weight:400}
+td.yr{font-family:"IBM Plex Mono",monospace;font-size:12px;color:var(--ink-3);white-space:nowrap}
+td.bar-cell{width:120px;min-width:100px}
+td.v{white-space:nowrap}
+
+/* ---------- chart ---------- */
+.chartbox{border:1px solid var(--rule);background:var(--panel);padding:20px 18px 12px;box-shadow:var(--shadow)}
+.chart{width:100%;height:auto;display:block}
+.chart .grid{stroke:var(--rule);stroke-width:1}
+.chart .ax{fill:var(--ink-3);font:500 10.5px "IBM Plex Mono",monospace}
+.chart .val{fill:var(--ink-3);font:500 9px "IBM Plex Mono",monospace}
+.chart .bar.pv-duolingo{fill:var(--p-duolingo)}
+.chart .bar.pv-independent{fill:var(--p-independent)}
+.chart .bar.pv-press{fill:var(--p-press)}
+
+/* ---------- dossiers ---------- */
+.dossier{border-top:1px solid var(--rule-2);padding:34px 0 8px}
+.dossier.hide{display:none}
+.dossier > header{max-width:var(--measure)}
+.eyebrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.num{
+  font-family:"Fraunces",serif;font-size:26px;font-weight:700;line-height:1;color:var(--accent);
+  font-variant-numeric:tabular-nums;
+}
+.dossier h3{font-size:clamp(21px,2.6vw,27px);line-height:1.18}
+.q{margin-top:12px;font-size:16.5px;color:var(--ink-2);border-left:2px solid var(--accent);padding-left:14px}
+
+.dgrid{display:grid;grid-template-columns:minmax(0,1fr) 264px;gap:38px;margin-top:26px;align-items:start}
+.dmain{max-width:var(--measure)}
+.dmain h4{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);margin:22px 0 9px;font-variation-settings:normal;
+}
+.dmain h4:first-child{margin-top:0}
+.dmain ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:7px}
+.dmain ul li{position:relative;padding-left:22px;font-size:15px;line-height:1.5}
+.dmain ul li::before{position:absolute;left:0;top:0;font-family:"IBM Plex Mono",monospace;font-size:13px}
+.can li::before{content:"+";color:var(--accent);font-weight:600}
+.cannot li::before{content:"\2013";color:var(--ink-3)}
+.cannot li{color:var(--ink-2)}
+.method{font-size:15px;line-height:1.55;color:var(--ink-2)}
+.risk{
+  margin-top:22px;padding:13px 15px;background:var(--sunk);border-left:2px solid var(--p-mixed);
+  font-size:14.5px;line-height:1.5;color:var(--ink-2);
+}
+.risk span{
+  display:block;font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--p-mixed);margin-bottom:7px;
+}
+
+.dside{border-top:1px solid var(--rule-2);padding-top:14px;font-size:13px}
+.facts{margin:0 0 16px}
+.facts div{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--rule)}
+.facts dt{color:var(--ink-3);font-size:12.5px}
+.facts dd{margin:0;font-family:"IBM Plex Mono",monospace;font-size:13px;font-weight:600;color:var(--ink)}
+.facts dd.hi{color:var(--accent)}
+.facts dd.zero{color:var(--ink-3);font-weight:400}
+.provline{margin-top:8px;font:400 11.5px/1.5 "IBM Plex Mono",monospace;color:var(--ink-3)}
+.themes{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.th{font-size:11px;padding:3px 7px;background:var(--sunk);color:var(--ink-2);border-radius:2px}
+.dside h5{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);margin:20px 0 10px;font-variation-settings:normal;
+}
+.keys{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
+.keys li{line-height:1.4}
+.keys a{text-decoration:none;display:block}
+.keys a:hover .kt{text-decoration:underline;text-underline-offset:2px}
+.sid{font-size:11px;font-weight:600}
+.kt{font-size:12.5px;color:var(--ink)}
+.km{font-size:11px;color:var(--ink-3)}
+.ld{font:600 10px/1 "IBM Plex Mono",monospace;color:var(--accent);letter-spacing:.03em}
+.pr{font:400 10px/1 "IBM Plex Mono",monospace;color:var(--ink-3)}
+
+/* ---------- won't carry ---------- */
+.nvlist{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:0;border-top:1px solid var(--rule)}
+.nv{padding:20px 22px 22px 0;border-right:1px solid var(--rule);max-width:46ch}
+.nv:last-child{border-right:0}
+.nv h4{font-size:16.5px;line-height:1.3;margin-bottom:10px}
+.nvstat{display:flex;flex-wrap:wrap;gap:12px;font:500 11px/1 "IBM Plex Mono",monospace;color:var(--ink-3);margin-bottom:12px}
+.nvstat .zero{color:var(--p-mixed)}
+.nv p{font-size:14px;line-height:1.5;color:var(--ink-2)}
+.instead{margin-top:12px;padding-top:11px;border-top:1px solid var(--rule)}
+.instead span{
+  display:block;font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px;
+}
+
+/* ---------- method note ---------- */
+.methodnote{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px 40px;max-width:900px}
+.methodnote p{font-size:14.5px;line-height:1.6;color:var(--ink-2)}
+.methodnote h4{font-size:16px;margin-bottom:8px}
+.kinddefs{margin:0}
+.kinddefs div{padding:11px 0;border-bottom:1px solid var(--rule)}
+.kinddefs dt{margin-bottom:6px}
+.kinddefs dd{margin:0;font-size:14px;line-height:1.5;color:var(--ink-2)}
+
+footer{margin-top:56px;padding-top:20px;border-top:2px solid var(--ink);font-size:13px;color:var(--ink-3);
+  display:flex;flex-wrap:wrap;gap:8px 24px;align-items:baseline}
+footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)}
+footer a:hover{border-bottom-color:var(--accent)}
+
+@media (max-width:820px){
+  .dgrid{grid-template-columns:1fr;gap:26px}
+  .dside{max-width:var(--measure)}
+  .nv{border-right:0;border-bottom:1px solid var(--rule);max-width:none;padding-right:0}
+  .nv:last-child{border-bottom:0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="kicker">Duolingo &amp; AI &middot; topic feasibility assessment &middot; 222 sources</p>
+  <h1>Eleven ways in</h1>
+  <p class="dek">Every topic below is one somebody could reasonably propose. The question is not
+  which sounds best — it is which the collected literature can actually carry. Each is scored on
+  the count that decides it: <strong>load-bearing sources</strong>, meaning peer-reviewed and written
+  by someone other than Duolingo.</p>
+  <dl class="tally">
+    <div><dt>Candidate topics</dt><dd>11<small>plus 3 that will not carry</small></dd></div>
+    <div><dt>Rated strong</dt><dd>6<small>of 11 assessed</small></dd></div>
+    <div><dt>Peer-reviewed</dt><dd>102<small>of 222 sources</small></dd></div>
+    <div><dt>Load-bearing</dt><dd>65<small>peer-reviewed &amp; independent</small></dd></div>
+    <div><dt>Duolingo-authored</dt><dd>107<small>48% of the corpus</small></dd></div>
+  </dl>
+</header>
+
+<section>
+  <div class="shead">
+    <h2>The ledger</h2>
+    <p class="note">Grouped by rating, then by claim type.<br>Click a title for the full assessment.</p>
+  </div>
+  <p class="lede">Two topics can hold the same number of sources and be worth completely different
+  amounts, because they are not making the same kind of claim. A topic arguing that Duolingo teaches
+  needs evidence Duolingo did not produce. A topic arguing about what Duolingo published needs
+  Duolingo's own documents — there, first-party volume is the material, not a weakness. The rating
+  below applies the test that matches the claim.</p>
+
+  <div class="filters">
+    <span class="lab">Filter</span>
+    <button class="chip" type="button" data-k="evidence" aria-pressed="false">Evidence claim</button><button class="chip" type="button" data-k="corpus" aria-pressed="false">Corpus study</button><button class="chip" type="button" data-k="gap" aria-pressed="false">Absence claim</button><button class="chip" type="button" data-k="discourse" aria-pressed="false">Discourse study</button>
+  </div>
+
+  <div class="tablewrap">
+  <table>
+    <thead><tr>
+      <th scope="col">Topic</th>
+      <th scope="col" class="c">Sources</th>
+      <th scope="col" class="c">Peer-<br>reviewed</th>
+      <th scope="col" class="c">Load-<br>bearing</th>
+      <th scope="col">Span</th>
+      <th scope="col">Who wrote them</th>
+      <th scope="col">Rating</th>
+    </tr></thead>
+    <tbody><tr data-kind="evidence" data-level="4">
+ <th scope="row"><a href="#efficacy"><span class="rk">1</span><span class="rt">Does Duolingo teach? Twenty years of efficacy evidence, sorted by who paid for it</span></a>
+   <span class="kind k-evidence">Evidence claim</span></th>
+ <td class="c">42</td>
+ <td class="c">30</td>
+ <td class="c ">28</td>
+ <td class="c yr">2020&ndash;2026</td>
+ <td class="bar-cell"><span class="provbar" role="img" aria-label="11 duolingo, 2 mixed, 28 independent, 1 press"><i class="pv pv-duolingo" style="width:26.1905%" title="11 Duolingo"></i><i class="pv pv-mixed" style="width:4.7619%" title="2 Mixed"></i><i class="pv pv-independent" style="width:66.6667%" title="28 Independent"></i><i class="pv pv-press" style="width:2.3810%" title="1 Press"></i></span></td>
+ <td class="v"><span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></td>
+</tr><tr data-kind="evidence" data-level="4">
+ <th scope="row"><a href="#det"><span class="rk">2</span><span class="rt">Building a validity argument for an AI-scored high-stakes test</span></a>
+   <span class="kind k-evidence">Evidence claim</span></th>
+ <td class="c">48</td>
+ <td class="c">26</td>
+ <td class="c ">12</td>
+ <td class="c yr">2016&ndash;2026</td>
+ <td class="bar-cell"><span class="provbar" role="img" aria-label="36 duolingo, 12 independent"><i class="pv pv-duolingo" style="width:75.0000%" title="36 Duolingo"></i><i class="pv pv-independent" style="width:25.0000%" title="12 Independent"></i></span></td>
+ <td class="v"><span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></td>
+</tr><tr data-kind="evidence" data-level="4">
+ <th scope="row"><a href="#opendata"><span class="rk">3</span><span class="rt">What open data bought: Duolingo&#x27;s datasets and the research they made possible</span></a>
+   <span class="kind k-evidence">Evidence claim</span></th>
+ <td class="c">31</td>
+ <td class="c">16</td>
+ <td class="c ">12</td>
+ <td class="c yr">2016&ndash;2025</td>
+ <td class="bar-cell"><span class="provbar" role="img" aria-label="12 duolingo, 19 independent"><i class="pv pv-duolingo" style="width:38.7097%" title="12 Duolingo"></i><i class="pv pv-independent" style="width:61.2903%" title="19 Independent"></i></span></td>
+ <td class="v"><span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></td>
+</tr><tr data-kind="evidence" data-level="4">
+ <th scope="row"><a href="#gamification"><span class="rk">4</span><span class="rt">Streaks, habits and the line between engagement design and dark patterns</span></a>
+   <span class="kind k-evidence">Evidence claim</span></th>
+ <td class="c">18</td>
+ <td class="c">13</td>
+ <td class="c ">12</td>
+ <td class="c yr">2020&ndash;2026</td>
+ <td class="bar-cell"><span class="provbar" role="img" aria-label="1 duolingo, 1 mixed, 15 independent, 1 press"><i class="pv pv-duolingo" style="width:5.5556%" title="1 Duolingo"></i><i class="pv pv-mixed" style="width:5.5556%" title="1 Mixed"></i><i class="pv pv-independent" style="width:83.3333%" title="15 Independent"></i><i class="pv pv-press" style="width:5.5556%" title="1 Press"></i></span></td>
+ <td class="v"><span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></td>
+</tr><tr data-kind="corpus" data-level="4">
+ <th scope="row"><a href="#bibliometric"><span class="rk">5</span><span class="rt">The frozen shop window: where Duolingo&#x27;s research output went after 2021</span></a>
+   <span class="kind k-corpus">Corpus study</span></th>
+ <td class="c">107</td>
+ <td class="c">36</td>
+ <td class="c zero">0</td>
+ <td class="c yr">2015&ndash;2026</td>
+ <td class="bar-cell"><span class="provbar" role="img" aria-label="107 duolingo"><i class="pv pv-duolingo" style="width:100.0000%" title="107 Duolingo"></i></span></td>
+ <td class="v"><span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></td>
+</tr><tr data-kind="corpus" data-level="4">
+ <th scope="row"><a href="#aig"><span class="rk">6</span><span class="rt">Automatic item generation and automated scoring as an applied NLP problem</span></a>
+   <span class="kind k-corpus">Corpus study</span></th>
+ <td class="c">28</td>
+ <td class="c">21</td>
+ <td class="c ">4</td>
+ <td class="c yr">2016&ndash;2026</td>
+ <td class="bar-cell"><span class="provbar" role="img" aria-label="23 duolingo, 5 independent"><i class="pv pv-duolingo" style="width:82.1429%" title="23 Duolingo"></i><i class="pv pv-independent" style="width:17.8571%" title="5 Independent"></i></span></td>
+ <td class="v"><span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></td>
+</tr><tr data-kind="evidence" data-level="3">
+ <th scope="row"><a href="#exemplar"><span class="rk">7</span><span class="rt">The field&#x27;s default exemplar: what it costs to study one company&#x27;s product</span></a>
+   <span class="kind k-evidence">Evidence claim</span></th>
+ <td class="c">15</td>
+ <td class="c">12</td>
+ <td class="c ">11</td>
+ <td class="c yr">2022&ndash;2026</td>
+ <td class="bar-cell"><span class="provbar" role="img" aria-label="2 duolingo, 2 mixed, 11 independent"><i class="pv pv-duolingo" style="width:13.3333%" title="2 Duolingo"></i><i class="pv pv-mixed" style="width:13.3333%" title="2 Mixed"></i><i class="pv pv-independent" style="width:73.3333%" title="11 Independent"></i></span></td>
+ <td class="v"><span class="meter" role="img" aria-label="Feasibility 3 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="meter-lab">Workable</span></td>
+</tr><tr data-kind="gap" data-level="3">
+ <th scope="row"><a href="#genai-gap"><span class="rk">8</span><span class="rt">Three years of Duolingo Max without an independent outcome study</span></a>
+   <span class="kind k-gap">Absence claim</span></th>
+ <td class="c">28</td>
+ <td class="c">10</td>
+ <td class="c ">5</td>
+ <td class="c yr">2023&ndash;2026</td>
+ <td class="bar-cell"><span class="provbar" role="img" aria-label="14 duolingo, 8 independent, 6 press"><i class="pv pv-duolingo" style="width:50.0000%" title="14 Duolingo"></i><i class="pv pv-independent" style="width:28.5714%" title="8 Independent"></i><i class="pv pv-press" style="width:21.4286%" title="6 Press"></i></span></td>
+ <td class="v"><span class="meter" role="img" aria-label="Feasibility 3 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="meter-lab">Workable</span></td>
+</tr><tr data-kind="gap" data-level="3">
+ <th scope="row"><a href="#speaking"><span class="rk">9</span><span class="rt">Speaking is the least-studied skill and the hardest thing an AI tutor claims to teach</span></a>
+   <span class="kind k-gap">Absence claim</span></th>
+ <td class="c">18</td>
+ <td class="c">11</td>
+ <td class="c ">8</td>
+ <td class="c yr">2021&ndash;2026</td>
+ <td class="bar-cell"><span class="provbar" role="img" aria-label="8 duolingo, 10 independent"><i class="pv pv-duolingo" style="width:44.4444%" title="8 Duolingo"></i><i class="pv pv-independent" style="width:55.5556%" title="10 Independent"></i></span></td>
+ <td class="v"><span class="meter" role="img" aria-label="Feasibility 3 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="meter-lab">Workable</span></td>
+</tr><tr data-kind="corpus" data-level="3">
+ <th scope="row"><a href="#governance"><span class="rk">10</span><span class="rt">Responsible AI for the test, not for the app</span></a>
+   <span class="kind k-corpus">Corpus study</span></th>
+ <td class="c">19</td>
+ <td class="c">8</td>
+ <td class="c ">6</td>
+ <td class="c yr">2022&ndash;2026</td>
+ <td class="bar-cell"><span class="provbar" role="img" aria-label="7 duolingo, 1 mixed, 10 independent, 1 press"><i class="pv pv-duolingo" style="width:36.8421%" title="7 Duolingo"></i><i class="pv pv-mixed" style="width:5.2632%" title="1 Mixed"></i><i class="pv pv-independent" style="width:52.6316%" title="10 Independent"></i><i class="pv pv-press" style="width:5.2632%" title="1 Press"></i></span></td>
+ <td class="v"><span class="meter" role="img" aria-label="Feasibility 3 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="meter-lab">Workable</span></td>
+</tr><tr data-kind="discourse" data-level="2">
+ <th scope="row"><a href="#aifirst"><span class="rk">11</span><span class="rt">AI-first: a strategy announced before its evidence, and partly withdrawn before the evidence arrived</span></a>
+   <span class="kind k-discourse">Discourse study</span></th>
+ <td class="c">27</td>
+ <td class="c">3</td>
+ <td class="c ">3</td>
+ <td class="c yr">2023&ndash;2026</td>
+ <td class="bar-cell"><span class="provbar" role="img" aria-label="3 duolingo, 4 independent, 20 press"><i class="pv pv-duolingo" style="width:11.1111%" title="3 Duolingo"></i><i class="pv pv-independent" style="width:14.8148%" title="4 Independent"></i><i class="pv pv-press" style="width:74.0741%" title="20 Press"></i></span></td>
+ <td class="v"><span class="meter" role="img" aria-label="Feasibility 2 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span><span class="meter-lab">Reframe or fold in</span></td>
+</tr></tbody>
+  </table>
+  </div>
+  <div class="legend">
+    <span><i class="pv-duolingo"></i> Duolingo-authored</span>
+    <span><i class="pv-mixed"></i> Mixed authorship</span>
+    <span><i class="pv-independent"></i> Independent</span>
+    <span><i class="pv-press"></i> Press &amp; corporate</span>
+  </div>
+</section>
+
+<section>
+  <div class="shead">
+    <h2>Why the newest topics are the thinnest</h2>
+    <p class="note">Sources per year by author, 2019&ndash;2026</p>
+  </div>
+  <p class="lede">Duolingo's own output (gold) leads in every year. Independent work (green) closes
+  the gap around 2024 — but that is independent work on the <em>pre-generative</em> product, since
+  peer review takes two to three years. Press coverage (grey) appears only in 2023 and peaks in 2025,
+  tracking the AI-first controversy rather than any research. Anything shipped after 2023 is being
+  discussed long before it is being studied.</p>
+  <div class="chartbox"><svg class="chart" viewBox="0 0 720 250" role="img" aria-label="Sources per year by provenance, 2019 to 2026"><line class="grid" x1="34" y1="204.0" x2="712" y2="204.0"/><text class="ax" x="26.0" y="207.5" text-anchor="end">0</text><line class="grid" x1="34" y1="157.0" x2="712" y2="157.0"/><text class="ax" x="26.0" y="160.5" text-anchor="end">6</text><line class="grid" x1="34" y1="110.0" x2="712" y2="110.0"/><text class="ax" x="26.0" y="113.5" text-anchor="end">12</text><line class="grid" x1="34" y1="63.0" x2="712" y2="63.0"/><text class="ax" x="26.0" y="66.5" text-anchor="end">18</text><line class="grid" x1="34" y1="16.0" x2="712" y2="16.0"/><text class="ax" x="26.0" y="19.5" text-anchor="end">24</text><rect class="bar pv-duolingo" x="41.6" y="164.8" width="17.5" height="39.2"><title>2019: 5 duolingo</title></rect><text class="val" x="50.4" y="160.8" text-anchor="middle">5</text><rect class="bar pv-independent" x="69.9" y="196.2" width="17.5" height="7.8"><title>2019: 1 independent</title></rect><text class="val" x="78.6" y="192.2" text-anchor="middle">1</text><rect class="bar pv-press" x="98.1" y="204.0" width="17.5" height="0.8"><title>2019: 0 press</title></rect><text class="ax" x="76.4" y="224.0" text-anchor="middle">2019</text><rect class="bar pv-duolingo" x="126.4" y="110.0" width="17.5" height="94.0"><title>2020: 12 duolingo</title></rect><text class="val" x="135.1" y="106.0" text-anchor="middle">12</text><rect class="bar pv-independent" x="154.6" y="180.5" width="17.5" height="23.5"><title>2020: 3 independent</title></rect><text class="val" x="163.4" y="176.5" text-anchor="middle">3</text><rect class="bar pv-press" x="182.9" y="204.0" width="17.5" height="0.8"><title>2020: 0 press</title></rect><text class="ax" x="161.1" y="224.0" text-anchor="middle">2020</text><rect class="bar pv-duolingo" x="211.1" y="164.8" width="17.5" height="39.2"><title>2021: 5 duolingo</title></rect><text class="val" x="219.9" y="160.8" text-anchor="middle">5</text><rect class="bar pv-independent" x="239.4" y="172.7" width="17.5" height="31.3"><title>2021: 4 independent</title></rect><text class="val" x="248.1" y="168.7" text-anchor="middle">4</text><rect class="bar pv-press" x="267.6" y="204.0" width="17.5" height="0.8"><title>2021: 0 press</title></rect><text class="ax" x="245.9" y="224.0" text-anchor="middle">2021</text><rect class="bar pv-duolingo" x="295.9" y="125.7" width="17.5" height="78.3"><title>2022: 10 duolingo</title></rect><text class="val" x="304.6" y="121.7" text-anchor="middle">10</text><rect class="bar pv-independent" x="324.1" y="172.7" width="17.5" height="31.3"><title>2022: 4 independent</title></rect><text class="val" x="332.9" y="168.7" text-anchor="middle">4</text><rect class="bar pv-press" x="352.4" y="204.0" width="17.5" height="0.8"><title>2022: 0 press</title></rect><text class="ax" x="330.6" y="224.0" text-anchor="middle">2022</text><rect class="bar pv-duolingo" x="380.6" y="102.2" width="17.5" height="101.8"><title>2023: 13 duolingo</title></rect><text class="val" x="389.4" y="98.2" text-anchor="middle">13</text><rect class="bar pv-independent" x="408.9" y="117.8" width="17.5" height="86.2"><title>2023: 11 independent</title></rect><text class="val" x="417.6" y="113.8" text-anchor="middle">11</text><rect class="bar pv-press" x="437.1" y="180.5" width="17.5" height="23.5"><title>2023: 3 press</title></rect><text class="val" x="445.9" y="176.5" text-anchor="middle">3</text><text class="ax" x="415.4" y="224.0" text-anchor="middle">2023</text><rect class="bar pv-duolingo" x="465.4" y="39.5" width="17.5" height="164.5"><title>2024: 21 duolingo</title></rect><text class="val" x="474.1" y="35.5" text-anchor="middle">21</text><rect class="bar pv-independent" x="493.6" y="47.3" width="17.5" height="156.7"><title>2024: 20 independent</title></rect><text class="val" x="502.4" y="43.3" text-anchor="middle">20</text><rect class="bar pv-press" x="521.9" y="149.2" width="17.5" height="54.8"><title>2024: 7 press</title></rect><text class="val" x="530.6" y="145.2" text-anchor="middle">7</text><text class="ax" x="500.1" y="224.0" text-anchor="middle">2024</text><rect class="bar pv-duolingo" x="550.1" y="70.8" width="17.5" height="133.2"><title>2025: 17 duolingo</title></rect><text class="val" x="558.9" y="66.8" text-anchor="middle">17</text><rect class="bar pv-independent" x="578.4" y="55.2" width="17.5" height="148.8"><title>2025: 19 independent</title></rect><text class="val" x="587.1" y="51.2" text-anchor="middle">19</text><rect class="bar pv-press" x="606.6" y="86.5" width="17.5" height="117.5"><title>2025: 15 press</title></rect><text class="val" x="615.4" y="82.5" text-anchor="middle">15</text><text class="ax" x="584.9" y="224.0" text-anchor="middle">2025</text><rect class="bar pv-duolingo" x="634.9" y="70.8" width="17.5" height="133.2"><title>2026: 17 duolingo</title></rect><text class="val" x="643.6" y="66.8" text-anchor="middle">17</text><rect class="bar pv-independent" x="663.1" y="110.0" width="17.5" height="94.0"><title>2026: 12 independent</title></rect><text class="val" x="671.9" y="106.0" text-anchor="middle">12</text><rect class="bar pv-press" x="691.4" y="149.2" width="17.5" height="54.8"><title>2026: 7 press</title></rect><text class="val" x="700.1" y="145.2" text-anchor="middle">7</text><text class="ax" x="669.6" y="224.0" text-anchor="middle">2026</text></svg></div>
+</section>
+
+<section>
+  <div class="shead">
+    <h2>The assessments</h2>
+    <p class="note">In ledger order</p>
+  </div>
+  <article class="dossier" id="efficacy" data-kind="evidence">
+  <header>
+    <p class="eyebrow"><span class="num">1</span> <span class="kind k-evidence">Evidence claim</span> <span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></p>
+    <h3>Does Duolingo teach? Twenty years of efficacy evidence, sorted by who paid for it</h3>
+    <p class="q">How strong is the evidence that Duolingo produces measurable language gains, and how much of it is independent of Duolingo?</p>
+  </header>
+  <div class="dgrid">
+    <div class="dmain">
+      <h4>What the sources can carry</h4>
+      <ul class="can"><li>Characterise the full 2020-2026 empirical record on Duolingo learning outcomes.</li><li>Compare receptive against productive skill gains across independent studies.</li><li>Show that self-published efficacy reports and peer-reviewed studies use systematically different designs and outcome measures.</li><li>Test whether effect sizes differ by author affiliation - there are enough studies on both sides to try.</li></ul>
+      <h4>What they cannot</h4>
+      <ul class="cannot"><li>Produce a defensible pooled effect size: outcome instruments range from Versant to in-house placement scores to self-report.</li><li>Say anything about post-2023 generative features - almost no efficacy study covers them.</li></ul>
+      <h4>Method that fits</h4>
+      <p class="method">Systematic review extending Shortt et al. (2023), whose window closed at 2020. Code every study for design, sample, outcome measure and author affiliation; report Duolingo-authored and independent results separately rather than pooling them.</p>
+      <p class="risk"><span>Watch for</span> jiang24calico, the most-cited &#x27;does Duolingo work&#x27; study, has mixed Duolingo/academic authorship, which is why it carries provenance: mixed. A sensitivity analysis with and without it is not optional.</p>
+    </div>
+    <aside class="dside">
+      <dl class="facts">
+        <div><dt>Sources</dt><dd>42</dd></div>
+        <div><dt>Peer-reviewed</dt><dd>30</dd></div>
+        <div><dt>Load-bearing</dt><dd class="hi">28</dd></div>
+        <div><dt>Since 2024</dt><dd>28</dd></div>
+        <div><dt>Span</dt><dd class="yr">2020&ndash;2026</dd></div>
+      </dl>
+      <span class="provbar" role="img" aria-label="11 duolingo, 2 mixed, 28 independent, 1 press"><i class="pv pv-duolingo" style="width:26.1905%" title="11 Duolingo"></i><i class="pv pv-mixed" style="width:4.7619%" title="2 Mixed"></i><i class="pv pv-independent" style="width:66.6667%" title="28 Independent"></i><i class="pv pv-press" style="width:2.3810%" title="1 Press"></i></span>
+      <p class="provline">11 duolingo · 2 mixed · 28 independent · 1 press</p>
+      <p class="themes"><span class="th">Efficacy</span> <span class="th">Reviews &amp; meta-analyses</span></p>
+      <h5>Entry points</h5>
+      <ol class="keys"><li><a href="https://doi.org/10.1007/s10791-026-10015-1" target="_blank" rel="noopener"><code class="sid pv-t-independent">discov26meta</code> <span class="kt">A meta-analysis of generative AI effects on language proficiency and affective-cognitive outcomes in language learning</span></a> <span class="km">Discover Computing, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1007/s44217-026-01504-y" target="_blank" rel="noopener"><code class="sid pv-t-independent">discov26prisma</code> <span class="kt">A PRISMA-based systematic review of artificial intelligence in English as a foreign and second language education (2023-2025)</span></a> <span class="km">Discover Education, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1080/29984475.2026.2647961" target="_blank" rel="noopener"><code class="sid pv-t-independent">tf26scoping</code> <span class="kt">Artificial Intelligence in Language Learning: A Twenty-Year Scoping Review of Applications, Research Methods, and Outcomes</span></a> <span class="km">Taylor &amp; Francis, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://eric.ed.gov/?q=duolingo&amp;id=EJ1513201" target="_blank" rel="noopener"><code class="sid pv-t-independent">chua26pretest</code> <span class="kt">Duolingo-Inspired Pretesting with Words and Pictures Improves Vocabulary Learning</span></a> <span class="km">Cognitive Research: Principles and Implications, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1007/s10791-025-09833-6" target="_blank" rel="noopener"><code class="sid pv-t-independent">discov25samr</code> <span class="kt">A systematic review of AI in second language acquisition using the expanded SAMR model (2015-2024)</span></a> <span class="km">Discover Computing, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://files.eric.ed.gov/fulltext/EJ1482233.pdf" target="_blank" rel="noopener"><code class="sid pv-t-independent">eric-multiling</code> <span class="kt">A Systematic Review of Multilingual Applications, Large Language Models, and Language Learning (2015-2024)</span></a> <span class="km">ERIC EJ1482233, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li></ol>
+    </aside>
+  </div>
+</article><article class="dossier" id="det" data-kind="evidence">
+  <header>
+    <p class="eyebrow"><span class="num">2</span> <span class="kind k-evidence">Evidence claim</span> <span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></p>
+    <h3>Building a validity argument for an AI-scored high-stakes test</h3>
+    <p class="q">How much of the Duolingo English Test&#x27;s validity and fairness case is externally peer-reviewed, and how much rests on the company&#x27;s own technical reports?</p>
+  </header>
+  <div class="dgrid">
+    <div class="dmain">
+      <h4>What the sources can carry</h4>
+      <ul class="can"><li>Reconstruct the complete published validity argument from primary documents, including two technical manuals.</li><li>Set the in-house case against twelve independent validity, fairness and accent-bias studies.</li><li>Stage a real scholarly exchange: Burstein et al.&#x27;s responsible-AI case study against Johnson&#x27;s direct rebuttal.</li><li>Trace a single construct - interactive reading, or speaking - from item-generation paper to whitepaper to independent critique.</li></ul>
+      <h4>What they cannot</h4>
+      <ul class="cannot"><li>Audit the scoring models. No item pool, no model weights, no subgroup error analysis beyond what the company reports.</li><li>Compare against IELTS or TOEFL internals, which are equally closed.</li></ul>
+      <h4>Method that fits</h4>
+      <p class="method">Validity-argument analysis in the Kane tradition. Map each inferential link - scoring, generalisation, extrapolation, decision - to the document that supports it, then mark each document peer-reviewed or self-published.</p>
+      <p class="risk"><span>Watch for</span> The 35 first-party DET sources will dominate any word count. Guard the ratio deliberately or the chapter becomes a summary of Duolingo&#x27;s own case.</p>
+    </div>
+    <aside class="dside">
+      <dl class="facts">
+        <div><dt>Sources</dt><dd>48</dd></div>
+        <div><dt>Peer-reviewed</dt><dd>26</dd></div>
+        <div><dt>Load-bearing</dt><dd class="hi">12</dd></div>
+        <div><dt>Since 2024</dt><dd>28</dd></div>
+        <div><dt>Span</dt><dd class="yr">2016&ndash;2026</dd></div>
+      </dl>
+      <span class="provbar" role="img" aria-label="36 duolingo, 12 independent"><i class="pv pv-duolingo" style="width:75.0000%" title="36 Duolingo"></i><i class="pv pv-independent" style="width:25.0000%" title="12 Independent"></i></span>
+      <p class="provline">36 duolingo · 12 independent</p>
+      <p class="themes"><span class="th">English Test</span> <span class="th">Validity &amp; fairness</span></p>
+      <h5>Entry points</h5>
+      <ol class="keys"><li><a href="https://www.ijrp.org/paper-detail/9718.pdf" target="_blank" rel="noopener"><code class="sid pv-t-independent">rehna26southasia</code> <span class="kt">Duolingo English Test vs. IELTS in South Asia: Accessibility, Validity, Cost, and Equity</span></a> <span class="km">International Journal of Research Publications, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1177/02655322251348617" target="_blank" rel="noopener"><code class="sid pv-t-independent">coney25survey</code> <span class="kt">A survey of English language proficiency tests in international student admissions at US research-intensive universities</span></a> <span class="km">Language Testing, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1080/15434303.2024.2448963" target="_blank" rel="noopener"><code class="sid pv-t-independent">kang25attitudes</code> <span class="kt">Test Takers&#x27; Attitudes Toward Varieties of Accents in Listening Tasks of the Duolingo English Test</span></a> <span class="km">Language Assessment Quarterly, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1016/j.asw.2024.100846" target="_blank" rel="noopener"><code class="sid pv-t-independent">xie24construct</code> <span class="kt">Construct representation and predictive validity of integrated writing tasks: the writing component of the Duolingo English Test</span></a> <span class="km">Assessing Writing, 2024 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1016/j.asw.2024.100827" target="_blank" rel="noopener"><code class="sid pv-t-independent">barkaoui24</code> <span class="kt">Exploring the effects of task difficulty and learner variables on performance on picture description writing tasks</span></a> <span class="km">Assessing Writing, 2024 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1177/02655322231179134" target="_blank" rel="noopener"><code class="sid pv-t-independent">kang24accent</code> <span class="kt">Fairness of using different English accents: The effect of shared L1s in listening tasks of the Duolingo English Test</span></a> <span class="km">Language Testing 41(2), 263-289, 2024 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li></ol>
+    </aside>
+  </div>
+</article><article class="dossier" id="opendata" data-kind="evidence">
+  <header>
+    <p class="eyebrow"><span class="num">3</span> <span class="kind k-evidence">Evidence claim</span> <span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></p>
+    <h3>What open data bought: Duolingo&#x27;s datasets and the research they made possible</h3>
+    <p class="q">What did releasing SLAM, STAPLE and the half-life regression traces produce, and what happened when the releases stopped?</p>
+  </header>
+  <div class="dgrid">
+    <div class="dmain">
+      <h4>What the sources can carry</h4>
+      <ul class="can"><li>Show a decade of external work - knowledge tracing, fairness auditing, spaced-repetition optimisation, MT robustness - built on Duolingo data.</li><li>Document that Duolingo&#x27;s own model was beaten using its own data (tabibian19pnas) and independently replicated (avelar-hlr, papousek-hlr).</li><li>Date the last release precisely: 2020. Nothing from the generative era has been opened.</li><li>Argue open data as research infrastructure - a contribution that outweighs the company&#x27;s own papers.</li></ul>
+      <h4>What they cannot</h4>
+      <ul class="cannot"><li>Quantify how much of the knowledge-tracing field depends on Duolingo data without a formal bibliometric pass this collection does not contain.</li><li>Explain why the releases stopped. No source states a reason.</li></ul>
+      <h4>Method that fits</h4>
+      <p class="method">Citation and reuse analysis of the four public datasets. Trace forward from each release into the downstream literature, then contrast with Birdbrain and the generative stack, where nothing was released.</p>
+      <p class="risk"><span>Watch for</span> Twelve independent peer-reviewed sources make this solid, but half predate 2020. Frame it as a historical argument about openness, not a claim about current practice.</p>
+    </div>
+    <aside class="dside">
+      <dl class="facts">
+        <div><dt>Sources</dt><dd>31</dd></div>
+        <div><dt>Peer-reviewed</dt><dd>16</dd></div>
+        <div><dt>Load-bearing</dt><dd class="hi">12</dd></div>
+        <div><dt>Since 2024</dt><dd>2</dd></div>
+        <div><dt>Span</dt><dd class="yr">2016&ndash;2025</dd></div>
+      </dl>
+      <span class="provbar" role="img" aria-label="12 duolingo, 19 independent"><i class="pv pv-duolingo" style="width:38.7097%" title="12 Duolingo"></i><i class="pv pv-independent" style="width:61.2903%" title="19 Independent"></i></span>
+      <p class="provline">12 duolingo · 19 independent</p>
+      <p class="themes"><span class="th">Personalisation</span> <span class="th">Datasets &amp; reuse</span> <span class="th">Foundations</span></p>
+      <h5>Entry points</h5>
+      <ol class="keys"><li><a href="https://arxiv.org/abs/2306.02457" target="_blank" rel="noopener"><code class="sid pv-t-independent">cui23exercise</code> <span class="kt">Adaptive and Personalized Exercise Generation for Online Language Learning</span></a> <span class="km">ACL 2023 / arXiv 2306.02457, 2023 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://arxiv.org/abs/2205.12514" target="_blank" rel="noopener"><code class="sid pv-t-independent">staple-robust</code> <span class="kt">Machine Translation Robustness to Natural Asemantic Variation</span></a> <span class="km">EMNLP 2022, 2022 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://arxiv.org/abs/2106.04262" target="_blank" rel="noopener"><code class="sid pv-t-independent">qg21adaptive</code> <span class="kt">Question Generation for Adaptive Education</span></a> <span class="km">ACL 2021 / arXiv 2106.04262, 2021 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1145/3448139.3448170" target="_blank" rel="noopener"><code class="sid pv-t-independent">lak21vdkt</code> <span class="kt">Variational Deep Knowledge Tracing for Language Learning</span></a> <span class="km">LAK &#x27;21 (ACM), 2021 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://arxiv.org/abs/2006.04050" target="_blank" rel="noopener"><code class="sid pv-t-independent">nagoudi20growing</code> <span class="kt">Growing Together: Modeling Human Language Learning With n-Best Multi-Checkpoint Machine Translation</span></a> <span class="km">NGT @ ACL 2020 / arXiv 2006.04050, 2020 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://arxiv.org/abs/2005.05570" target="_blank" rel="noopener"><code class="sid pv-t-independent">staple-finetune</code> <span class="kt">Simultaneous paraphrasing and translation by fine-tuning Transformer models</span></a> <span class="km">NGT @ ACL 2020, 2020 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li></ol>
+    </aside>
+  </div>
+</article><article class="dossier" id="gamification" data-kind="evidence">
+  <header>
+    <p class="eyebrow"><span class="num">4</span> <span class="kind k-evidence">Evidence claim</span> <span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></p>
+    <h3>Streaks, habits and the line between engagement design and dark patterns</h3>
+    <p class="q">Does the motivational architecture that drives Duolingo&#x27;s retention also drive learning, and where does the critical literature say it stops helping?</p>
+  </header>
+  <div class="dgrid">
+    <div class="dmain">
+      <h4>What the sources can carry</h4>
+      <ul class="can"><li>Set a peer-reviewed habit-formation case study and a critical gamification analysis against the company&#x27;s own optimisation paper and its CEO&#x27;s stated goal.</li><li>Use the dose-response and attrition studies to connect engagement mechanics to actual learning time.</li><li>Make an argument about engagement optimisation as an AI application in its own right.</li></ul>
+      <h4>What they cannot</h4>
+      <ul class="cannot"><li>Claim causation between specific mechanics and dropout. The designs are correlational or qualitative.</li><li>Cover the current recommendation stack, which is undocumented.</li></ul>
+      <h4>Method that fits</h4>
+      <p class="method">Thematic synthesis of the critical and motivational literature, anchored on the one first-party technical artefact that shows engagement being optimised directly: the notification bandit paper.</p>
+      <p class="risk"><span>Watch for</span> Thematically coherent but assembled across six themes. The AI connection is real - the bandit paper - but it has to be argued, not assumed.</p>
+    </div>
+    <aside class="dside">
+      <dl class="facts">
+        <div><dt>Sources</dt><dd>18</dd></div>
+        <div><dt>Peer-reviewed</dt><dd>13</dd></div>
+        <div><dt>Load-bearing</dt><dd class="hi">12</dd></div>
+        <div><dt>Since 2024</dt><dd>10</dd></div>
+        <div><dt>Span</dt><dd class="yr">2020&ndash;2026</dd></div>
+      </dl>
+      <span class="provbar" role="img" aria-label="1 duolingo, 1 mixed, 15 independent, 1 press"><i class="pv pv-duolingo" style="width:5.5556%" title="1 Duolingo"></i><i class="pv pv-mixed" style="width:5.5556%" title="1 Mixed"></i><i class="pv pv-independent" style="width:83.3333%" title="15 Independent"></i><i class="pv pv-press" style="width:5.5556%" title="1 Press"></i></span>
+      <p class="provline">1 duolingo · 1 mixed · 15 independent · 1 press</p>
+      <p class="themes"><span class="th">Personalisation</span> <span class="th">Corporate</span> <span class="th">Efficacy</span> <span class="th">Ethics &amp; governance</span> <span class="th">AI &amp; labour</span> <span class="th">Generative features</span> <span class="th">Reviews &amp; meta-analyses</span></p>
+      <h5>Entry points</h5>
+      <ol class="keys"><li><a href="https://doi.org/10.51137/wrp.ijmat.908" target="_blank" rel="noopener"><code class="sid pv-t-independent">maass26habit</code> <span class="kt">Encouraging Repeated App Usage Through Habit-Forming Mechanisms: A Case Study Using the Example of Duolingo</span></a> <span class="km">International Journal of Mobile Applications and Technologies, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://www.ijlter.org/index.php/ijlter/article/view/17636" target="_blank" rel="noopener"><code class="sid pv-t-independent">sumalinog26identity</code> <span class="kt">English Teachers&#x27; Professional Identity in the Age of AI: A Meta-Ethnographic Synthesis</span></a> <span class="km">IJLTER, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1080/09588221.2025.2528786" target="_blank" rel="noopener"><code class="sid pv-t-independent">cal25games</code> <span class="kt">Do mobile games improve language learning? A meta-analysis</span></a> <span class="km">Computer Assisted Language Learning, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1016/j.lindif.2025.102704" target="_blank" rel="noopener"><code class="sid pv-t-independent">sudina25grit</code> <span class="kt">L2 grit and age as predictors of attrition in mobile-assisted language learning</span></a> <span class="km">Learning and Individual Differences, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1080/01425692.2025.2501118" target="_blank" rel="noopener"><code class="sid pv-t-independent">bjse25panopticon</code> <span class="kt">Revisiting Foucault&#x27;s panopticon: how does AI surveillance transform educational norms?</span></a> <span class="km">British Journal of Sociology of Education, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1016/j.lmot.2025.102100" target="_blank" rel="noopener"><code class="sid pv-t-independent">xu25duovsgpt</code> <span class="kt">Uncurtaining windows of motivation, enjoyment, critical thinking, and autonomy in AI-integrated education: Duolingo vs. ChatGPT</span></a> <span class="km">Learning and Motivation, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li></ol>
+    </aside>
+  </div>
+</article><article class="dossier" id="bibliometric" data-kind="corpus">
+  <header>
+    <p class="eyebrow"><span class="num">5</span> <span class="kind k-corpus">Corpus study</span> <span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></p>
+    <h3>The frozen shop window: where Duolingo&#x27;s research output went after 2021</h3>
+    <p class="q">What does the venue and volume of Duolingo&#x27;s own publications reveal about where AI is load-bearing for the business?</p>
+  </header>
+  <div class="dgrid">
+    <div class="dmain">
+      <h4>What the sources can carry</h4>
+      <ul class="can"><li>Demonstrate the portal has listed nothing since McCarthy et al., EMNLP 2021, while the same teams published at BEA, EMNLP, ACL Findings, PMLR and on arXiv through 2026.</li><li>Quantify the reallocation from consumer-app research to assessment research.</li><li>Show the whitepaper working as a genre: substantive, versioned, technically detailed, and outside peer review.</li><li>Trace individual researchers across the shift using their public profiles.</li></ul>
+      <h4>What they cannot</h4>
+      <ul class="cannot"><li>Claim the portal freeze was deliberate. It is equally consistent with neglect.</li><li>Count unpublished internal research.</li></ul>
+      <h4>Method that fits</h4>
+      <p class="method">Bibliometric analysis of the first-party corpus by venue, year, theme, peer-review status and author. Compare what the public research portal lists against what the same authors actually published.</p>
+      <p class="risk"><span>Watch for</span> Original work - nobody has published this analysis - which also means no prior methodology to lean on. Choose the bibliometric frame explicitly and state the corpus boundary.</p>
+    </div>
+    <aside class="dside">
+      <dl class="facts">
+        <div><dt>Sources</dt><dd>107</dd></div>
+        <div><dt>Peer-reviewed</dt><dd>36</dd></div>
+        <div><dt>Load-bearing</dt><dd class="zero">0</dd></div>
+        <div><dt>Since 2024</dt><dd>53</dd></div>
+        <div><dt>Span</dt><dd class="yr">2015&ndash;2026</dd></div>
+      </dl>
+      <span class="provbar" role="img" aria-label="107 duolingo"><i class="pv pv-duolingo" style="width:100.0000%" title="107 Duolingo"></i></span>
+      <p class="provline">107 duolingo</p>
+      <p class="themes"><span class="th">Personalisation</span> <span class="th">English Test</span> <span class="th">Corporate</span> <span class="th">Datasets &amp; reuse</span> <span class="th">Efficacy</span> <span class="th">Ethics &amp; governance</span> <span class="th">Validity &amp; fairness</span> <span class="th">Foundations</span> <span class="th">Generative features</span></p>
+      <h5>Entry points</h5>
+      <ol class="keys"><li><a href="https://scholar.google.com/citations?hl=en&amp;user=Eu9DtEsAAAAJ" target="_blank" rel="noopener"><code class="sid pv-t-duolingo">prof-vondavier</code> <span class="kt">Alina A. von Davier - Google Scholar</span></a> <span class="km">Google Scholar, 2026</span></li><li><a href="https://arxiv.org/abs/2606.18536" target="_blank" rel="noopener"><code class="sid pv-t-duolingo">vondavier26aquap</code> <span class="kt">Analytics for Quality Assurance for Item Pools (AQuAP): Monitoring and Maintaining Item Bank Health</span></a> <span class="km">arXiv 2606.18536, 2026</span></li><li><a href="https://scholar.google.com/citations?user=4ldMyhMAAAAJ&amp;hl=en" target="_blank" rel="noopener"><code class="sid pv-t-duolingo">prof-naismith</code> <span class="kt">Ben Naismith - Google Scholar</span></a> <span class="km">Google Scholar, 2026</span></li><li><a href="https://burrsettles.com/publications" target="_blank" rel="noopener"><code class="sid pv-t-duolingo">prof-settles</code> <span class="kt">Burr Settles - publications</span></a> <span class="km">Personal site, 2026</span></li><li><a href="https://www.duolingo.com/efficacy/studies" target="_blank" rel="noopener"><code class="sid pv-t-duolingo">portal-efficacy</code> <span class="kt">Duolingo Efficacy Studies hub</span></a> <span class="km">Duolingo, 2026</span></li><li><a href="https://englishtest.duolingo.com/research" target="_blank" rel="noopener"><code class="sid pv-t-duolingo">portal-det</code> <span class="kt">Duolingo English Test - Research and Innovation</span></a> <span class="km">Duolingo, 2026</span></li></ol>
+    </aside>
+  </div>
+</article><article class="dossier" id="aig" data-kind="corpus">
+  <header>
+    <p class="eyebrow"><span class="num">6</span> <span class="kind k-corpus">Corpus study</span> <span class="meter" role="img" aria-label="Feasibility 4 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="meter-lab">Strong</span></p>
+    <h3>Automatic item generation and automated scoring as an applied NLP problem</h3>
+    <p class="q">What are the actual methods behind AI-driven test construction and scoring, and how did they change as LLMs arrived?</p>
+  </header>
+  <div class="dgrid">
+    <div class="dmain">
+      <h4>What the sources can carry</h4>
+      <ul class="can"><li>Give a complete, well-documented technical account - this is the best-documented part of the whole Duolingo AI story.</li><li>Show a clear methodological progression across a decade with named architectures and reported metrics.</li><li>Connect the industrial work to the academic knowledge-tracing and question-generation literature.</li></ul>
+      <h4>What they cannot</h4>
+      <ul class="cannot"><li>Verify reported results. No code or data accompanies the post-2020 papers.</li><li>Cover the consumer app&#x27;s models, which have no method papers at all.</li></ul>
+      <h4>Method that fits</h4>
+      <p class="method">Technical review. Read the method sections and trace the arc from logistic regression over hand-built features, to BERT-IRT, to GPT-4-based generation and scoring, noting which claims rest on held-out evaluation.</p>
+      <p class="risk"><span>Watch for</span> Almost entirely Duolingo-authored, and the peer-reviewed portion sits in workshop venues. Strong as a methods chapter, weak as evidence of quality.</p>
+    </div>
+    <aside class="dside">
+      <dl class="facts">
+        <div><dt>Sources</dt><dd>28</dd></div>
+        <div><dt>Peer-reviewed</dt><dd>21</dd></div>
+        <div><dt>Load-bearing</dt><dd class="hi">4</dd></div>
+        <div><dt>Since 2024</dt><dd>15</dd></div>
+        <div><dt>Span</dt><dd class="yr">2016&ndash;2026</dd></div>
+      </dl>
+      <span class="provbar" role="img" aria-label="23 duolingo, 5 independent"><i class="pv pv-duolingo" style="width:82.1429%" title="23 Duolingo"></i><i class="pv pv-independent" style="width:17.8571%" title="5 Independent"></i></span>
+      <p class="provline">23 duolingo · 5 independent</p>
+      <p class="themes"><span class="th">English Test</span> <span class="th">Datasets &amp; reuse</span> <span class="th">Foundations</span> <span class="th">Generative features</span></p>
+      <h5>Entry points</h5>
+      <ol class="keys"><li><a href="https://arxiv.org/abs/2306.02457" target="_blank" rel="noopener"><code class="sid pv-t-independent">cui23exercise</code> <span class="kt">Adaptive and Personalized Exercise Generation for Online Language Learning</span></a> <span class="km">ACL 2023 / arXiv 2306.02457, 2023 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://arxiv.org/abs/2106.04262" target="_blank" rel="noopener"><code class="sid pv-t-independent">qg21adaptive</code> <span class="kt">Question Generation for Adaptive Education</span></a> <span class="km">ACL 2021 / arXiv 2106.04262, 2021 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1145/3448139.3448170" target="_blank" rel="noopener"><code class="sid pv-t-independent">lak21vdkt</code> <span class="kt">Variational Deep Knowledge Tracing for Language Learning</span></a> <span class="km">LAK &#x27;21 (ACM), 2021 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://arxiv.org/abs/1805.00356" target="_blank" rel="noopener"><code class="sid pv-t-independent">vie18dfm</code> <span class="kt">Deep Factorization Machines for Knowledge Tracing</span></a> <span class="km">BEA 2018 / arXiv 1805.00356, 2018 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://arxiv.org/abs/2606.18536" target="_blank" rel="noopener"><code class="sid pv-t-duolingo">vondavier26aquap</code> <span class="kt">Analytics for Quality Assurance for Item Pools (AQuAP): Monitoring and Maintaining Item Bank Health</span></a> <span class="km">arXiv 2606.18536, 2026</span></li><li><a href="https://arxiv.org/abs/2607.06905" target="_blank" rel="noopener"><code class="sid pv-t-duolingo">sharpnack26irt</code> <span class="kt">Learning Item Embeddings and Hyperparameters for IRT Calibration via Monte Carlo EM</span></a> <span class="km">arXiv 2607.06905, 2026</span></li></ol>
+    </aside>
+  </div>
+</article><article class="dossier" id="exemplar" data-kind="evidence">
+  <header>
+    <p class="eyebrow"><span class="num">7</span> <span class="kind k-evidence">Evidence claim</span> <span class="meter" role="img" aria-label="Feasibility 3 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="meter-lab">Workable</span></p>
+    <h3>The field&#x27;s default exemplar: what it costs to study one company&#x27;s product</h3>
+    <p class="q">Why is Duolingo simultaneously over-used as a case study and under-studied as a system, and what does that do to the field&#x27;s conclusions?</p>
+  </header>
+  <div class="dgrid">
+    <div class="dmain">
+      <h4>What the sources can carry</h4>
+      <ul class="can"><li>Cite a 2026 twenty-year scoping review finding Duolingo in 1.4% of empirical AI-in-language-learning studies.</li><li>Draw on a published methodological critique of research using commercial apps.</li><li>Use this collection&#x27;s own provenance distribution as evidence - 107 Duolingo-authored against 80 independent - which is a defensible original contribution.</li><li>Note that the company funds an external research grant programme.</li></ul>
+      <h4>What they cannot</h4>
+      <ul class="cannot"><li>Prove that funding shaped findings. Nothing here supports that, and implying it would be unfair.</li><li>Generalise to Babbel, Busuu or Memrise. There is one comparative study.</li></ul>
+      <h4>Method that fits</h4>
+      <p class="method">Methodological critique that uses the existing reviews as data: how often Duolingo appears, in what role, with what author affiliations, and with what access to the system under study.</p>
+      <p class="risk"><span>Watch for</span> Reflexive: the collection is both instrument and evidence. State that openly and describe how the inventory was built, or the argument is circular.</p>
+    </div>
+    <aside class="dside">
+      <dl class="facts">
+        <div><dt>Sources</dt><dd>15</dd></div>
+        <div><dt>Peer-reviewed</dt><dd>12</dd></div>
+        <div><dt>Load-bearing</dt><dd class="hi">11</dd></div>
+        <div><dt>Since 2024</dt><dd>11</dd></div>
+        <div><dt>Span</dt><dd class="yr">2022&ndash;2026</dd></div>
+      </dl>
+      <span class="provbar" role="img" aria-label="2 duolingo, 2 mixed, 11 independent"><i class="pv pv-duolingo" style="width:13.3333%" title="2 Duolingo"></i><i class="pv pv-mixed" style="width:13.3333%" title="2 Mixed"></i><i class="pv pv-independent" style="width:73.3333%" title="11 Independent"></i></span>
+      <p class="provline">2 duolingo · 2 mixed · 11 independent</p>
+      <p class="themes"><span class="th">Corporate</span> <span class="th">Efficacy</span> <span class="th">Ethics &amp; governance</span> <span class="th">Reviews &amp; meta-analyses</span></p>
+      <h5>Entry points</h5>
+      <ol class="keys"><li><a href="https://doi.org/10.1007/s44217-026-01504-y" target="_blank" rel="noopener"><code class="sid pv-t-independent">discov26prisma</code> <span class="kt">A PRISMA-based systematic review of artificial intelligence in English as a foreign and second language education (2023-2025)</span></a> <span class="km">Discover Education, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1080/29984475.2026.2647961" target="_blank" rel="noopener"><code class="sid pv-t-independent">tf26scoping</code> <span class="kt">Artificial Intelligence in Language Learning: A Twenty-Year Scoping Review of Applications, Research Methods, and Outcomes</span></a> <span class="km">Taylor &amp; Francis, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1007/s10791-025-09833-6" target="_blank" rel="noopener"><code class="sid pv-t-independent">discov25samr</code> <span class="kt">A systematic review of AI in second language acquisition using the expanded SAMR model (2015-2024)</span></a> <span class="km">Discover Computing, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://files.eric.ed.gov/fulltext/EJ1482233.pdf" target="_blank" rel="noopener"><code class="sid pv-t-independent">eric-multiling</code> <span class="kt">A Systematic Review of Multilingual Applications, Large Language Models, and Language Learning (2015-2024)</span></a> <span class="km">ERIC EJ1482233, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://www.ijlter.org/index.php/ijlter/article/view/15573" target="_blank" rel="noopener"><code class="sid pv-t-independent">ijlter25genai</code> <span class="kt">Integrating Generative AI in Language Education: A Systematic Review of Pedagogical, Ethical, and Technological Themes</span></a> <span class="km">IJLTER, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://www.sciencedirect.com/science/article/abs/pii/S2772766125000072" target="_blank" rel="noopener"><code class="sid pv-t-independent">rmal25ethics</code> <span class="kt">Mobile-assisted language learning with commercial apps: A focused methodological review of quantitative/mixed methods research - and ethics</span></a> <span class="km">Research Methods in Applied Linguistics, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li></ol>
+    </aside>
+  </div>
+</article><article class="dossier" id="genai-gap" data-kind="gap">
+  <header>
+    <p class="eyebrow"><span class="num">8</span> <span class="kind k-gap">Absence claim</span> <span class="meter" role="img" aria-label="Feasibility 3 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="meter-lab">Workable</span></p>
+    <h3>Three years of Duolingo Max without an independent outcome study</h3>
+    <p class="q">What outcome evidence exists for the generative-AI features, and what explains the gap between shipping date and evidence date?</p>
+  </header>
+  <div class="dgrid">
+    <div class="dmain">
+      <h4>What the sources can carry</h4>
+      <ul class="can"><li>Document the gap precisely, with dated primary sources on both sides.</li><li>Show what a company publishes while it has no outcome evidence yet.</li><li>Situate Duolingo in the wider generative-AI CALL literature, where meta-analyses already exist and Duolingo is largely absent.</li></ul>
+      <h4>What they cannot</h4>
+      <ul class="cannot"><li>Answer whether Max, Roleplay or Video Call improve proficiency. Nobody has published that study.</li><li>Treat kittredge25selfeff as outcome evidence - it is in-house, self-report, and measures self-efficacy.</li></ul>
+      <h4>Method that fits</h4>
+      <p class="method">Reframe from efficacy review to evidence-gap analysis. Build a timeline of feature launches against the publication dates of any evaluation, and characterise what was published instead - engagement metrics, revenue framing, self-efficacy.</p>
+      <p class="risk"><span>Watch for</span> Only two independent peer-reviewed sources touch these features directly. Written as an efficacy review the topic collapses; written as a gap analysis it is one of the strongest here.</p>
+    </div>
+    <aside class="dside">
+      <dl class="facts">
+        <div><dt>Sources</dt><dd>28</dd></div>
+        <div><dt>Peer-reviewed</dt><dd>10</dd></div>
+        <div><dt>Load-bearing</dt><dd class="hi">5</dd></div>
+        <div><dt>Since 2024</dt><dd>22</dd></div>
+        <div><dt>Span</dt><dd class="yr">2023&ndash;2026</dd></div>
+      </dl>
+      <span class="provbar" role="img" aria-label="14 duolingo, 8 independent, 6 press"><i class="pv pv-duolingo" style="width:50.0000%" title="14 Duolingo"></i><i class="pv pv-independent" style="width:28.5714%" title="8 Independent"></i><i class="pv pv-press" style="width:21.4286%" title="6 Press"></i></span>
+      <p class="provline">14 duolingo · 8 independent · 6 press</p>
+      <p class="themes"><span class="th">Generative features</span> <span class="th">Reviews &amp; meta-analyses</span></p>
+      <h5>Entry points</h5>
+      <ol class="keys"><li><a href="https://doi.org/10.1007/s10791-026-10015-1" target="_blank" rel="noopener"><code class="sid pv-t-independent">discov26meta</code> <span class="kt">A meta-analysis of generative AI effects on language proficiency and affective-cognitive outcomes in language learning</span></a> <span class="km">Discover Computing, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://onlinelibrary.wiley.com/doi/10.1111/jcal.70060" target="_blank" rel="noopener"><code class="sid pv-t-independent">li25chatbot</code> <span class="kt">Can Generative AI Chatbots Promote Second Language Acquisition? A Meta-Analysis</span></a> <span class="km">Journal of Computer Assisted Learning, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.33422/ijsfle.v3i1.768" target="_blank" rel="noopener"><code class="sid pv-t-independent">fountoulakis25</code> <span class="kt">Evaluating the Impact of AI Tools on Language Proficiency and Intercultural Communication in Second Language Education</span></a> <span class="km">International Journal of Second and Foreign Language Education 3(1), 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://www.sciencedirect.com/science/article/pii/S2666920X25000852" target="_blank" rel="noopener"><code class="sid pv-t-independent">ceai25twoyears</code> <span class="kt">Two years of innovation: A systematic review of empirical generative AI research in language learning and teaching (2023-2024)</span></a> <span class="km">Computers and Education: AI, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1016/j.lmot.2025.102100" target="_blank" rel="noopener"><code class="sid pv-t-independent">xu25duovsgpt</code> <span class="kt">Uncurtaining windows of motivation, enjoyment, critical thinking, and autonomy in AI-integrated education: Duolingo vs. ChatGPT</span></a> <span class="km">Learning and Motivation, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://gamesbeat.com/duolingo-makes-its-ai-powered-explain-my-answer-feature-free-for-all-users-in-2026/" target="_blank" rel="noopener"><code class="sid pv-t-press">gamesbeat-emafree</code> <span class="kt">Duolingo makes its AI-powered &#x27;Explain My Answer&#x27; feature free for all users in 2026</span></a> <span class="km">GamesBeat, 2026</span></li></ol>
+    </aside>
+  </div>
+</article><article class="dossier" id="speaking" data-kind="gap">
+  <header>
+    <p class="eyebrow"><span class="num">9</span> <span class="kind k-gap">Absence claim</span> <span class="meter" role="img" aria-label="Feasibility 3 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="meter-lab">Workable</span></p>
+    <h3>Speaking is the least-studied skill and the hardest thing an AI tutor claims to teach</h3>
+    <p class="q">Does the field have instruments capable of evaluating a conversational AI tutor, and what would a rigorous Video Call study require?</p>
+  </header>
+  <div class="dgrid">
+    <div class="dmain">
+      <h4>What the sources can carry</h4>
+      <ul class="can"><li>Cite systematic-review evidence that speaking is the least-studied skill in generative-AI language research.</li><li>Contrast the assessment side&#x27;s rigorous speaking-scoring work with the consumer side&#x27;s absence of it.</li><li>Propose a study design - a genuine contribution, since none exists.</li></ul>
+      <h4>What they cannot</h4>
+      <ul class="cannot"><li>Evaluate Video Call. One conversational analysis and a withdrawn whitepaper are the entire direct evidence base.</li><li>Use the Video Call efficacy report as a source: the PDF now returns AccessDenied and only the blog summary survives.</li></ul>
+      <h4>Method that fits</h4>
+      <p class="method">Methodological review. Establish what the generative-AI CALL literature measures, show where speaking sits in that distribution, then specify the design an adequate Video Call evaluation would need.</p>
+      <p class="risk"><span>Watch for</span> Depends on a source that disappeared during collection. Worth reporting as a finding about self-published evidence, but it cannot be cited as data.</p>
+    </div>
+    <aside class="dside">
+      <dl class="facts">
+        <div><dt>Sources</dt><dd>18</dd></div>
+        <div><dt>Peer-reviewed</dt><dd>11</dd></div>
+        <div><dt>Load-bearing</dt><dd class="hi">8</dd></div>
+        <div><dt>Since 2024</dt><dd>16</dd></div>
+        <div><dt>Span</dt><dd class="yr">2021&ndash;2026</dd></div>
+      </dl>
+      <span class="provbar" role="img" aria-label="8 duolingo, 10 independent"><i class="pv pv-duolingo" style="width:44.4444%" title="8 Duolingo"></i><i class="pv pv-independent" style="width:55.5556%" title="10 Independent"></i></span>
+      <p class="provline">8 duolingo · 10 independent</p>
+      <p class="themes"><span class="th">English Test</span> <span class="th">Efficacy</span> <span class="th">Validity &amp; fairness</span> <span class="th">Generative features</span> <span class="th">Reviews &amp; meta-analyses</span></p>
+      <h5>Entry points</h5>
+      <ol class="keys"><li><a href="https://doi.org/10.1007/s10791-026-10015-1" target="_blank" rel="noopener"><code class="sid pv-t-independent">discov26meta</code> <span class="kt">A meta-analysis of generative AI effects on language proficiency and affective-cognitive outcomes in language learning</span></a> <span class="km">Discover Computing, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://onlinelibrary.wiley.com/doi/10.1111/jcal.70060" target="_blank" rel="noopener"><code class="sid pv-t-independent">li25chatbot</code> <span class="kt">Can Generative AI Chatbots Promote Second Language Acquisition? A Meta-Analysis</span></a> <span class="km">Journal of Computer Assisted Learning, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.33422/ijsfle.v3i1.768" target="_blank" rel="noopener"><code class="sid pv-t-independent">fountoulakis25</code> <span class="kt">Evaluating the Impact of AI Tools on Language Proficiency and Intercultural Communication in Second Language Education</span></a> <span class="km">International Journal of Second and Foreign Language Education 3(1), 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1080/15434303.2024.2448963" target="_blank" rel="noopener"><code class="sid pv-t-independent">kang25attitudes</code> <span class="kt">Test Takers&#x27; Attitudes Toward Varieties of Accents in Listening Tasks of the Duolingo English Test</span></a> <span class="km">Language Assessment Quarterly, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://www.sciencedirect.com/science/article/pii/S2666920X25000852" target="_blank" rel="noopener"><code class="sid pv-t-independent">ceai25twoyears</code> <span class="kt">Two years of innovation: A systematic review of empirical generative AI research in language learning and teaching (2023-2024)</span></a> <span class="km">Computers and Education: AI, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1177/02655322231179134" target="_blank" rel="noopener"><code class="sid pv-t-independent">kang24accent</code> <span class="kt">Fairness of using different English accents: The effect of shared L1s in listening tasks of the Duolingo English Test</span></a> <span class="km">Language Testing 41(2), 263-289, 2024 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li></ol>
+    </aside>
+  </div>
+</article><article class="dossier" id="governance" data-kind="corpus">
+  <header>
+    <p class="eyebrow"><span class="num">10</span> <span class="kind k-corpus">Corpus study</span> <span class="meter" role="img" aria-label="Feasibility 3 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="meter-lab">Workable</span></p>
+    <h3>Responsible AI for the test, not for the app</h3>
+    <p class="q">Where does Duolingo&#x27;s published AI governance apply, where does it stop, and does it meet its own stated standard?</p>
+  </header>
+  <div class="dgrid">
+    <div class="dmain">
+      <h4>What the sources can carry</h4>
+      <ul class="can"><li>Show the governance document covers the assessment product only, while the 148-course generative content push has no equivalent.</li><li>Present a documented disagreement about what responsible-AI claims require - burstein24rai against johnson24devil - which is rare and citable.</li><li>Connect to the wider critical literature on surveillance and algorithmic accountability in education.</li></ul>
+      <h4>What they cannot</h4>
+      <ul class="cannot"><li>Assess compliance. There is no external audit of either product.</li><li>Establish that the app has no internal standards - only that none is published.</li></ul>
+      <h4>Method that fits</h4>
+      <p class="method">Document and policy analysis. Read the Responsible AI Standards against the independent critiques, then test its scope against the products that fall outside it.</p>
+      <p class="risk"><span>Watch for</span> Document analysis, not empirical research. Works as a chapter; will not carry a whole dissertation.</p>
+    </div>
+    <aside class="dside">
+      <dl class="facts">
+        <div><dt>Sources</dt><dd>19</dd></div>
+        <div><dt>Peer-reviewed</dt><dd>8</dd></div>
+        <div><dt>Load-bearing</dt><dd class="hi">6</dd></div>
+        <div><dt>Since 2024</dt><dd>17</dd></div>
+        <div><dt>Span</dt><dd class="yr">2022&ndash;2026</dd></div>
+      </dl>
+      <span class="provbar" role="img" aria-label="7 duolingo, 1 mixed, 10 independent, 1 press"><i class="pv pv-duolingo" style="width:36.8421%" title="7 Duolingo"></i><i class="pv pv-mixed" style="width:5.2632%" title="1 Mixed"></i><i class="pv pv-independent" style="width:52.6316%" title="10 Independent"></i><i class="pv pv-press" style="width:5.2632%" title="1 Press"></i></span>
+      <p class="provline">7 duolingo · 1 mixed · 10 independent · 1 press</p>
+      <p class="themes"><span class="th">English Test</span> <span class="th">Ethics &amp; governance</span> <span class="th">Validity &amp; fairness</span> <span class="th">Generative features</span></p>
+      <h5>Entry points</h5>
+      <ol class="keys"><li><a href="https://doi.org/10.51137/wrp.ijmat.908" target="_blank" rel="noopener"><code class="sid pv-t-independent">maass26habit</code> <span class="kt">Encouraging Repeated App Usage Through Habit-Forming Mechanisms: A Case Study Using the Example of Duolingo</span></a> <span class="km">International Journal of Mobile Applications and Technologies, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://www.sciencedirect.com/science/article/abs/pii/S2772766125000072" target="_blank" rel="noopener"><code class="sid pv-t-independent">rmal25ethics</code> <span class="kt">Mobile-assisted language learning with commercial apps: A focused methodological review of quantitative/mixed methods research - and ethics</span></a> <span class="km">Research Methods in Applied Linguistics, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1080/01425692.2025.2501118" target="_blank" rel="noopener"><code class="sid pv-t-independent">bjse25panopticon</code> <span class="kt">Revisiting Foucault&#x27;s panopticon: how does AI surveillance transform educational norms?</span></a> <span class="km">British Journal of Sociology of Education, 2025 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1111/modl.12932" target="_blank" rel="noopener"><code class="sid pv-t-independent">thorne24mlj</code> <span class="kt">Generative artificial intelligence, co-evolution, and language education</span></a> <span class="km">Modern Language Journal 108(S1), 2024 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.3102/10769986241257963" target="_blank" rel="noopener"><code class="sid pv-t-independent">johnson24devil</code> <span class="kt">How Do We Demonstrate AI Responsibility: The Devil Is in the Details</span></a> <span class="km">Journal of Educational and Behavioral Statistics, 2024 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1111/modl.12924" target="_blank" rel="noopener"><code class="sid pv-t-independent">kern24mlj</code> <span class="kt">Twenty-first century technologies and language education: Charting a path forward</span></a> <span class="km">Modern Language Journal 108(S1), 2024 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li></ol>
+    </aside>
+  </div>
+</article><article class="dossier" id="aifirst" data-kind="discourse">
+  <header>
+    <p class="eyebrow"><span class="num">11</span> <span class="kind k-discourse">Discourse study</span> <span class="meter" role="img" aria-label="Feasibility 2 of 4"><i class="seg on"></i><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span><span class="meter-lab">Reframe or fold in</span></p>
+    <h3>AI-first: a strategy announced before its evidence, and partly withdrawn before the evidence arrived</h3>
+    <p class="q">How did the AI-first pivot unfold, how was it received, and what does the arc show about AI adoption running ahead of proof?</p>
+  </header>
+  <div class="dgrid">
+    <div class="dmain">
+      <h4>What the sources can carry</h4>
+      <ul class="can"><li>Reconstruct a complete, dated arc entirely from primary and contemporaneous sources.</li><li>Contrast public messaging with what the 10-K and shareholder letters actually claim.</li><li>Connect to a small peer-reviewed literature on generative AI in HRM and on teacher professional identity.</li></ul>
+      <h4>What they cannot</h4>
+      <ul class="cannot"><li>Establish what happened internally. Nearly everything is press reporting on company statements.</li><li>Quantify job losses beyond the reported 10% of contractors.</li></ul>
+      <h4>Method that fits</h4>
+      <p class="method">Discourse and case analysis over a dated primary-source chain: contractor cuts (Jan 2024), the memo (Apr 2025), the walk-back, the TikTok deletion, the 2026 retreat from AI-usage performance reviews. Read company statements against the filings.</p>
+      <p class="risk"><span>Watch for</span> Three peer-reviewed sources out of twenty-eight. This is a discussion chapter or a media-discourse study with an explicit method - it is not an empirical topic, and presenting it as one would be a mistake.</p>
+    </div>
+    <aside class="dside">
+      <dl class="facts">
+        <div><dt>Sources</dt><dd>27</dd></div>
+        <div><dt>Peer-reviewed</dt><dd>3</dd></div>
+        <div><dt>Load-bearing</dt><dd class="hi">3</dd></div>
+        <div><dt>Since 2024</dt><dd>26</dd></div>
+        <div><dt>Span</dt><dd class="yr">2023&ndash;2026</dd></div>
+      </dl>
+      <span class="provbar" role="img" aria-label="3 duolingo, 4 independent, 20 press"><i class="pv pv-duolingo" style="width:11.1111%" title="3 Duolingo"></i><i class="pv pv-independent" style="width:14.8148%" title="4 Independent"></i><i class="pv pv-press" style="width:74.0741%" title="20 Press"></i></span>
+      <p class="provline">3 duolingo · 4 independent · 20 press</p>
+      <p class="themes"><span class="th">Corporate</span> <span class="th">Ethics &amp; governance</span> <span class="th">AI &amp; labour</span> <span class="th">Generative features</span></p>
+      <h5>Entry points</h5>
+      <ol class="keys"><li><a href="https://www.ijlter.org/index.php/ijlter/article/view/17636" target="_blank" rel="noopener"><code class="sid pv-t-independent">sumalinog26identity</code> <span class="kt">English Teachers&#x27; Professional Identity in the Age of AI: A Meta-Ethnographic Synthesis</span></a> <span class="km">IJLTER, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.3389/feduc.2026.1783566" target="_blank" rel="noopener"><code class="sid pv-t-independent">feduc26identity</code> <span class="kt">Professional identity in AI-supported EFL teaching: a comparative qualitative study of pre-service and in-service teachers</span></a> <span class="km">Frontiers in Education, 2026 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://doi.org/10.1111/1748-8583.12524" target="_blank" rel="noopener"><code class="sid pv-t-independent">budhwar23hrm</code> <span class="kt">Human resource management in the age of generative artificial intelligence</span></a> <span class="km">Human Resource Management Journal 33(3), 2023 · </span><b class="ld" title="Peer-reviewed and independent of Duolingo">load-bearing</b></li><li><a href="https://www.fool.com/earnings/call-transcripts/2026/05/04/duolingo-duol-q1-2026-earnings-transcript/" target="_blank" rel="noopener"><code class="sid pv-t-press">call-q1-2026</code> <span class="kt">Duolingo (DUOL) Q1 2026 Earnings Call Transcript</span></a> <span class="km">Motley Fool, 2026</span></li><li><a href="https://fortune.com/2026/04/13/duolingo-ceo-luis-von-ahn-ai-usage-requirement-employee-performance-evaluations/" target="_blank" rel="noopener"><code class="sid pv-t-press">fortune-2026retreat</code> <span class="kt">Duolingo CEO backs off from evaluating employees on their AI usage</span></a> <span class="km">Fortune, 2026</span></li><li><a href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026012494/duol-20251231.htm" target="_blank" rel="noopener"><code class="sid pv-t-duolingo">10k-2025</code> <span class="kt">Duolingo Form 10-K, FY2025</span></a> <span class="km">SEC EDGAR, 2026</span></li></ol>
+    </aside>
+  </div>
+</article>
+</section>
+
+<section>
+  <div class="shead">
+    <h2>Topics that will not carry</h2>
+    <p class="note">Attractive, and unsupported</p>
+  </div>
+  <p class="lede">These come up naturally and should be ruled out early. In each case the absence
+  is itself worth reporting — just not as a chapter of its own.</p>
+  <div class="nvlist"><article class="nv">
+  <h4>Birdbrain and the personalisation engine, as a standalone topic</h4>
+  <p class="nvstat"><span>6 sources</span><span>2 peer-reviewed</span><span class="">1 load-bearing</span></p>
+  <p>Six sources, one independent peer-reviewed study, and no technical paper. The only substantive description of the model that touches every learner is a magazine article written by Duolingo staff. There is nothing to review.</p>
+  <p class="instead"><span>Instead</span> Fold it into T5 as the central absence, or into T4 as the counterexample to the open-data era.</p>
+</article><article class="nv">
+  <h4>Duolingo against its competitors</h4>
+  <p class="nvstat"><span>6 sources</span><span>3 peer-reviewed</span><span class="">3 load-bearing</span></p>
+  <p>One peer-reviewed head-to-head comparison (Babbel), two ChatGPT comparisons and a listicle. Nowhere near enough for a comparative claim about the market.</p>
+  <p class="instead"><span>Instead</span> Use kessler23babbel as a single reference point inside T1 rather than building a chapter on it.</p>
+</article><article class="nv">
+  <h4>The recommendation and content-sequencing stack</h4>
+  <p class="nvstat"><span>4 sources</span><span>1 peer-reviewed</span><span class="zero">0 load-bearing</span></p>
+  <p>Blog posts, a vendor case study and one KDD paper on notification timing. The sequencing machinery that shapes every session is undocumented in public.</p>
+  <p class="instead"><span>Instead</span> Report the absence itself in T5 or T7 - it is a finding, not a topic.</p>
+</article></div>
+</section>
+
+<section>
+  <div class="shead"><h2>How the rating works</h2></div>
+  <div class="methodnote">
+    <div>
+      <h4>Load-bearing sources</h4>
+      <p>A source counts as load-bearing when it is peer-reviewed <em>and</em> written by someone with
+      no Duolingo affiliation. Duolingo-authored work is not discounted as evidence about the company;
+      it is discounted as independent corroboration of the company's claims. The three sources with
+      mixed authorship never count as load-bearing, which is why they carry their own tag.</p>
+      <p>Ratings run on four bands. An evidence claim reaches <em>strong</em> at twelve load-bearing
+      sources across a base of fifteen or more; a corpus or discourse study reaches it on volume,
+      first-party depth and a span of at least four years. The full scoring rule is in
+      <code>analyse.py</code>, and the counts here are computed from the inventory rather than
+      estimated.</p>
+    </div>
+    <div>
+      <h4>Four kinds of claim</h4>
+      <dl class="kinddefs"><div><dt class="kind k-evidence">Evidence claim</dt><dd>Argues that something is true about learners or scores. Needs sources Duolingo did not write.</dd></div><div><dt class="kind k-corpus">Corpus study</dt><dd>Argues about what was published, claimed or built. First-party documents are the primary data, not weak evidence.</dd></div><div><dt class="kind k-gap">Absence claim</dt><dd>Argues that evidence is missing. Judged on how completely the record of what does exist can be pinned down.</dd></div><div><dt class="kind k-discourse">Discourse study</dt><dd>Argues about how something was said and received. Primary and contemporaneous sources are the data.</dd></div></dl>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Derived from the verified inventory of 222 sources.</span>
+  <a href="https://claude.ai/code/artifact/e81f9ef3-15af-4f7e-980d-51f152f087a9" target="_blank" rel="noopener">Browse the full source index &rarr;</a>
+  <span>Counts regenerate with <code>python analyse.py</code>.</span>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var chips = Array.prototype.slice.call(document.querySelectorAll(".chip"));
+  var rows = Array.prototype.slice.call(document.querySelectorAll("tbody tr"));
+  var dossiers = Array.prototype.slice.call(document.querySelectorAll(".dossier"));
+  var active = null;
+
+  function apply() {
+    rows.forEach(function (r) {
+      r.classList.toggle("dim", !!active && r.getAttribute("data-kind") !== active);
+    });
+    dossiers.forEach(function (d) {
+      d.classList.toggle("hide", !!active && d.getAttribute("data-kind") !== active);
+    });
+    chips.forEach(function (c) {
+      c.setAttribute("aria-pressed", String(c.getAttribute("data-k") === active));
+    });
+  }
+
+  chips.forEach(function (c) {
+    c.addEventListener("click", function () {
+      var k = c.getAttribute("data-k");
+      active = active === k ? null : k;
+      apply();
+    });
+  });
+
+  // A filtered-out dossier must not stay hidden when its anchor is followed.
+  document.querySelectorAll("tbody th a").forEach(function (a) {
+    a.addEventListener("click", function () { active = null; apply(); });
+  });
+})();
+</script>

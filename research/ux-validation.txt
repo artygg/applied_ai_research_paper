@@ -1,0 +1,15 @@
+Validation date: September 11, 2026
+Build: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex — passed
+PDF pages (including title/front matter/references): 22
+Results body: numbered pages 5–14, 10 pages; conclusion begins on page 15
+TeXcount Results text words: RQ1=1341, RQ2=1981, RQ3=1178; total=4500
+RQ2 share of Results text: 44.02% (headers/captions excluded; not an assignment word limit)
+Distinct cited bibliography keys: 38
+Missing citation keys: none
+Duplicate bibliography keys: none
+Unresolved LaTeX citations/references: none
+Overfull horizontal boxes: none
+Underfull horizontal boxes: remain; no clipped content found in inspected preview pages
+Absolute LaTeX input/resource paths: none
+Preview inspection: title, chronology table, evidence table, and analytical figure pages
+Research access and author-verification limitations: see ux-review-audit.md

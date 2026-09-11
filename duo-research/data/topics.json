@@ -1,0 +1,1777 @@
+{
+ "total": 222,
+ "kinds": {
+  "evidence": {
+   "label": "Evidence claim",
+   "blurb": "Argues that something is true about learners or scores. Needs sources Duolingo did not write."
+  },
+  "corpus": {
+   "label": "Corpus study",
+   "blurb": "Argues about what was published, claimed or built. First-party documents are the primary data, not weak evidence."
+  },
+  "gap": {
+   "label": "Absence claim",
+   "blurb": "Argues that evidence is missing. Judged on how completely the record of what does exist can be pinned down."
+  },
+  "discourse": {
+   "label": "Discourse study",
+   "blurb": "Argues about how something was said and received. Primary and contemporaneous sources are the data."
+  }
+ },
+ "topics": [
+  {
+   "n": 42,
+   "kind": "evidence",
+   "slug": "efficacy",
+   "title": "Does Duolingo teach? Twenty years of efficacy evidence, sorted by who paid for it",
+   "question": "How strong is the evidence that Duolingo produces measurable language gains, and how much of it is independent of Duolingo?",
+   "method": "Systematic review extending Shortt et al. (2023), whose window closed at 2020. Code every study for design, sample, outcome measure and author affiliation; report Duolingo-authored and independent results separately rather than pooling them.",
+   "can": [
+    "Characterise the full 2020-2026 empirical record on Duolingo learning outcomes.",
+    "Compare receptive against productive skill gains across independent studies.",
+    "Show that self-published efficacy reports and peer-reviewed studies use systematically different designs and outcome measures.",
+    "Test whether effect sizes differ by author affiliation - there are enough studies on both sides to try."
+   ],
+   "cannot": [
+    "Produce a defensible pooled effect size: outcome instruments range from Versant to in-house placement scores to self-report.",
+    "Say anything about post-2023 generative features - almost no efficacy study covers them."
+   ],
+   "risk": "jiang24calico, the most-cited 'does Duolingo work' study, has mixed Duolingo/academic authorship, which is why it carries provenance: mixed. A sensitivity analysis with and without it is not optional.",
+   "peer": 30,
+   "load": 28,
+   "pdf": 28,
+   "prov": {
+    "duolingo": 11,
+    "mixed": 2,
+    "independent": 28,
+    "press": 1
+   },
+   "y0": 2020,
+   "y1": 2026,
+   "recent": 28,
+   "themes": [
+    "efficacy",
+    "reviews-meta"
+   ],
+   "key": [
+    {
+     "id": "discov26meta",
+     "title": "A meta-analysis of generative AI effects on language proficiency and affective-cognitive outcomes in language learning",
+     "year": 2026,
+     "venue": "Discover Computing",
+     "url": "https://doi.org/10.1007/s10791-026-10015-1",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "discov26prisma",
+     "title": "A PRISMA-based systematic review of artificial intelligence in English as a foreign and second language education (2023-2025)",
+     "year": 2026,
+     "venue": "Discover Education",
+     "url": "https://doi.org/10.1007/s44217-026-01504-y",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "tf26scoping",
+     "title": "Artificial Intelligence in Language Learning: A Twenty-Year Scoping Review of Applications, Research Methods, and Outcomes",
+     "year": 2026,
+     "venue": "Taylor & Francis",
+     "url": "https://doi.org/10.1080/29984475.2026.2647961",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "chua26pretest",
+     "title": "Duolingo-Inspired Pretesting with Words and Pictures Improves Vocabulary Learning",
+     "year": 2026,
+     "venue": "Cognitive Research: Principles and Implications",
+     "url": "https://eric.ed.gov/?q=duolingo&id=EJ1513201",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "discov25samr",
+     "title": "A systematic review of AI in second language acquisition using the expanded SAMR model (2015-2024)",
+     "year": 2025,
+     "venue": "Discover Computing",
+     "url": "https://doi.org/10.1007/s10791-025-09833-6",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "eric-multiling",
+     "title": "A Systematic Review of Multilingual Applications, Large Language Models, and Language Learning (2015-2024)",
+     "year": 2025,
+     "venue": "ERIC EJ1482233",
+     "url": "https://files.eric.ed.gov/fulltext/EJ1482233.pdf",
+     "peer": true,
+     "prov": "independent"
+    }
+   ],
+   "ids": [
+    "portnoff21",
+    "duo-method",
+    "duo-path24",
+    "duo-conv24",
+    "duo-educator24",
+    "duo-intermediate",
+    "duo-readlisten",
+    "duo-beginner",
+    "duo-speak21",
+    "plonsky23grit",
+    "blog-method",
+    "portal-efficacy",
+    "shortt23review",
+    "kessler23babbel",
+    "sudina23dose",
+    "sudina25grit",
+    "ouyang24wtc",
+    "li23selfdirected",
+    "li23selfmgmt",
+    "solmaz24",
+    "zeng24blackbox",
+    "taylor24pron",
+    "chua26pretest",
+    "gonzalez25app",
+    "zhao24wtc",
+    "neuschafer25stories",
+    "jiang24calico",
+    "llt24receptive",
+    "lee24meta",
+    "li25chatbot",
+    "ceai25twoyears",
+    "techtrends25tblt",
+    "discov26meta",
+    "discov25samr",
+    "discov26prisma",
+    "tf26scoping",
+    "eric-multiling",
+    "cal25games",
+    "pb22mall",
+    "cogent24autonomy",
+    "ijlter25genai",
+    "dial-fluency"
+   ],
+   "level": 4,
+   "verdict": "Strong",
+   "rank": 1
+  },
+  {
+   "n": 48,
+   "kind": "evidence",
+   "slug": "det",
+   "title": "Building a validity argument for an AI-scored high-stakes test",
+   "question": "How much of the Duolingo English Test's validity and fairness case is externally peer-reviewed, and how much rests on the company's own technical reports?",
+   "method": "Validity-argument analysis in the Kane tradition. Map each inferential link - scoring, generalisation, extrapolation, decision - to the document that supports it, then mark each document peer-reviewed or self-published.",
+   "can": [
+    "Reconstruct the complete published validity argument from primary documents, including two technical manuals.",
+    "Set the in-house case against twelve independent validity, fairness and accent-bias studies.",
+    "Stage a real scholarly exchange: Burstein et al.'s responsible-AI case study against Johnson's direct rebuttal.",
+    "Trace a single construct - interactive reading, or speaking - from item-generation paper to whitepaper to independent critique."
+   ],
+   "cannot": [
+    "Audit the scoring models. No item pool, no model weights, no subgroup error analysis beyond what the company reports.",
+    "Compare against IELTS or TOEFL internals, which are equally closed."
+   ],
+   "risk": "The 35 first-party DET sources will dominate any word count. Guard the ratio deliberately or the chapter becomes a summary of Duolingo's own case.",
+   "peer": 26,
+   "load": 12,
+   "pdf": 40,
+   "prov": {
+    "duolingo": 36,
+    "mixed": 0,
+    "independent": 12,
+    "press": 0
+   },
+   "y0": 2016,
+   "y1": 2026,
+   "recent": 28,
+   "themes": [
+    "assessment-det",
+    "fairness-validity"
+   ],
+   "key": [
+    {
+     "id": "rehna26southasia",
+     "title": "Duolingo English Test vs. IELTS in South Asia: Accessibility, Validity, Cost, and Equity",
+     "year": 2026,
+     "venue": "International Journal of Research Publications",
+     "url": "https://www.ijrp.org/paper-detail/9718.pdf",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "coney25survey",
+     "title": "A survey of English language proficiency tests in international student admissions at US research-intensive universities",
+     "year": 2025,
+     "venue": "Language Testing",
+     "url": "https://doi.org/10.1177/02655322251348617",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "kang25attitudes",
+     "title": "Test Takers' Attitudes Toward Varieties of Accents in Listening Tasks of the Duolingo English Test",
+     "year": 2025,
+     "venue": "Language Assessment Quarterly",
+     "url": "https://doi.org/10.1080/15434303.2024.2448963",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "xie24construct",
+     "title": "Construct representation and predictive validity of integrated writing tasks: the writing component of the Duolingo English Test",
+     "year": 2024,
+     "venue": "Assessing Writing",
+     "url": "https://doi.org/10.1016/j.asw.2024.100846",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "barkaoui24",
+     "title": "Exploring the effects of task difficulty and learner variables on performance on picture description writing tasks",
+     "year": 2024,
+     "venue": "Assessing Writing",
+     "url": "https://doi.org/10.1016/j.asw.2024.100827",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "kang24accent",
+     "title": "Fairness of using different English accents: The effect of shared L1s in listening tasks of the Duolingo English Test",
+     "year": 2024,
+     "venue": "Language Testing 41(2), 263-289",
+     "url": "https://doi.org/10.1177/02655322231179134",
+     "peer": true,
+     "prov": "independent"
+    }
+   ],
+   "ids": [
+    "settles20tacl",
+    "mccarthy21",
+    "liao21",
+    "yancey24bea",
+    "niu24emnlp",
+    "burstein25aime",
+    "niu25keystroke",
+    "sharpnack24autoirt",
+    "sharpnack24bandit",
+    "vondavier26assembly",
+    "vondavier26aquap",
+    "sharpnack26s2a3",
+    "sharpnack26irt",
+    "belzak25fairness",
+    "attali22reading",
+    "runge24listening",
+    "cai25pron",
+    "cai25slate",
+    "liao22qa",
+    "langenfeld22",
+    "det-tm-2026",
+    "det-tm-2025",
+    "det-security",
+    "det-scoring24",
+    "det-reading",
+    "det-listening-w",
+    "det-writing",
+    "det-intwriting",
+    "det-speaking",
+    "det-listening2",
+    "det-vocab",
+    "det-ecosystem",
+    "det-psychometric",
+    "det-short",
+    "det-drr1601",
+    "isaacs23validity",
+    "isbell24extrapolation",
+    "kang24accent",
+    "kang25attitudes",
+    "yao23fairness",
+    "yu24netnography",
+    "xie24construct",
+    "barkaoui24",
+    "ma24mock",
+    "coney25survey",
+    "sadaf23bangladesh",
+    "rehna26southasia",
+    "det-handbook"
+   ],
+   "level": 4,
+   "verdict": "Strong",
+   "rank": 2
+  },
+  {
+   "n": 31,
+   "kind": "evidence",
+   "slug": "opendata",
+   "title": "What open data bought: Duolingo's datasets and the research they made possible",
+   "question": "What did releasing SLAM, STAPLE and the half-life regression traces produce, and what happened when the releases stopped?",
+   "method": "Citation and reuse analysis of the four public datasets. Trace forward from each release into the downstream literature, then contrast with Birdbrain and the generative stack, where nothing was released.",
+   "can": [
+    "Show a decade of external work - knowledge tracing, fairness auditing, spaced-repetition optimisation, MT robustness - built on Duolingo data.",
+    "Document that Duolingo's own model was beaten using its own data (tabibian19pnas) and independently replicated (avelar-hlr, papousek-hlr).",
+    "Date the last release precisely: 2020. Nothing from the generative era has been opened.",
+    "Argue open data as research infrastructure - a contribution that outweighs the company's own papers."
+   ],
+   "cannot": [
+    "Quantify how much of the knowledge-tracing field depends on Duolingo data without a formal bibliometric pass this collection does not contain.",
+    "Explain why the releases stopped. No source states a reason."
+   ],
+   "risk": "Twelve independent peer-reviewed sources make this solid, but half predate 2020. Frame it as a historical argument about openness, not a claim about current practice.",
+   "peer": 16,
+   "load": 12,
+   "pdf": 21,
+   "prov": {
+    "duolingo": 12,
+    "mixed": 0,
+    "independent": 19,
+    "press": 0
+   },
+   "y0": 2016,
+   "y1": 2025,
+   "recent": 2,
+   "themes": [
+    "adaptive-personalization",
+    "datasets-reuse",
+    "foundations"
+   ],
+   "key": [
+    {
+     "id": "cui23exercise",
+     "title": "Adaptive and Personalized Exercise Generation for Online Language Learning",
+     "year": 2023,
+     "venue": "ACL 2023 / arXiv 2306.02457",
+     "url": "https://arxiv.org/abs/2306.02457",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "staple-robust",
+     "title": "Machine Translation Robustness to Natural Asemantic Variation",
+     "year": 2022,
+     "venue": "EMNLP 2022",
+     "url": "https://arxiv.org/abs/2205.12514",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "qg21adaptive",
+     "title": "Question Generation for Adaptive Education",
+     "year": 2021,
+     "venue": "ACL 2021 / arXiv 2106.04262",
+     "url": "https://arxiv.org/abs/2106.04262",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "lak21vdkt",
+     "title": "Variational Deep Knowledge Tracing for Language Learning",
+     "year": 2021,
+     "venue": "LAK '21 (ACM)",
+     "url": "https://doi.org/10.1145/3448139.3448170",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "nagoudi20growing",
+     "title": "Growing Together: Modeling Human Language Learning With n-Best Multi-Checkpoint Machine Translation",
+     "year": 2020,
+     "venue": "NGT @ ACL 2020 / arXiv 2006.04050",
+     "url": "https://arxiv.org/abs/2006.04050",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "staple-finetune",
+     "title": "Simultaneous paraphrasing and translation by fine-tuning Transformer models",
+     "year": 2020,
+     "venue": "NGT @ ACL 2020",
+     "url": "https://arxiv.org/abs/2005.05570",
+     "peer": true,
+     "prov": "independent"
+    }
+   ],
+   "ids": [
+    "settles18slam",
+    "mayhew20staple",
+    "ds-slam",
+    "ds-staple",
+    "ds-hlr",
+    "ds-bandit",
+    "code-hlr",
+    "code-staple",
+    "tang24fairkt",
+    "vie18dfm",
+    "osika18ensemble",
+    "lak21vdkt",
+    "dkt23irt",
+    "cui23exercise",
+    "tabibian19pnas",
+    "upadhyay18rl",
+    "avelar-hlr",
+    "papousek-hlr",
+    "fennell18",
+    "alipourfard18simpson",
+    "qg21adaptive",
+    "llmedu25reliable",
+    "staple-finetune",
+    "staple-robust",
+    "nagoudi20growing",
+    "yang20staple",
+    "cs230slam",
+    "settles16hlr",
+    "yancey20kdd",
+    "blog-birdbrain",
+    "bicknell23spectrum"
+   ],
+   "level": 4,
+   "verdict": "Strong",
+   "rank": 3
+  },
+  {
+   "n": 18,
+   "kind": "evidence",
+   "slug": "gamification",
+   "title": "Streaks, habits and the line between engagement design and dark patterns",
+   "question": "Does the motivational architecture that drives Duolingo's retention also drive learning, and where does the critical literature say it stops helping?",
+   "method": "Thematic synthesis of the critical and motivational literature, anchored on the one first-party technical artefact that shows engagement being optimised directly: the notification bandit paper.",
+   "can": [
+    "Set a peer-reviewed habit-formation case study and a critical gamification analysis against the company's own optimisation paper and its CEO's stated goal.",
+    "Use the dose-response and attrition studies to connect engagement mechanics to actual learning time.",
+    "Make an argument about engagement optimisation as an AI application in its own right."
+   ],
+   "cannot": [
+    "Claim causation between specific mechanics and dropout. The designs are correlational or qualitative.",
+    "Cover the current recommendation stack, which is undocumented."
+   ],
+   "risk": "Thematically coherent but assembled across six themes. The AI connection is real - the bandit paper - but it has to be argued, not assumed.",
+   "peer": 13,
+   "load": 12,
+   "pdf": 10,
+   "prov": {
+    "duolingo": 1,
+    "mixed": 1,
+    "independent": 15,
+    "press": 1
+   },
+   "y0": 2020,
+   "y1": 2026,
+   "recent": 10,
+   "themes": [
+    "adaptive-personalization",
+    "corporate-strategy",
+    "efficacy",
+    "ethics-governance",
+    "ethics-labour",
+    "genai-features",
+    "reviews-meta"
+   ],
+   "key": [
+    {
+     "id": "maass26habit",
+     "title": "Encouraging Repeated App Usage Through Habit-Forming Mechanisms: A Case Study Using the Example of Duolingo",
+     "year": 2026,
+     "venue": "International Journal of Mobile Applications and Technologies",
+     "url": "https://doi.org/10.51137/wrp.ijmat.908",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "sumalinog26identity",
+     "title": "English Teachers' Professional Identity in the Age of AI: A Meta-Ethnographic Synthesis",
+     "year": 2026,
+     "venue": "IJLTER",
+     "url": "https://www.ijlter.org/index.php/ijlter/article/view/17636",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "cal25games",
+     "title": "Do mobile games improve language learning? A meta-analysis",
+     "year": 2025,
+     "venue": "Computer Assisted Language Learning",
+     "url": "https://doi.org/10.1080/09588221.2025.2528786",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "sudina25grit",
+     "title": "L2 grit and age as predictors of attrition in mobile-assisted language learning",
+     "year": 2025,
+     "venue": "Learning and Individual Differences",
+     "url": "https://doi.org/10.1016/j.lindif.2025.102704",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "bjse25panopticon",
+     "title": "Revisiting Foucault's panopticon: how does AI surveillance transform educational norms?",
+     "year": 2025,
+     "venue": "British Journal of Sociology of Education",
+     "url": "https://doi.org/10.1080/01425692.2025.2501118",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "xu25duovsgpt",
+     "title": "Uncurtaining windows of motivation, enjoyment, critical thinking, and autonomy in AI-integrated education: Duolingo vs. ChatGPT",
+     "year": 2025,
+     "venue": "Learning and Motivation",
+     "url": "https://doi.org/10.1016/j.lmot.2025.102100",
+     "peer": true,
+     "prov": "independent"
+    }
+   ],
+   "ids": [
+    "espinosa26critical",
+    "maass26habit",
+    "mogavi22gamification",
+    "shortt23review",
+    "stockman22surveillance",
+    "bjse25panopticon",
+    "sudina25grit",
+    "sudina23dose",
+    "li23selfdirected",
+    "li23selfmgmt",
+    "cogent24autonomy",
+    "cal25games",
+    "xu25duovsgpt",
+    "zeng24blackbox",
+    "decoder-vonahn",
+    "yancey20kdd",
+    "plonsky23grit",
+    "sumalinog26identity"
+   ],
+   "level": 4,
+   "verdict": "Strong",
+   "rank": 4
+  },
+  {
+   "n": 107,
+   "kind": "corpus",
+   "slug": "bibliometric",
+   "title": "The frozen shop window: where Duolingo's research output went after 2021",
+   "question": "What does the venue and volume of Duolingo's own publications reveal about where AI is load-bearing for the business?",
+   "method": "Bibliometric analysis of the first-party corpus by venue, year, theme, peer-review status and author. Compare what the public research portal lists against what the same authors actually published.",
+   "can": [
+    "Demonstrate the portal has listed nothing since McCarthy et al., EMNLP 2021, while the same teams published at BEA, EMNLP, ACL Findings, PMLR and on arXiv through 2026.",
+    "Quantify the reallocation from consumer-app research to assessment research.",
+    "Show the whitepaper working as a genre: substantive, versioned, technically detailed, and outside peer review.",
+    "Trace individual researchers across the shift using their public profiles."
+   ],
+   "cannot": [
+    "Claim the portal freeze was deliberate. It is equally consistent with neglect.",
+    "Count unpublished internal research."
+   ],
+   "risk": "Original work - nobody has published this analysis - which also means no prior methodology to lean on. Choose the bibliometric frame explicitly and state the corpus boundary.",
+   "peer": 36,
+   "load": 0,
+   "pdf": 65,
+   "prov": {
+    "duolingo": 107,
+    "mixed": 0,
+    "independent": 0,
+    "press": 0
+   },
+   "y0": 2015,
+   "y1": 2026,
+   "recent": 53,
+   "themes": [
+    "adaptive-personalization",
+    "assessment-det",
+    "corporate-strategy",
+    "datasets-reuse",
+    "efficacy",
+    "ethics-governance",
+    "fairness-validity",
+    "foundations",
+    "genai-features"
+   ],
+   "key": [
+    {
+     "id": "prof-vondavier",
+     "title": "Alina A. von Davier - Google Scholar",
+     "year": 2026,
+     "venue": "Google Scholar",
+     "url": "https://scholar.google.com/citations?hl=en&user=Eu9DtEsAAAAJ",
+     "peer": false,
+     "prov": "duolingo"
+    },
+    {
+     "id": "vondavier26aquap",
+     "title": "Analytics for Quality Assurance for Item Pools (AQuAP): Monitoring and Maintaining Item Bank Health",
+     "year": 2026,
+     "venue": "arXiv 2606.18536",
+     "url": "https://arxiv.org/abs/2606.18536",
+     "peer": false,
+     "prov": "duolingo"
+    },
+    {
+     "id": "prof-naismith",
+     "title": "Ben Naismith - Google Scholar",
+     "year": 2026,
+     "venue": "Google Scholar",
+     "url": "https://scholar.google.com/citations?user=4ldMyhMAAAAJ&hl=en",
+     "peer": false,
+     "prov": "duolingo"
+    },
+    {
+     "id": "prof-settles",
+     "title": "Burr Settles - publications",
+     "year": 2026,
+     "venue": "Personal site",
+     "url": "https://burrsettles.com/publications",
+     "peer": false,
+     "prov": "duolingo"
+    },
+    {
+     "id": "portal-efficacy",
+     "title": "Duolingo Efficacy Studies hub",
+     "year": 2026,
+     "venue": "Duolingo",
+     "url": "https://www.duolingo.com/efficacy/studies",
+     "peer": false,
+     "prov": "duolingo"
+    },
+    {
+     "id": "portal-det",
+     "title": "Duolingo English Test - Research and Innovation",
+     "year": 2026,
+     "venue": "Duolingo",
+     "url": "https://englishtest.duolingo.com/research",
+     "peer": false,
+     "prov": "duolingo"
+    }
+   ],
+   "ids": [
+    "settles16hlr",
+    "streeter15",
+    "markant16",
+    "pajak16ll",
+    "pajak16jep",
+    "settles18slam",
+    "mirea19",
+    "mcdowell19",
+    "duan19",
+    "romer19",
+    "vanderfeest19",
+    "settles20tacl",
+    "mayhew20staple",
+    "yancey20kdd",
+    "runge20",
+    "bicknell20ps",
+    "mccarthy21",
+    "liao21",
+    "portnoff21",
+    "yancey23bea",
+    "naismith23bea",
+    "yancey24bea",
+    "malik24acl",
+    "niu24emnlp",
+    "mulcaire25bea",
+    "naismith25wnut",
+    "burstein25aime",
+    "niu25keystroke",
+    "sharpnack24autoirt",
+    "sharpnack24bandit",
+    "burstein24where",
+    "vondavier26assembly",
+    "vondavier26aquap",
+    "sharpnack26s2a3",
+    "sharpnack26irt",
+    "belzak25fairness",
+    "attali22reading",
+    "runge24listening",
+    "cai25pron",
+    "cai25slate",
+    "liao22qa",
+    "langenfeld22",
+    "bicknell23spectrum",
+    "kittredge25selfeff",
+    "det-tm-2026",
+    "det-tm-2025",
+    "det-rai",
+    "det-security",
+    "det-scoring24",
+    "det-reading",
+    "det-listening-w",
+    "det-writing",
+    "det-intwriting",
+    "det-speaking",
+    "det-listening2",
+    "det-vocab",
+    "det-ecosystem",
+    "det-psychometric",
+    "det-short",
+    "det-drr1601",
+    "duo-method",
+    "duo-path24",
+    "duo-conv24",
+    "duo-educator24",
+    "duo-intermediate",
+    "duo-readlisten",
+    "duo-beginner",
+    "duo-speak21",
+    "duo-videocall-report",
+    "ds-slam",
+    "ds-staple",
+    "ds-hlr",
+    "ds-bandit",
+    "code-hlr",
+    "code-staple",
+    "blog-birdbrain",
+    "blog-max",
+    "blog-videocall",
+    "blog-llmlessons",
+    "blog-duoradio",
+    "blog-3ways",
+    "blog-innovations",
+    "blog-method",
+    "blog-grant",
+    "portal-research",
+    "portal-det",
+    "portal-efficacy",
+    "prof-yancey",
+    "prof-laflair",
+    "prof-vondavier",
+    "prof-naismith",
+    "prof-settles",
+    "prof-bicknell",
+    "prof-sharpnack",
+    "ir-home",
+    "10k-2021",
+    "10k-2025",
+    "sl-q1-2025",
+    "sl-q2-2025",
+    "sl-q2-2026",
+    "pr-max",
+    "pr-duocon2024",
+    "pr-148",
+    "pr-duocon2025",
+    "det-blog-custodianship",
+    "handbook-duolingo",
+    "det-handbook"
+   ],
+   "level": 4,
+   "verdict": "Strong",
+   "rank": 5
+  },
+  {
+   "n": 28,
+   "kind": "corpus",
+   "slug": "aig",
+   "title": "Automatic item generation and automated scoring as an applied NLP problem",
+   "question": "What are the actual methods behind AI-driven test construction and scoring, and how did they change as LLMs arrived?",
+   "method": "Technical review. Read the method sections and trace the arc from logistic regression over hand-built features, to BERT-IRT, to GPT-4-based generation and scoring, noting which claims rest on held-out evaluation.",
+   "can": [
+    "Give a complete, well-documented technical account - this is the best-documented part of the whole Duolingo AI story.",
+    "Show a clear methodological progression across a decade with named architectures and reported metrics.",
+    "Connect the industrial work to the academic knowledge-tracing and question-generation literature."
+   ],
+   "cannot": [
+    "Verify reported results. No code or data accompanies the post-2020 papers.",
+    "Cover the consumer app's models, which have no method papers at all."
+   ],
+   "risk": "Almost entirely Duolingo-authored, and the peer-reviewed portion sits in workshop venues. Strong as a methods chapter, weak as evidence of quality.",
+   "peer": 21,
+   "load": 4,
+   "pdf": 22,
+   "prov": {
+    "duolingo": 23,
+    "mixed": 0,
+    "independent": 5,
+    "press": 0
+   },
+   "y0": 2016,
+   "y1": 2026,
+   "recent": 15,
+   "themes": [
+    "assessment-det",
+    "datasets-reuse",
+    "foundations",
+    "genai-features"
+   ],
+   "key": [
+    {
+     "id": "cui23exercise",
+     "title": "Adaptive and Personalized Exercise Generation for Online Language Learning",
+     "year": 2023,
+     "venue": "ACL 2023 / arXiv 2306.02457",
+     "url": "https://arxiv.org/abs/2306.02457",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "qg21adaptive",
+     "title": "Question Generation for Adaptive Education",
+     "year": 2021,
+     "venue": "ACL 2021 / arXiv 2106.04262",
+     "url": "https://arxiv.org/abs/2106.04262",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "lak21vdkt",
+     "title": "Variational Deep Knowledge Tracing for Language Learning",
+     "year": 2021,
+     "venue": "LAK '21 (ACM)",
+     "url": "https://doi.org/10.1145/3448139.3448170",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "vie18dfm",
+     "title": "Deep Factorization Machines for Knowledge Tracing",
+     "year": 2018,
+     "venue": "BEA 2018 / arXiv 1805.00356",
+     "url": "https://arxiv.org/abs/1805.00356",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "vondavier26aquap",
+     "title": "Analytics for Quality Assurance for Item Pools (AQuAP): Monitoring and Maintaining Item Bank Health",
+     "year": 2026,
+     "venue": "arXiv 2606.18536",
+     "url": "https://arxiv.org/abs/2606.18536",
+     "peer": false,
+     "prov": "duolingo"
+    },
+    {
+     "id": "sharpnack26irt",
+     "title": "Learning Item Embeddings and Hyperparameters for IRT Calibration via Monte Carlo EM",
+     "year": 2026,
+     "venue": "arXiv 2607.06905",
+     "url": "https://arxiv.org/abs/2607.06905",
+     "peer": false,
+     "prov": "duolingo"
+    }
+   ],
+   "ids": [
+    "settles20tacl",
+    "attali22reading",
+    "mccarthy21",
+    "yancey23bea",
+    "yancey24bea",
+    "naismith23bea",
+    "malik24acl",
+    "mulcaire25bea",
+    "sharpnack24autoirt",
+    "sharpnack24bandit",
+    "sharpnack26irt",
+    "sharpnack26s2a3",
+    "vondavier26assembly",
+    "vondavier26aquap",
+    "runge24listening",
+    "cai25pron",
+    "cai25slate",
+    "niu24emnlp",
+    "niu25keystroke",
+    "liao21",
+    "liao22qa",
+    "settles16hlr",
+    "naismith25wnut",
+    "cui23exercise",
+    "qg21adaptive",
+    "dkt23irt",
+    "lak21vdkt",
+    "vie18dfm"
+   ],
+   "level": 4,
+   "verdict": "Strong",
+   "rank": 6
+  },
+  {
+   "n": 15,
+   "kind": "evidence",
+   "slug": "exemplar",
+   "title": "The field's default exemplar: what it costs to study one company's product",
+   "question": "Why is Duolingo simultaneously over-used as a case study and under-studied as a system, and what does that do to the field's conclusions?",
+   "method": "Methodological critique that uses the existing reviews as data: how often Duolingo appears, in what role, with what author affiliations, and with what access to the system under study.",
+   "can": [
+    "Cite a 2026 twenty-year scoping review finding Duolingo in 1.4% of empirical AI-in-language-learning studies.",
+    "Draw on a published methodological critique of research using commercial apps.",
+    "Use this collection's own provenance distribution as evidence - 107 Duolingo-authored against 80 independent - which is a defensible original contribution.",
+    "Note that the company funds an external research grant programme."
+   ],
+   "cannot": [
+    "Prove that funding shaped findings. Nothing here supports that, and implying it would be unfair.",
+    "Generalise to Babbel, Busuu or Memrise. There is one comparative study."
+   ],
+   "risk": "Reflexive: the collection is both instrument and evidence. State that openly and describe how the inventory was built, or the argument is circular.",
+   "peer": 12,
+   "load": 11,
+   "pdf": 9,
+   "prov": {
+    "duolingo": 2,
+    "mixed": 2,
+    "independent": 11,
+    "press": 0
+   },
+   "y0": 2022,
+   "y1": 2026,
+   "recent": 11,
+   "themes": [
+    "corporate-strategy",
+    "efficacy",
+    "ethics-governance",
+    "reviews-meta"
+   ],
+   "key": [
+    {
+     "id": "discov26prisma",
+     "title": "A PRISMA-based systematic review of artificial intelligence in English as a foreign and second language education (2023-2025)",
+     "year": 2026,
+     "venue": "Discover Education",
+     "url": "https://doi.org/10.1007/s44217-026-01504-y",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "tf26scoping",
+     "title": "Artificial Intelligence in Language Learning: A Twenty-Year Scoping Review of Applications, Research Methods, and Outcomes",
+     "year": 2026,
+     "venue": "Taylor & Francis",
+     "url": "https://doi.org/10.1080/29984475.2026.2647961",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "discov25samr",
+     "title": "A systematic review of AI in second language acquisition using the expanded SAMR model (2015-2024)",
+     "year": 2025,
+     "venue": "Discover Computing",
+     "url": "https://doi.org/10.1007/s10791-025-09833-6",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "eric-multiling",
+     "title": "A Systematic Review of Multilingual Applications, Large Language Models, and Language Learning (2015-2024)",
+     "year": 2025,
+     "venue": "ERIC EJ1482233",
+     "url": "https://files.eric.ed.gov/fulltext/EJ1482233.pdf",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "ijlter25genai",
+     "title": "Integrating Generative AI in Language Education: A Systematic Review of Pedagogical, Ethical, and Technological Themes",
+     "year": 2025,
+     "venue": "IJLTER",
+     "url": "https://www.ijlter.org/index.php/ijlter/article/view/15573",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "rmal25ethics",
+     "title": "Mobile-assisted language learning with commercial apps: A focused methodological review of quantitative/mixed methods research - and ethics",
+     "year": 2025,
+     "venue": "Research Methods in Applied Linguistics",
+     "url": "https://www.sciencedirect.com/science/article/abs/pii/S2772766125000072",
+     "peer": true,
+     "prov": "independent"
+    }
+   ],
+   "ids": [
+    "rmal25ethics",
+    "tf26scoping",
+    "jiang24calico",
+    "plonsky23grit",
+    "blog-grant",
+    "shortt23review",
+    "kern24mlj",
+    "thorne24mlj",
+    "discov26prisma",
+    "discov25samr",
+    "pb22mall",
+    "lee24meta",
+    "ijlter25genai",
+    "eric-multiling",
+    "portal-research"
+   ],
+   "level": 3,
+   "verdict": "Workable",
+   "rank": 7
+  },
+  {
+   "n": 28,
+   "kind": "gap",
+   "slug": "genai-gap",
+   "title": "Three years of Duolingo Max without an independent outcome study",
+   "question": "What outcome evidence exists for the generative-AI features, and what explains the gap between shipping date and evidence date?",
+   "method": "Reframe from efficacy review to evidence-gap analysis. Build a timeline of feature launches against the publication dates of any evaluation, and characterise what was published instead - engagement metrics, revenue framing, self-efficacy.",
+   "can": [
+    "Document the gap precisely, with dated primary sources on both sides.",
+    "Show what a company publishes while it has no outcome evidence yet.",
+    "Situate Duolingo in the wider generative-AI CALL literature, where meta-analyses already exist and Duolingo is largely absent."
+   ],
+   "cannot": [
+    "Answer whether Max, Roleplay or Video Call improve proficiency. Nobody has published that study.",
+    "Treat kittredge25selfeff as outcome evidence - it is in-house, self-report, and measures self-efficacy."
+   ],
+   "risk": "Only two independent peer-reviewed sources touch these features directly. Written as an efficacy review the topic collapses; written as a gap analysis it is one of the strongest here.",
+   "peer": 10,
+   "load": 5,
+   "pdf": 9,
+   "prov": {
+    "duolingo": 14,
+    "mixed": 0,
+    "independent": 8,
+    "press": 6
+   },
+   "y0": 2023,
+   "y1": 2026,
+   "recent": 22,
+   "themes": [
+    "genai-features",
+    "reviews-meta"
+   ],
+   "key": [
+    {
+     "id": "discov26meta",
+     "title": "A meta-analysis of generative AI effects on language proficiency and affective-cognitive outcomes in language learning",
+     "year": 2026,
+     "venue": "Discover Computing",
+     "url": "https://doi.org/10.1007/s10791-026-10015-1",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "li25chatbot",
+     "title": "Can Generative AI Chatbots Promote Second Language Acquisition? A Meta-Analysis",
+     "year": 2025,
+     "venue": "Journal of Computer Assisted Learning",
+     "url": "https://onlinelibrary.wiley.com/doi/10.1111/jcal.70060",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "fountoulakis25",
+     "title": "Evaluating the Impact of AI Tools on Language Proficiency and Intercultural Communication in Second Language Education",
+     "year": 2025,
+     "venue": "International Journal of Second and Foreign Language Education 3(1)",
+     "url": "https://doi.org/10.33422/ijsfle.v3i1.768",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "ceai25twoyears",
+     "title": "Two years of innovation: A systematic review of empirical generative AI research in language learning and teaching (2023-2024)",
+     "year": 2025,
+     "venue": "Computers and Education: AI",
+     "url": "https://www.sciencedirect.com/science/article/pii/S2666920X25000852",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "xu25duovsgpt",
+     "title": "Uncurtaining windows of motivation, enjoyment, critical thinking, and autonomy in AI-integrated education: Duolingo vs. ChatGPT",
+     "year": 2025,
+     "venue": "Learning and Motivation",
+     "url": "https://doi.org/10.1016/j.lmot.2025.102100",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "gamesbeat-emafree",
+     "title": "Duolingo makes its AI-powered 'Explain My Answer' feature free for all users in 2026",
+     "year": 2026,
+     "venue": "GamesBeat",
+     "url": "https://gamesbeat.com/duolingo-makes-its-ai-powered-explain-my-answer-feature-free-for-all-users-in-2026/",
+     "peer": false,
+     "prov": "press"
+    }
+   ],
+   "ids": [
+    "yancey23bea",
+    "naismith23bea",
+    "malik24acl",
+    "mulcaire25bea",
+    "kittredge25selfeff",
+    "duo-videocall-report",
+    "blog-max",
+    "blog-videocall",
+    "blog-llmlessons",
+    "blog-duoradio",
+    "harrison25tutor",
+    "catalan26lessons",
+    "xu25duovsgpt",
+    "tajik25replika",
+    "fountoulakis25",
+    "pr-max",
+    "pr-duocon2024",
+    "pr-148",
+    "pr-duocon2025",
+    "tc-max",
+    "gamesbeat-emafree",
+    "rive-lily",
+    "bicknell-indiaai",
+    "openai-case",
+    "hardman-critique",
+    "li25chatbot",
+    "ceai25twoyears",
+    "discov26meta"
+   ],
+   "level": 3,
+   "verdict": "Workable",
+   "rank": 8
+  },
+  {
+   "n": 18,
+   "kind": "gap",
+   "slug": "speaking",
+   "title": "Speaking is the least-studied skill and the hardest thing an AI tutor claims to teach",
+   "question": "Does the field have instruments capable of evaluating a conversational AI tutor, and what would a rigorous Video Call study require?",
+   "method": "Methodological review. Establish what the generative-AI CALL literature measures, show where speaking sits in that distribution, then specify the design an adequate Video Call evaluation would need.",
+   "can": [
+    "Cite systematic-review evidence that speaking is the least-studied skill in generative-AI language research.",
+    "Contrast the assessment side's rigorous speaking-scoring work with the consumer side's absence of it.",
+    "Propose a study design - a genuine contribution, since none exists."
+   ],
+   "cannot": [
+    "Evaluate Video Call. One conversational analysis and a withdrawn whitepaper are the entire direct evidence base.",
+    "Use the Video Call efficacy report as a source: the PDF now returns AccessDenied and only the blog summary survives."
+   ],
+   "risk": "Depends on a source that disappeared during collection. Worth reporting as a finding about self-published evidence, but it cannot be cited as data.",
+   "peer": 11,
+   "load": 8,
+   "pdf": 13,
+   "prov": {
+    "duolingo": 8,
+    "mixed": 0,
+    "independent": 10,
+    "press": 0
+   },
+   "y0": 2021,
+   "y1": 2026,
+   "recent": 16,
+   "themes": [
+    "assessment-det",
+    "efficacy",
+    "fairness-validity",
+    "genai-features",
+    "reviews-meta"
+   ],
+   "key": [
+    {
+     "id": "discov26meta",
+     "title": "A meta-analysis of generative AI effects on language proficiency and affective-cognitive outcomes in language learning",
+     "year": 2026,
+     "venue": "Discover Computing",
+     "url": "https://doi.org/10.1007/s10791-026-10015-1",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "li25chatbot",
+     "title": "Can Generative AI Chatbots Promote Second Language Acquisition? A Meta-Analysis",
+     "year": 2025,
+     "venue": "Journal of Computer Assisted Learning",
+     "url": "https://onlinelibrary.wiley.com/doi/10.1111/jcal.70060",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "fountoulakis25",
+     "title": "Evaluating the Impact of AI Tools on Language Proficiency and Intercultural Communication in Second Language Education",
+     "year": 2025,
+     "venue": "International Journal of Second and Foreign Language Education 3(1)",
+     "url": "https://doi.org/10.33422/ijsfle.v3i1.768",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "kang25attitudes",
+     "title": "Test Takers' Attitudes Toward Varieties of Accents in Listening Tasks of the Duolingo English Test",
+     "year": 2025,
+     "venue": "Language Assessment Quarterly",
+     "url": "https://doi.org/10.1080/15434303.2024.2448963",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "ceai25twoyears",
+     "title": "Two years of innovation: A systematic review of empirical generative AI research in language learning and teaching (2023-2024)",
+     "year": 2025,
+     "venue": "Computers and Education: AI",
+     "url": "https://www.sciencedirect.com/science/article/pii/S2666920X25000852",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "kang24accent",
+     "title": "Fairness of using different English accents: The effect of shared L1s in listening tasks of the Duolingo English Test",
+     "year": 2024,
+     "venue": "Language Testing 41(2), 263-289",
+     "url": "https://doi.org/10.1177/02655322231179134",
+     "peer": true,
+     "prov": "independent"
+    }
+   ],
+   "ids": [
+    "duo-speak21",
+    "duo-videocall-report",
+    "blog-videocall",
+    "harrison25tutor",
+    "cai25pron",
+    "cai25slate",
+    "det-speaking",
+    "runge24listening",
+    "taylor24pron",
+    "ceai25twoyears",
+    "li25chatbot",
+    "duo-conv24",
+    "isbell24extrapolation",
+    "kang24accent",
+    "kang25attitudes",
+    "discov26meta",
+    "tajik25replika",
+    "fountoulakis25"
+   ],
+   "level": 3,
+   "verdict": "Workable",
+   "rank": 9
+  },
+  {
+   "n": 19,
+   "kind": "corpus",
+   "slug": "governance",
+   "title": "Responsible AI for the test, not for the app",
+   "question": "Where does Duolingo's published AI governance apply, where does it stop, and does it meet its own stated standard?",
+   "method": "Document and policy analysis. Read the Responsible AI Standards against the independent critiques, then test its scope against the products that fall outside it.",
+   "can": [
+    "Show the governance document covers the assessment product only, while the 148-course generative content push has no equivalent.",
+    "Present a documented disagreement about what responsible-AI claims require - burstein24rai against johnson24devil - which is rare and citable.",
+    "Connect to the wider critical literature on surveillance and algorithmic accountability in education."
+   ],
+   "cannot": [
+    "Assess compliance. There is no external audit of either product.",
+    "Establish that the app has no internal standards - only that none is published."
+   ],
+   "risk": "Document analysis, not empirical research. Works as a chapter; will not carry a whole dissertation.",
+   "peer": 8,
+   "load": 6,
+   "pdf": 11,
+   "prov": {
+    "duolingo": 7,
+    "mixed": 1,
+    "independent": 10,
+    "press": 1
+   },
+   "y0": 2022,
+   "y1": 2026,
+   "recent": 17,
+   "themes": [
+    "assessment-det",
+    "ethics-governance",
+    "fairness-validity",
+    "genai-features"
+   ],
+   "key": [
+    {
+     "id": "maass26habit",
+     "title": "Encouraging Repeated App Usage Through Habit-Forming Mechanisms: A Case Study Using the Example of Duolingo",
+     "year": 2026,
+     "venue": "International Journal of Mobile Applications and Technologies",
+     "url": "https://doi.org/10.51137/wrp.ijmat.908",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "rmal25ethics",
+     "title": "Mobile-assisted language learning with commercial apps: A focused methodological review of quantitative/mixed methods research - and ethics",
+     "year": 2025,
+     "venue": "Research Methods in Applied Linguistics",
+     "url": "https://www.sciencedirect.com/science/article/abs/pii/S2772766125000072",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "bjse25panopticon",
+     "title": "Revisiting Foucault's panopticon: how does AI surveillance transform educational norms?",
+     "year": 2025,
+     "venue": "British Journal of Sociology of Education",
+     "url": "https://doi.org/10.1080/01425692.2025.2501118",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "thorne24mlj",
+     "title": "Generative artificial intelligence, co-evolution, and language education",
+     "year": 2024,
+     "venue": "Modern Language Journal 108(S1)",
+     "url": "https://doi.org/10.1111/modl.12932",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "johnson24devil",
+     "title": "How Do We Demonstrate AI Responsibility: The Devil Is in the Details",
+     "year": 2024,
+     "venue": "Journal of Educational and Behavioral Statistics",
+     "url": "https://doi.org/10.3102/10769986241257963",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "kern24mlj",
+     "title": "Twenty-first century technologies and language education: Charting a path forward",
+     "year": 2024,
+     "venue": "Modern Language Journal 108(S1)",
+     "url": "https://doi.org/10.1111/modl.12924",
+     "peer": true,
+     "prov": "independent"
+    }
+   ],
+   "ids": [
+    "burstein24rai",
+    "burstein24where",
+    "det-rai",
+    "rmal25ethics",
+    "kern24mlj",
+    "thorne24mlj",
+    "johnson24devil",
+    "mogavi22gamification",
+    "ciuba26notjust",
+    "espinosa26critical",
+    "maass26habit",
+    "bjse25panopticon",
+    "stockman22surveillance",
+    "det-blog-custodianship",
+    "onlineedu-lowresource",
+    "burstein25aime",
+    "belzak25fairness",
+    "pr-148",
+    "blog-llmlessons"
+   ],
+   "level": 3,
+   "verdict": "Workable",
+   "rank": 10
+  },
+  {
+   "n": 27,
+   "kind": "discourse",
+   "slug": "aifirst",
+   "title": "AI-first: a strategy announced before its evidence, and partly withdrawn before the evidence arrived",
+   "question": "How did the AI-first pivot unfold, how was it received, and what does the arc show about AI adoption running ahead of proof?",
+   "method": "Discourse and case analysis over a dated primary-source chain: contractor cuts (Jan 2024), the memo (Apr 2025), the walk-back, the TikTok deletion, the 2026 retreat from AI-usage performance reviews. Read company statements against the filings.",
+   "can": [
+    "Reconstruct a complete, dated arc entirely from primary and contemporaneous sources.",
+    "Contrast public messaging with what the 10-K and shareholder letters actually claim.",
+    "Connect to a small peer-reviewed literature on generative AI in HRM and on teacher professional identity."
+   ],
+   "cannot": [
+    "Establish what happened internally. Nearly everything is press reporting on company statements.",
+    "Quantify job losses beyond the reported 10% of contractors."
+   ],
+   "risk": "Three peer-reviewed sources out of twenty-eight. This is a discussion chapter or a media-discourse study with an explicit method - it is not an empirical topic, and presenting it as one would be a mistake.",
+   "peer": 3,
+   "load": 3,
+   "pdf": 5,
+   "prov": {
+    "duolingo": 3,
+    "mixed": 0,
+    "independent": 4,
+    "press": 20
+   },
+   "y0": 2023,
+   "y1": 2026,
+   "recent": 26,
+   "themes": [
+    "corporate-strategy",
+    "ethics-governance",
+    "ethics-labour",
+    "genai-features"
+   ],
+   "key": [
+    {
+     "id": "sumalinog26identity",
+     "title": "English Teachers' Professional Identity in the Age of AI: A Meta-Ethnographic Synthesis",
+     "year": 2026,
+     "venue": "IJLTER",
+     "url": "https://www.ijlter.org/index.php/ijlter/article/view/17636",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "feduc26identity",
+     "title": "Professional identity in AI-supported EFL teaching: a comparative qualitative study of pre-service and in-service teachers",
+     "year": 2026,
+     "venue": "Frontiers in Education",
+     "url": "https://doi.org/10.3389/feduc.2026.1783566",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "budhwar23hrm",
+     "title": "Human resource management in the age of generative artificial intelligence",
+     "year": 2023,
+     "venue": "Human Resource Management Journal 33(3)",
+     "url": "https://doi.org/10.1111/1748-8583.12524",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "call-q1-2026",
+     "title": "Duolingo (DUOL) Q1 2026 Earnings Call Transcript",
+     "year": 2026,
+     "venue": "Motley Fool",
+     "url": "https://www.fool.com/earnings/call-transcripts/2026/05/04/duolingo-duol-q1-2026-earnings-transcript/",
+     "peer": false,
+     "prov": "press"
+    },
+    {
+     "id": "fortune-2026retreat",
+     "title": "Duolingo CEO backs off from evaluating employees on their AI usage",
+     "year": 2026,
+     "venue": "Fortune",
+     "url": "https://fortune.com/2026/04/13/duolingo-ceo-luis-von-ahn-ai-usage-requirement-employee-performance-evaluations/",
+     "peer": false,
+     "prov": "press"
+    },
+    {
+     "id": "10k-2025",
+     "title": "Duolingo Form 10-K, FY2025",
+     "year": 2026,
+     "venue": "SEC EDGAR",
+     "url": "https://www.sec.gov/Archives/edgar/data/1562088/000162828026012494/duol-20251231.htm",
+     "peer": false,
+     "prov": "duolingo"
+    }
+   ],
+   "ids": [
+    "oecd24incident",
+    "sumalinog26identity",
+    "feduc26identity",
+    "budhwar23hrm",
+    "snopes-memo",
+    "fortune-walkback",
+    "tc-misunderstood",
+    "fortune-2026retreat",
+    "tc-jobscrisis",
+    "tc-contractors",
+    "ppg-translators",
+    "slator-layoffs",
+    "campaignasia-contradiction",
+    "wapo-layoffs",
+    "fastco-tiktok",
+    "wsj-hacker",
+    "the74-darkside",
+    "museumfailure",
+    "cnbc-productivity",
+    "sl-q1-2025",
+    "sl-q2-2026",
+    "call-q1-2026",
+    "10k-2025",
+    "nopriors-vonahn",
+    "20vc-hacker",
+    "hardman-critique",
+    "onlineedu-lowresource"
+   ],
+   "level": 2,
+   "verdict": "Reframe or fold in",
+   "rank": 11
+  }
+ ],
+ "not_viable": [
+  {
+   "title": "Birdbrain and the personalisation engine, as a standalone topic",
+   "why": "Six sources, one independent peer-reviewed study, and no technical paper. The only substantive description of the model that touches every learner is a magazine article written by Duolingo staff. There is nothing to review.",
+   "instead": "Fold it into T5 as the central absence, or into T4 as the counterexample to the open-data era.",
+   "n": 6,
+   "peer": 2,
+   "load": 1,
+   "pdf": 2,
+   "prov": {
+    "duolingo": 4,
+    "mixed": 0,
+    "independent": 1,
+    "press": 1
+   },
+   "y0": 2020,
+   "y1": 2024,
+   "recent": 1,
+   "themes": [
+    "adaptive-personalization"
+   ],
+   "key": [
+    {
+     "id": "vega24evolution",
+     "title": "Duolingo Evolution: From Automation to Artificial Intelligence",
+     "year": 2024,
+     "venue": "IEEE ColCACI 2024",
+     "url": "https://doi.org/10.1109/colcaci63187.2024.10666523",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "aws-duolingo",
+     "title": "AWS AI | Duolingo (customer case studies)",
+     "year": 2023,
+     "venue": "AWS",
+     "url": "https://aws.amazon.com/machine-learning/customers/innovators/duolingo/",
+     "peer": false,
+     "prov": "press"
+    },
+    {
+     "id": "blog-innovations",
+     "title": "Duolingo's Biggest Technology Innovations",
+     "year": 2023,
+     "venue": "Duolingo blog",
+     "url": "https://blog.duolingo.com/duolingo-technology-innovations/",
+     "peer": false,
+     "prov": "duolingo"
+    },
+    {
+     "id": "bicknell23spectrum",
+     "title": "How Duolingo's AI Learns What You Need to Learn",
+     "year": 2023,
+     "venue": "IEEE Spectrum 60(3)",
+     "url": "https://spectrum.ieee.org/duolingo",
+     "peer": false,
+     "prov": "duolingo"
+    },
+    {
+     "id": "yancey20kdd",
+     "title": "A Sleeping, Recovering Bandit Algorithm for Optimizing Recurring Notifications",
+     "year": 2020,
+     "venue": "KDD 2020",
+     "url": "https://research.duolingo.com/papers/yancey.kdd20.pdf",
+     "peer": true,
+     "prov": "duolingo"
+    },
+    {
+     "id": "blog-birdbrain",
+     "title": "Learning how to help you learn: Introducing Birdbrain!",
+     "year": 2020,
+     "venue": "Duolingo blog",
+     "url": "https://blog.duolingo.com/learning-how-to-help-you-learn-introducing-birdbrain/",
+     "peer": false,
+     "prov": "duolingo"
+    }
+   ],
+   "ids": [
+    "yancey20kdd",
+    "bicknell23spectrum",
+    "blog-birdbrain",
+    "blog-innovations",
+    "vega24evolution",
+    "aws-duolingo"
+   ]
+  },
+  {
+   "title": "Duolingo against its competitors",
+   "why": "One peer-reviewed head-to-head comparison (Babbel), two ChatGPT comparisons and a listicle. Nowhere near enough for a comparative claim about the market.",
+   "instead": "Use kessler23babbel as a single reference point inside T1 rather than building a chapter on it.",
+   "n": 6,
+   "peer": 3,
+   "load": 3,
+   "pdf": 2,
+   "prov": {
+    "duolingo": 0,
+    "mixed": 0,
+    "independent": 4,
+    "press": 2
+   },
+   "y0": 2023,
+   "y1": 2026,
+   "recent": 5,
+   "themes": [
+    "competitor",
+    "efficacy",
+    "genai-features"
+   ],
+   "key": [
+    {
+     "id": "fountoulakis25",
+     "title": "Evaluating the Impact of AI Tools on Language Proficiency and Intercultural Communication in Second Language Education",
+     "year": 2025,
+     "venue": "International Journal of Second and Foreign Language Education 3(1)",
+     "url": "https://doi.org/10.33422/ijsfle.v3i1.768",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "xu25duovsgpt",
+     "title": "Uncurtaining windows of motivation, enjoyment, critical thinking, and autonomy in AI-integrated education: Duolingo vs. ChatGPT",
+     "year": 2025,
+     "venue": "Learning and Motivation",
+     "url": "https://doi.org/10.1016/j.lmot.2025.102100",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "kessler23babbel",
+     "title": "Mobile-assisted language learning with Babbel and Duolingo: comparing L2 learning gains and user experience",
+     "year": 2023,
+     "venue": "Computer Assisted Language Learning",
+     "url": "https://doi.org/10.1080/09588221.2023.2215294",
+     "peer": true,
+     "prov": "independent"
+    },
+    {
+     "id": "talkio-comparison",
+     "title": "10 Best AI Language Learning Apps for Speaking (2026)",
+     "year": 2026,
+     "venue": "Talkio AI",
+     "url": "https://www.talkio.ai/blog/best-ai-language-speaking-practice-apps-in-2026",
+     "peer": false,
+     "prov": "press"
+    },
+    {
+     "id": "tajik25replika",
+     "title": "Gamified and Non-Gamified AI Tools in Enhancing EFL Listening Comprehension: Duolingo and Replika",
+     "year": 2025,
+     "venue": "Research Square preprint",
+     "url": "https://doi.org/10.21203/rs.3.rs-6032009/v1",
+     "peer": false,
+     "prov": "independent"
+    },
+    {
+     "id": "google-littlelessons",
+     "title": "Try Little Language Lessons, learning experiments using Gemini 2.0",
+     "year": 2025,
+     "venue": "Google Keyword blog",
+     "url": "https://blog.google/products-and-platforms/products/education/little-language-lessons/",
+     "peer": false,
+     "prov": "press"
+    }
+   ],
+   "ids": [
+    "google-littlelessons",
+    "talkio-comparison",
+    "kessler23babbel",
+    "tajik25replika",
+    "xu25duovsgpt",
+    "fountoulakis25"
+   ]
+  },
+  {
+   "title": "The recommendation and content-sequencing stack",
+   "why": "Blog posts, a vendor case study and one KDD paper on notification timing. The sequencing machinery that shapes every session is undocumented in public.",
+   "instead": "Report the absence itself in T5 or T7 - it is a finding, not a topic.",
+   "n": 4,
+   "peer": 1,
+   "load": 0,
+   "pdf": 2,
+   "prov": {
+    "duolingo": 3,
+    "mixed": 0,
+    "independent": 0,
+    "press": 1
+   },
+   "y0": 2020,
+   "y1": 2023,
+   "recent": 0,
+   "themes": [
+    "adaptive-personalization"
+   ],
+   "key": [
+    {
+     "id": "aws-duolingo",
+     "title": "AWS AI | Duolingo (customer case studies)",
+     "year": 2023,
+     "venue": "AWS",
+     "url": "https://aws.amazon.com/machine-learning/customers/innovators/duolingo/",
+     "peer": false,
+     "prov": "press"
+    },
+    {
+     "id": "blog-innovations",
+     "title": "Duolingo's Biggest Technology Innovations",
+     "year": 2023,
+     "venue": "Duolingo blog",
+     "url": "https://blog.duolingo.com/duolingo-technology-innovations/",
+     "peer": false,
+     "prov": "duolingo"
+    },
+    {
+     "id": "bicknell23spectrum",
+     "title": "How Duolingo's AI Learns What You Need to Learn",
+     "year": 2023,
+     "venue": "IEEE Spectrum 60(3)",
+     "url": "https://spectrum.ieee.org/duolingo",
+     "peer": false,
+     "prov": "duolingo"
+    },
+    {
+     "id": "yancey20kdd",
+     "title": "A Sleeping, Recovering Bandit Algorithm for Optimizing Recurring Notifications",
+     "year": 2020,
+     "venue": "KDD 2020",
+     "url": "https://research.duolingo.com/papers/yancey.kdd20.pdf",
+     "peer": true,
+     "prov": "duolingo"
+    }
+   ],
+   "ids": [
+    "blog-innovations",
+    "aws-duolingo",
+    "bicknell23spectrum",
+    "yancey20kdd"
+   ]
+  }
+ ],
+ "timeline": [
+  {
+   "year": 2019,
+   "duolingo": 5,
+   "independent": 1,
+   "press": 0
+  },
+  {
+   "year": 2020,
+   "duolingo": 12,
+   "independent": 3,
+   "press": 0
+  },
+  {
+   "year": 2021,
+   "duolingo": 5,
+   "independent": 4,
+   "press": 0
+  },
+  {
+   "year": 2022,
+   "duolingo": 10,
+   "independent": 4,
+   "press": 0
+  },
+  {
+   "year": 2023,
+   "duolingo": 13,
+   "independent": 11,
+   "press": 3
+  },
+  {
+   "year": 2024,
+   "duolingo": 21,
+   "independent": 20,
+   "press": 7
+  },
+  {
+   "year": 2025,
+   "duolingo": 17,
+   "independent": 19,
+   "press": 15
+  },
+  {
+   "year": 2026,
+   "duolingo": 17,
+   "independent": 12,
+   "press": 7
+  }
+ ],
+ "overall": {
+  "peer": 102,
+  "indep_peer": 65,
+  "prov": {
+   "duolingo": 107,
+   "mixed": 3,
+   "independent": 80,
+   "press": 32
+  }
+ }
+}

@@ -1,0 +1,606 @@
+<title>How Duolingo Uses AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;450;600&display=swap">
+<style>
+:root{
+  --paper:#F6F7F4; --panel:#FFFFFF; --sunk:#EDEFEA;
+  --ink:#131A18; --ink-2:#3D4A46; --ink-3:#6B7873;
+  --rule:#D8DDD6; --rule-2:#C3CAC1;
+  --accent:#0E5C54; --accent-soft:#DCE9E5; --accent-on:#F4F7F5;
+  --p-duolingo:#A9701A; --p-mixed:#9E4B2C; --p-independent:#1F6F5C; --p-press:#5D6870;
+  --shadow:0 1px 2px rgba(19,26,24,.05);
+  --measure:66ch;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#0D1211; --panel:#141B19; --sunk:#1A2321;
+    --ink:#E5EAE6; --ink-2:#AFBAB5; --ink-3:#7E8B86;
+    --rule:#28322F; --rule-2:#3A4642;
+    --accent:#5BC5B6; --accent-soft:#183430; --accent-on:#07100E;
+    --p-duolingo:#D9A24E; --p-mixed:#D3775A; --p-independent:#4FB79C; --p-press:#93A0A6;
+    --shadow:0 1px 2px rgba(0,0,0,.3);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0D1211; --panel:#141B19; --sunk:#1A2321;
+  --ink:#E5EAE6; --ink-2:#AFBAB5; --ink-3:#7E8B86;
+  --rule:#28322F; --rule-2:#3A4642;
+  --accent:#5BC5B6; --accent-soft:#183430; --accent-on:#07100E;
+  --p-duolingo:#D9A24E; --p-mixed:#D3775A; --p-independent:#4FB79C; --p-press:#93A0A6;
+  --shadow:0 1px 2px rgba(0,0,0,.3);
+}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);
+  font:450 16px/1.6 "IBM Plex Sans","Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1000px;margin:0 auto;padding:0 28px 96px}
+h1,h2,h3,h4,h5{font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 20,"WONK" 1;
+  text-wrap:balance;margin:0;font-weight:600;letter-spacing:-.012em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+code{font-family:"IBM Plex Mono",ui-monospace,monospace}
+.w,.rd-n{font-variant-numeric:tabular-nums}
+
+.pv-t-duolingo{color:var(--p-duolingo)}
+.pv-t-mixed{color:var(--p-mixed)}
+.pv-t-independent{color:var(--p-independent)}
+.pv-t-press{color:var(--p-press)}
+
+.meter{display:inline-flex;gap:2.5px;flex:0 0 auto}
+.meter .seg{width:7px;height:13px;background:var(--rule-2);border-radius:1px}
+.meter .seg.on{background:var(--accent)}
+.meter.sm .seg{width:6px;height:11px}
+.meter.sm .seg.on{background:var(--ink-3)}
+
+.cit{font:600 11px/1 "IBM Plex Mono",monospace;text-decoration:none;
+  border-bottom:1px solid currentColor;padding-bottom:1px;opacity:.9}
+.cit:hover{opacity:1}
+.qcite{display:flex;flex-wrap:wrap;gap:5px 9px}
+
+/* ---------- masthead ---------- */
+.mast{padding:60px 0 32px;border-bottom:2px solid var(--ink)}
+.kicker{font:500 11px/1 "IBM Plex Mono",monospace;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:20px}
+.mast h1{font-size:clamp(36px,6vw,60px);line-height:1.03;font-weight:700;
+  font-variation-settings:"SOFT" 12,"WONK" 1;max-width:14ch}
+.dek{margin-top:20px;max-width:var(--measure);font-size:18px;line-height:1.55;color:var(--ink-2)}
+.dek strong{color:var(--ink);font-weight:600}
+.tally{display:flex;flex-wrap:wrap;margin-top:28px;border-top:1px solid var(--rule)}
+.tally div{flex:1 1 116px;padding:13px 18px 13px 0;border-right:1px solid var(--rule)}
+.tally div:last-child{border-right:0}
+.tally dt{font:500 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3)}
+.tally dd{margin:7px 0 0;font-family:"Fraunces",serif;font-size:28px;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.tally dd small{font-family:"IBM Plex Sans",sans-serif;font-size:12px;font-weight:450;color:var(--ink-3);
+  display:block;margin-top:5px;letter-spacing:0}
+
+section{margin-top:58px}
+.shead{display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--rule-2);
+  padding-bottom:9px;margin-bottom:22px;flex-wrap:wrap}
+.shead h2{font-size:23px}
+.shead .note{font-size:13px;color:var(--ink-3);margin-left:auto;text-align:right}
+.lede{max-width:var(--measure);color:var(--ink-2);margin-bottom:24px}
+
+/* ---------- title block ---------- */
+.titleblock{border:1px solid var(--rule-2);background:var(--panel);padding:26px 28px;box-shadow:var(--shadow)}
+.titleblock .lab{font:500 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:12px}
+.titleblock h3{font-size:clamp(20px,2.7vw,28px);line-height:1.22;max-width:24ch}
+.titleblock .spinep{margin-top:16px;max-width:var(--measure);font-size:16px;line-height:1.6;
+  color:var(--ink-2);border-left:2px solid var(--accent);padding-left:15px}
+.alttitles{margin-top:18px;padding-top:15px;border-top:1px solid var(--rule);
+  font-size:13.5px;line-height:1.6;color:var(--ink-3)}
+.alttitles b{font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.11em;text-transform:uppercase;
+  display:block;margin-bottom:8px;color:var(--ink-3)}
+.alttitles span{color:var(--ink-2);display:block;margin-bottom:5px}
+
+/* ---------- the stack ---------- */
+.stack{border-top:1px solid var(--rule-2)}
+.sys{display:grid;grid-template-columns:minmax(180px,1fr) minmax(0,1.35fr) minmax(180px,1fr);
+  gap:0 26px;padding:20px 0;border-bottom:1px solid var(--rule);align-items:start}
+.sys.thin{background:var(--sunk);padding-left:16px;margin-left:-16px;border-left:2px solid var(--p-mixed)}
+.face{font:600 9.5px/1 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;
+  margin-bottom:8px}
+.f-app{color:var(--p-duolingo)}
+.f-test{color:var(--p-independent)}
+.sys h4{font-size:17px;line-height:1.25}
+.decides{margin-top:7px;font-size:13.5px;line-height:1.45;color:var(--ink-3)}
+.sys-b p{font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+.docm{display:flex;align-items:flex-start;gap:10px;font-size:13px;line-height:1.45;color:var(--ink-2)}
+.docm .meter{margin-top:2px}
+.sys-c .qcite{margin-top:11px}
+
+/* ---------- reading list ---------- */
+.readlist{list-style:none;margin:0;padding:0}
+.rd{display:grid;grid-template-columns:56px minmax(0,1fr);gap:0 20px;
+  padding:22px 0;border-bottom:1px solid var(--rule)}
+.rd:first-child{border-top:1px solid var(--rule-2)}
+.rd-n{font-family:"Fraunces",serif;font-size:30px;font-weight:700;line-height:1;color:var(--accent)}
+.rd-b{max-width:var(--measure);min-width:0}
+.rd-role{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:9px}
+.tag{font:600 9.5px/1 "IBM Plex Mono",monospace;letter-spacing:.09em;text-transform:uppercase;
+  padding:4px 7px;border:1px solid var(--rule-2);border-radius:2px;color:var(--ink-2)}
+.load{display:inline-flex;align-items:center;gap:7px;color:var(--ink-3)}
+.ll{font:400 11.5px/1 "IBM Plex Mono",monospace}
+.rd h4{font-size:18.5px;line-height:1.3}
+.rd h4 a{text-decoration:none}
+.rd h4 a:hover{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+.rd-meta{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin-top:9px;
+  font:400 12px/1.4 "IBM Plex Mono",monospace;color:var(--ink-3)}
+.rd-meta code{font-weight:600;font-size:11.5px}
+.rd-read{margin-top:12px;font-size:15px;line-height:1.55;color:var(--ink-2)}
+.rd-read span{font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.11em;text-transform:uppercase;
+  color:var(--ink-3);margin-right:9px}
+
+/* ---------- questions ---------- */
+.qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(298px,1fr));gap:0;
+  border-top:1px solid var(--rule)}
+.qq{padding:20px 26px 22px 0;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.qq.key{background:var(--sunk);padding-left:20px;border-left:2px solid var(--accent)}
+.qn{font:600 10.5px/1 "IBM Plex Mono",monospace;letter-spacing:.11em;color:var(--ink-3);
+  margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.spine{font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--accent-on);
+  background:var(--accent);padding:3px 6px;border-radius:2px}
+.qq h4{font-size:17px;line-height:1.32;margin-bottom:10px}
+.qq p{font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+.qq .qcite{margin-top:12px}
+
+/* ---------- outline ---------- */
+.tablewrap{overflow-x:auto;border:1px solid var(--rule);background:var(--panel);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:700px}
+thead th{font:500 10px/1.3 "IBM Plex Mono",monospace;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);text-align:left;padding:12px;border-bottom:1px solid var(--rule-2);font-weight:500}
+tbody tr{border-bottom:1px solid var(--rule)}
+tbody tr:last-child{border-bottom:0}
+tbody th{font-family:"Fraunces",serif;font-size:15.5px;font-weight:600;text-align:left;
+  padding:14px 12px;white-space:nowrap}
+tbody td{padding:14px 12px;font-size:14px;line-height:1.5;color:var(--ink-2);vertical-align:top}
+td.w{font-family:"IBM Plex Mono",monospace;font-size:13px;color:var(--ink);font-weight:600;white-space:nowrap}
+td.oc{width:186px}
+td.oc .qcite{margin-top:0}
+.none{font-size:12px;color:var(--ink-3);font-style:italic}
+tfoot td{padding:12px;font:600 12px/1 "IBM Plex Mono",monospace;color:var(--ink-3);
+  border-top:1px solid var(--rule-2)}
+
+/* ---------- support shelf ---------- */
+.support{list-style:none;margin:0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0;border-top:1px solid var(--rule)}
+.support li{padding:17px 26px 19px 0;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+.sp-h{display:flex;flex-wrap:wrap;gap:8px;align-items:baseline;margin-bottom:5px}
+.sp-h code{font-size:11px;font-weight:600}
+.sp-h a{font-family:"Fraunces",serif;font-size:15px;font-weight:600;line-height:1.25;text-decoration:none}
+.sp-h a:hover{text-decoration:underline;text-underline-offset:2px}
+.sp-m{font:400 11px/1.4 "IBM Plex Mono",monospace;color:var(--ink-3);margin-bottom:8px}
+.support li p:last-child{font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+
+/* ---------- depth box ---------- */
+.depth{border:1px solid var(--accent);background:var(--accent-soft);padding:24px 26px;max-width:82ch}
+.depth h3{font-size:19px;margin-bottom:11px}
+.depth p{font-size:15px;line-height:1.6;color:var(--ink-2)}
+.depth .qcite{margin-top:14px}
+
+.caveat{margin-top:26px;max-width:82ch;padding:16px 18px;background:var(--sunk);
+  border-left:2px solid var(--p-duolingo);font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+.caveat b{display:block;font:600 10px/1 "IBM Plex Mono",monospace;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--p-duolingo);margin-bottom:8px}
+
+footer{margin-top:56px;padding-top:20px;border-top:2px solid var(--ink);font-size:13px;
+  color:var(--ink-3);display:flex;flex-wrap:wrap;gap:8px 24px;align-items:baseline}
+footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent-soft)}
+footer a:hover{border-bottom-color:var(--accent)}
+
+@media (max-width:860px){
+  .sys{grid-template-columns:1fr;gap:12px}
+  .sys.thin{margin-left:0}
+}
+@media (max-width:760px){
+  .rd{grid-template-columns:38px minmax(0,1fr);gap:0 14px}
+  .rd-n{font-size:22px}
+  .qq,.support li{border-right:0;padding-right:0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="kicker">Applied AI &middot; company case study &middot; ten papers</p>
+  <h1>How Duolingo uses AI</h1>
+  <p class="dek">Six AI systems, each making a different decision: what word you see next, when your
+  phone buzzes, what the lesson says, what the tutor replies, and whether you passed the English
+  test. They are all real and all deployed &mdash; but they are documented very unevenly, and
+  <strong>the unevenness has a pattern worth arguing about</strong>.</p>
+  <dl class="tally">
+    <div><dt>Papers</dt><dd>10<small>9 peer-reviewed</small></dd></div>
+    <div><dt>Direct PDFs</dt><dd>8<small>no paywall to work around</small></dd></div>
+    <div><dt>By Duolingo</dt><dd>8<small>2 independent</small></dd></div>
+    <div><dt>Systems covered</dt><dd>6<small>app and English Test</small></dd></div>
+    <div><dt>Span</dt><dd>2016&ndash;25<small>pre-LLM to GPT-4</small></dd></div>
+  </dl>
+</header>
+
+<section>
+  <div class="shead"><h2>The paper</h2><p class="note">Title, and the claim underneath it</p></div>
+  <div class="titleblock">
+    <p class="lab">Proposed title</p>
+    <h3>How Duolingo Uses AI: Six Systems and the Documentation Gap Between Them</h3>
+    <p class="spinep">Duolingo publishes about its AI in inverse proportion to how many people that
+    AI touches. The English Test &mdash; a few hundred thousand test-takers, high stakes &mdash; has
+    a decade of peer-reviewed method papers, two technical manuals and an in-house fairness audit.
+    The app, which more than a hundred million people open, has one magazine article for its
+    personalisation model and a blog post for its content pipeline. Both halves of that are easy to
+    evidence, which turns a description of the stack into an argument about it.</p>
+    <p class="alttitles"><b>If you want a plainer title</b>
+      <span>Artificial Intelligence at Duolingo: A Case Study of AI Across a Consumer Product and a High-Stakes Test</span>
+      <span>From Spaced Repetition to Generative Tutors: A Decade of AI at Duolingo</span></p>
+  </div>
+</section>
+
+<section>
+  <div class="shead">
+    <h2>The stack</h2>
+    <p class="note">Six systems &middot; bars show how well each is publicly documented</p>
+  </div>
+  <p class="lede">This is the descriptive core of the paper, and the table where the argument
+  becomes visible. Name the decision each model makes before naming the model &mdash; it keeps the
+  section concrete, and it is what separates a case study from a list of features. The two shaded
+  rows are the ones with almost nothing published behind them; both are consumer-facing.</p>
+  <div class="stack"><article class="sys">
+  <div class="sys-a">
+    <p class="face f-app">App</p>
+    <h4>Review scheduling</h4>
+    <p class="decides">Which word to put in front of you, and when</p>
+  </div>
+  <div class="sys-b"><p>Half-life regression — a learned forgetting curve fitted on recall history, word difficulty and time since last practice</p></div>
+  <div class="sys-c">
+    <p class="docm"><span class="meter "><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span>Peer-reviewed, plus public data and reference code</span></p>
+    <p class="qcite"><a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/settles.acl16.pdf" target="_blank" rel="noopener" title="A Trainable Spaced Repetition Model for Language Learning — ACL 2016, 2016">settles16hlr</a> <a class="cit pv-t-independent" href="https://doi.org/10.1073/pnas.1815156116" target="_blank" rel="noopener" title="Enhancing human learning via spaced repetition optimization — PNAS 116(10), 2019">tabibian19pnas</a></p>
+  </div>
+</article><article class="sys thin">
+  <div class="sys-a">
+    <p class="face f-app">App</p>
+    <h4>Difficulty personalisation</h4>
+    <p class="decides">How hard your next lesson is, and what it contains</p>
+  </div>
+  <div class="sys-b"><p>Birdbrain — a per-learner ability model in the item-response tradition, deployed across every course</p></div>
+  <div class="sys-c">
+    <p class="docm"><span class="meter "><i class="seg on"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i></span><span>One magazine article by staff. No paper, no model card, no audit</span></p>
+    <p class="qcite"><a class="cit pv-t-duolingo" href="https://spectrum.ieee.org/duolingo" target="_blank" rel="noopener" title="How Duolingo&#x27;s AI Learns What You Need to Learn — IEEE Spectrum 60(3), 2023">bicknell23spectrum</a></p>
+  </div>
+</article><article class="sys">
+  <div class="sys-a">
+    <p class="face f-app">App</p>
+    <h4>Engagement optimisation</h4>
+    <p class="decides">When to send you a push notification</p>
+  </div>
+  <div class="sys-b"><p>A sleeping/recovering bandit — contextual exploration over send times, optimising for return visits</p></div>
+  <div class="sys-c">
+    <p class="docm"><span class="meter "><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span>Published at KDD, no data release</span></p>
+    <p class="qcite"><a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/yancey.kdd20.pdf" target="_blank" rel="noopener" title="A Sleeping, Recovering Bandit Algorithm for Optimizing Recurring Notifications — KDD 2020, 2020">yancey20kdd</a></p>
+  </div>
+</article><article class="sys">
+  <div class="sys-a">
+    <p class="face f-app">App</p>
+    <h4>Content generation</h4>
+    <p class="decides">What the lessons themselves say</p>
+  </div>
+  <div class="sys-b"><p>LLM generation constrained to a target CEFR proficiency band, then human review — the mechanism behind 148 courses in a year</p></div>
+  <div class="sys-c">
+    <p class="docm"><span class="meter "><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span>Method published at ACL Findings; the deployment is described only on the company blog</span></p>
+    <p class="qcite"><a class="cit pv-t-duolingo" href="https://aclanthology.org/2024.findings-acl.926/" target="_blank" rel="noopener" title="From Tarzan to Tolkien: Controlling the Language Proficiency Level of LLMs for Content Generation — Findings of ACL 2024, 2024">malik24acl</a></p>
+  </div>
+</article><article class="sys thin">
+  <div class="sys-a">
+    <p class="face f-app">App</p>
+    <h4>Conversational practice</h4>
+    <p class="decides">What the AI tutor says back to you</p>
+  </div>
+  <div class="sys-b"><p>GPT-4 behind Explain My Answer, Roleplay and Video Call, wrapped in scripted pedagogy</p></div>
+  <div class="sys-c">
+    <p class="docm"><span class="meter "><i class="seg on"></i><i class="seg"></i><i class="seg"></i><i class="seg"></i></span><span>One in-house self-report study and one outside analysis. No system paper</span></p>
+    <p class="qcite"><a class="cit pv-t-duolingo" href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full" target="_blank" rel="noopener" title="Mobile language app learners&#x27; self-efficacy increases after using generative AI — Frontiers in Education, 2025">kittredge25selfeff</a> <a class="cit pv-t-independent" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5691722" target="_blank" rel="noopener" title="A Lesson with Your Artificial Language Tutor: Analyzing Conversational AI in Duolingo, Speakology, and ChatGPT — SSRN working paper, 2025">harrison25tutor</a></p>
+  </div>
+</article><article class="sys">
+  <div class="sys-a">
+    <p class="face f-test">English Test</p>
+    <h4>Test construction &amp; scoring</h4>
+    <p class="decides">Which items exist, what you score, and whether you cheated</p>
+  </div>
+  <div class="sys-b"><p>Automatic item generation, transformer-based scoring, adaptive item selection over an IRT pool, plus LLM-cheating and proctoring detection</p></div>
+  <div class="sys-c">
+    <p class="docm"><span class="meter "><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span>A decade of peer-reviewed papers, two technical manuals, an in-house fairness audit</span></p>
+    <p class="qcite"><a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/settles.tacl20.pdf" target="_blank" rel="noopener" title="Machine Learning-Driven Language Assessment — TACL 8, 2020">settles20tacl</a> <a class="cit pv-t-duolingo" href="https://doi.org/10.3389/frai.2022.903077" target="_blank" rel="noopener" title="The Interactive Reading Task: Transformer-Based Automatic Item Generation — Frontiers in Artificial Intelligence 5, 2022">attali22reading</a> <a class="cit pv-t-duolingo" href="https://aclanthology.org/2023.bea-1.49/" target="_blank" rel="noopener" title="Rating Short L2 Essays on the CEFR Scale with GPT-4 — BEA @ ACL 2023, 2023">yancey23bea</a> <a class="cit pv-t-duolingo" href="https://aclanthology.org/2024.emnlp-industry.70/" target="_blank" rel="noopener" title="Detecting LLM-Assisted Cheating on Open-Ended Writing Tasks on Language Proficiency Tests — EMNLP 2024 Industry Track, 2024">niu24emnlp</a></p>
+  </div>
+</article></div>
+</section>
+
+<section>
+  <div class="shead"><h2>The ten papers</h2><p class="note">In reading order</p></div>
+  <p class="lede">Eight are written by Duolingo. For this assignment that is correct rather than a
+  weakness &mdash; you are documenting how a company uses AI, and its own method papers are the
+  primary sources. The two outside papers are there to keep you from writing a brochure: one beats
+  Duolingo&rsquo;s scheduler using Duolingo&rsquo;s own data, and one is the only independent look
+  at the conversational tutor that exists.</p>
+  <ol class="readlist"><li class="rd">
+  <div class="rd-n">1</div>
+  <div class="rd-b">
+    <p class="rd-role"><span class="tag">Review scheduling</span><span class="load" title="Maths load: light — our read"><span class="meter sm"><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span><span class="ll">Light</span></span></p>
+    <h4><a href="https://research.duolingo.com/papers/settles.acl16.pdf" target="_blank" rel="noopener">A Trainable Spaced Repetition Model for Language Learning</a></h4>
+    <p class="rd-meta"><code class="pv-t-duolingo">settles16hlr</code>
+      <span>ACL 2016, 2016</span>
+      <span class="pv-t-duolingo">Duolingo</span>
+      <span>peer-reviewed</span>
+      <span>PDF</span></p>
+    <p class="rd-read"><span>Read for</span> The model at the base of the whole app: three feature groups, a fitted half-life, and an evaluation against the Leitner and Pimsleur heuristics it replaced.</p>
+  </div>
+</li><li class="rd">
+  <div class="rd-n">2</div>
+  <div class="rd-b">
+    <p class="rd-role"><span class="tag">Review scheduling</span><span class="load" title="Maths load: heavy — our read"><span class="meter sm"><i class="seg on"></i><i class="seg on"></i><i class="seg on"></i></span><span class="ll">Heavy</span></span></p>
+    <h4><a href="https://doi.org/10.1073/pnas.1815156116" target="_blank" rel="noopener">Enhancing human learning via spaced repetition optimization</a></h4>
+    <p class="rd-meta"><code class="pv-t-independent">tabibian19pnas</code>
+      <span>PNAS 116(10), 2019</span>
+      <span class="pv-t-independent">Independent</span>
+      <span>peer-reviewed</span>
+      <span>PDF</span></p>
+    <p class="rd-read"><span>Read for</span> The independent challenge, and your one genuinely critical technical source. It reframes scheduling as control rather than prediction and beats Duolingo using Duolingo&#x27;s released data. Read the framing; skip the proofs.</p>
+  </div>
+</li><li class="rd">
+  <div class="rd-n">3</div>
+  <div class="rd-b">
+    <p class="rd-role"><span class="tag">Engagement optimisation</span><span class="load" title="Maths load: moderate — our read"><span class="meter sm"><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="ll">Moderate</span></span></p>
+    <h4><a href="https://research.duolingo.com/papers/yancey.kdd20.pdf" target="_blank" rel="noopener">A Sleeping, Recovering Bandit Algorithm for Optimizing Recurring Notifications</a></h4>
+    <p class="rd-meta"><code class="pv-t-duolingo">yancey20kdd</code>
+      <span>KDD 2020, 2020</span>
+      <span class="pv-t-duolingo">Duolingo</span>
+      <span>peer-reviewed</span>
+      <span>PDF</span></p>
+    <p class="rd-read"><span>Read for</span> A bandit that optimises notification timing for return visits. Note the objective: this is AI aimed at retention, not learning. Your paper needs that distinction.</p>
+  </div>
+</li><li class="rd">
+  <div class="rd-n">4</div>
+  <div class="rd-b">
+    <p class="rd-role"><span class="tag">Test construction</span><span class="load" title="Maths load: moderate — our read"><span class="meter sm"><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="ll">Moderate</span></span></p>
+    <h4><a href="https://research.duolingo.com/papers/settles.tacl20.pdf" target="_blank" rel="noopener">Machine Learning-Driven Language Assessment</a></h4>
+    <p class="rd-meta"><code class="pv-t-duolingo">settles20tacl</code>
+      <span>TACL 8, 2020</span>
+      <span class="pv-t-duolingo">Duolingo</span>
+      <span>peer-reviewed</span>
+      <span>PDF</span></p>
+    <p class="rd-read"><span>Read for</span> The single best overview of a complete deployed system: proficiency scales induced from text, items generated automatically, a test that adapts. If you read one paper closely, this one.</p>
+  </div>
+</li><li class="rd">
+  <div class="rd-n">5</div>
+  <div class="rd-b">
+    <p class="rd-role"><span class="tag">Test construction</span><span class="load" title="Maths load: moderate — our read"><span class="meter sm"><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="ll">Moderate</span></span></p>
+    <h4><a href="https://doi.org/10.3389/frai.2022.903077" target="_blank" rel="noopener">The Interactive Reading Task: Transformer-Based Automatic Item Generation</a></h4>
+    <p class="rd-meta"><code class="pv-t-duolingo">attali22reading</code>
+      <span>Frontiers in Artificial Intelligence 5, 2022</span>
+      <span class="pv-t-duolingo">Duolingo</span>
+      <span>peer-reviewed</span>
+      <span>PDF</span></p>
+    <p class="rd-read"><span>Read for</span> Fully automated passage and question generation inside a live high-stakes test — an unusually concrete account of generative AI in production before ChatGPT existed.</p>
+  </div>
+</li><li class="rd">
+  <div class="rd-n">6</div>
+  <div class="rd-b">
+    <p class="rd-role"><span class="tag">Scoring</span><span class="load" title="Maths load: light — our read"><span class="meter sm"><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span><span class="ll">Light</span></span></p>
+    <h4><a href="https://aclanthology.org/2023.bea-1.49/" target="_blank" rel="noopener">Rating Short L2 Essays on the CEFR Scale with GPT-4</a></h4>
+    <p class="rd-meta"><code class="pv-t-duolingo">yancey23bea</code>
+      <span>BEA @ ACL 2023, 2023</span>
+      <span class="pv-t-duolingo">Duolingo</span>
+      <span>peer-reviewed</span>
+      <span>PDF</span></p>
+    <p class="rd-read"><span>Read for</span> GPT-4 rating essays on the CEFR scale, with human-rater agreement reported. Duolingo&#x27;s first published LLM-scoring study, and useful evidence about where LLM scoring actually lands.</p>
+  </div>
+</li><li class="rd">
+  <div class="rd-n">7</div>
+  <div class="rd-b">
+    <p class="rd-role"><span class="tag">Content generation</span><span class="load" title="Maths load: moderate — our read"><span class="meter sm"><i class="seg on"></i><i class="seg on"></i><i class="seg"></i></span><span class="ll">Moderate</span></span></p>
+    <h4><a href="https://aclanthology.org/2024.findings-acl.926/" target="_blank" rel="noopener">From Tarzan to Tolkien: Controlling the Language Proficiency Level of LLMs for Content Generation</a></h4>
+    <p class="rd-meta"><code class="pv-t-duolingo">malik24acl</code>
+      <span>Findings of ACL 2024, 2024</span>
+      <span class="pv-t-duolingo">Duolingo</span>
+      <span>peer-reviewed</span>
+      </p>
+    <p class="rd-read"><span>Read for</span> How you make an LLM write at a controlled proficiency level. This is the published method behind the AI-authored course expansion, so it carries a lot of your business section.</p>
+  </div>
+</li><li class="rd">
+  <div class="rd-n">8</div>
+  <div class="rd-b">
+    <p class="rd-role"><span class="tag">Integrity</span><span class="load" title="Maths load: light — our read"><span class="meter sm"><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span><span class="ll">Light</span></span></p>
+    <h4><a href="https://aclanthology.org/2024.emnlp-industry.70/" target="_blank" rel="noopener">Detecting LLM-Assisted Cheating on Open-Ended Writing Tasks on Language Proficiency Tests</a></h4>
+    <p class="rd-meta"><code class="pv-t-duolingo">niu24emnlp</code>
+      <span>EMNLP 2024 Industry Track, 2024</span>
+      <span class="pv-t-duolingo">Duolingo</span>
+      <span>peer-reviewed</span>
+      </p>
+    <p class="rd-read"><span>Read for</span> Detecting GPT-written essays on the test. The closed loop worth pointing at: the same model class generates the items, scores the answers, and is the thing being defended against.</p>
+  </div>
+</li><li class="rd">
+  <div class="rd-n">9</div>
+  <div class="rd-b">
+    <p class="rd-role"><span class="tag">Conversational practice</span><span class="load" title="Maths load: light — our read"><span class="meter sm"><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span><span class="ll">Light</span></span></p>
+    <h4><a href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full" target="_blank" rel="noopener">Mobile language app learners&#x27; self-efficacy increases after using generative AI</a></h4>
+    <p class="rd-meta"><code class="pv-t-duolingo">kittredge25selfeff</code>
+      <span>Frontiers in Education, 2025</span>
+      <span class="pv-t-duolingo">Duolingo</span>
+      <span>peer-reviewed</span>
+      <span>PDF</span></p>
+    <p class="rd-read"><span>Read for</span> The only peer-reviewed study of Roleplay and Explain My Answer — in-house, self-report, and measuring confidence rather than proficiency. Read it for what it does not claim.</p>
+  </div>
+</li><li class="rd">
+  <div class="rd-n">10</div>
+  <div class="rd-b">
+    <p class="rd-role"><span class="tag">Conversational practice</span><span class="load" title="Maths load: light — our read"><span class="meter sm"><i class="seg on"></i><i class="seg"></i><i class="seg"></i></span><span class="ll">Light</span></span></p>
+    <h4><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5691722" target="_blank" rel="noopener">A Lesson with Your Artificial Language Tutor: Analyzing Conversational AI in Duolingo, Speakology, and ChatGPT</a></h4>
+    <p class="rd-meta"><code class="pv-t-independent">harrison25tutor</code>
+      <span>SSRN working paper, 2025</span>
+      <span class="pv-t-independent">Independent</span>
+      <span>not peer-reviewed</span>
+      <span>PDF</span></p>
+    <p class="rd-read"><span>Read for</span> An outside look at the conversational tutor alongside competitors. Thin, and the only independent evidence there is, which is itself the point.</p>
+  </div>
+</li></ol>
+</section>
+
+<section>
+  <div class="shead"><h2>The questions</h2><p class="note">Six, two of which carry the argument</p></div>
+  <div class="qgrid"><article class="qq">
+  <p class="qn">Q1</p>
+  <h4>What AI systems does Duolingo actually run, and what does each one decide?</h4>
+  <p>The descriptive backbone. Six systems, six decisions, six methods — and naming the decision each model makes keeps the section concrete rather than a list of buzzwords.</p>
+  <p class="qcite"><a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/settles.acl16.pdf" target="_blank" rel="noopener" title="A Trainable Spaced Repetition Model for Language Learning — ACL 2016, 2016">settles16hlr</a> <a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/yancey.kdd20.pdf" target="_blank" rel="noopener" title="A Sleeping, Recovering Bandit Algorithm for Optimizing Recurring Notifications — KDD 2020, 2020">yancey20kdd</a> <a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/settles.tacl20.pdf" target="_blank" rel="noopener" title="Machine Learning-Driven Language Assessment — TACL 8, 2020">settles20tacl</a> <a class="cit pv-t-duolingo" href="https://aclanthology.org/2024.findings-acl.926/" target="_blank" rel="noopener" title="From Tarzan to Tolkien: Controlling the Language Proficiency Level of LLMs for Content Generation — Findings of ACL 2024, 2024">malik24acl</a></p>
+</article><article class="qq key">
+  <p class="qn">Q2<span class="spine">core</span></p>
+  <h4>Is the AI documented in proportion to how many people it touches?</h4>
+  <p>Your thesis, and the reason this is an analysis rather than a description. The test has a decade of peer-reviewed method papers; the app that 100M+ people open has a magazine article. Both facts are easy to evidence.</p>
+  <p class="qcite"><a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/settles.tacl20.pdf" target="_blank" rel="noopener" title="Machine Learning-Driven Language Assessment — TACL 8, 2020">settles20tacl</a> <a class="cit pv-t-duolingo" href="https://doi.org/10.3389/frai.2022.903077" target="_blank" rel="noopener" title="The Interactive Reading Task: Transformer-Based Automatic Item Generation — Frontiers in Artificial Intelligence 5, 2022">attali22reading</a> <a class="cit pv-t-duolingo" href="https://spectrum.ieee.org/duolingo" target="_blank" rel="noopener" title="How Duolingo&#x27;s AI Learns What You Need to Learn — IEEE Spectrum 60(3), 2023">bicknell23spectrum</a> <a class="cit pv-t-duolingo" href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full" target="_blank" rel="noopener" title="Mobile language app learners&#x27; self-efficacy increases after using generative AI — Frontiers in Education, 2025">kittredge25selfeff</a></p>
+</article><article class="qq key">
+  <p class="qn">Q3<span class="spine">core</span></p>
+  <h4>What changed when LLMs arrived — replacement, or another layer?</h4>
+  <p>The interesting answer is &#x27;addition&#x27;. The IRT and adaptive machinery from 2016-2020 is still load-bearing; LLMs were bolted on for generation and scoring. A good corrective to the assumption that generative AI replaced what came before.</p>
+  <p class="qcite"><a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/settles.acl16.pdf" target="_blank" rel="noopener" title="A Trainable Spaced Repetition Model for Language Learning — ACL 2016, 2016">settles16hlr</a> <a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/settles.tacl20.pdf" target="_blank" rel="noopener" title="Machine Learning-Driven Language Assessment — TACL 8, 2020">settles20tacl</a> <a class="cit pv-t-duolingo" href="https://aclanthology.org/2023.bea-1.49/" target="_blank" rel="noopener" title="Rating Short L2 Essays on the CEFR Scale with GPT-4 — BEA @ ACL 2023, 2023">yancey23bea</a> <a class="cit pv-t-duolingo" href="https://aclanthology.org/2024.findings-acl.926/" target="_blank" rel="noopener" title="From Tarzan to Tolkien: Controlling the Language Proficiency Level of LLMs for Content Generation — Findings of ACL 2024, 2024">malik24acl</a></p>
+</article><article class="qq">
+  <p class="qn">Q4</p>
+  <h4>What does the company use AI for that is not teaching?</h4>
+  <p>Notification timing, cheating detection, proctoring, content cost. This is where a business-focused paper earns its keep — the AI that shows up in the cost structure rather than the lesson.</p>
+  <p class="qcite"><a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/yancey.kdd20.pdf" target="_blank" rel="noopener" title="A Sleeping, Recovering Bandit Algorithm for Optimizing Recurring Notifications — KDD 2020, 2020">yancey20kdd</a> <a class="cit pv-t-duolingo" href="https://aclanthology.org/2024.emnlp-industry.70/" target="_blank" rel="noopener" title="Detecting LLM-Assisted Cheating on Open-Ended Writing Tasks on Language Proficiency Tests — EMNLP 2024 Industry Track, 2024">niu24emnlp</a> <a class="cit pv-t-duolingo" href="https://aclanthology.org/2024.findings-acl.926/" target="_blank" rel="noopener" title="From Tarzan to Tolkien: Controlling the Language Proficiency Level of LLMs for Content Generation — Findings of ACL 2024, 2024">malik24acl</a></p>
+</article><article class="qq">
+  <p class="qn">Q5</p>
+  <h4>Which AI claims does the business make, and what evidence sits behind them?</h4>
+  <p>Set the 148-course announcement and the investor-facing language against the published evaluations. Some claims are well supported, some are not, and the difference is reportable.</p>
+  <p class="qcite"><a class="cit pv-t-duolingo" href="https://investors.duolingo.com/news-releases/news-release-details/duolingo-launches-148-new-language-courses" target="_blank" rel="noopener" title="Duolingo Launches 148 New Language Courses — Duolingo IR, 2025">pr-148</a> <a class="cit pv-t-duolingo" href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026012494/duol-20251231.htm" target="_blank" rel="noopener" title="Duolingo Form 10-K, FY2025 — SEC EDGAR, 2026">10k-2025</a> <a class="cit pv-t-duolingo" href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full" target="_blank" rel="noopener" title="Mobile language app learners&#x27; self-efficacy increases after using generative AI — Frontiers in Education, 2025">kittredge25selfeff</a> <a class="cit pv-t-independent" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5691722" target="_blank" rel="noopener" title="A Lesson with Your Artificial Language Tutor: Analyzing Conversational AI in Duolingo, Speakology, and ChatGPT — SSRN working paper, 2025">harrison25tutor</a></p>
+</article><article class="qq">
+  <p class="qn">Q6</p>
+  <h4>What risks does Duolingo itself name?</h4>
+  <p>The 10-K discloses dependence on third-party model providers. Pair it with the in-house fairness audit and the cheating-detection work for a risk section grounded in the company&#x27;s own documents.</p>
+  <p class="qcite"><a class="cit pv-t-duolingo" href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026012494/duol-20251231.htm" target="_blank" rel="noopener" title="Duolingo Form 10-K, FY2025 — SEC EDGAR, 2026">10k-2025</a> <a class="cit pv-t-duolingo" href="https://aclanthology.org/2024.emnlp-industry.70/" target="_blank" rel="noopener" title="Detecting LLM-Assisted Cheating on Open-Ended Writing Tasks on Language Proficiency Tests — EMNLP 2024 Industry Track, 2024">niu24emnlp</a> <a class="cit pv-t-duolingo" href="https://proceedings.mlr.press/v273/belzak25a.html" target="_blank" rel="noopener" title="Evaluating Fairness in AI-Assisted Remote Proctoring — PMLR 273, 2025">belzak25fairness</a></p>
+</article></div>
+</section>
+
+<section>
+  <div class="shead">
+    <h2>Suggested structure</h2>
+    <p class="note">3,800 words across 7 sections</p>
+  </div>
+  <div class="tablewrap">
+    <table>
+      <thead><tr>
+        <th scope="col">Section</th><th scope="col">Words</th>
+        <th scope="col">What it does</th><th scope="col">Draws on</th>
+      </tr></thead>
+      <tbody><tr>
+  <th scope="row">Introduction</th>
+  <td class="w">350</td>
+  <td>The company, why it is a good AI case, and the claim you will defend.</td>
+  <td class="oc"><a class="cit pv-t-duolingo" href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026012494/duol-20251231.htm" target="_blank" rel="noopener" title="Duolingo Form 10-K, FY2025 — SEC EDGAR, 2026">10k-2025</a></td>
+</tr><tr>
+  <th scope="row">The stack</th>
+  <td class="w">900</td>
+  <td>Six systems, what each decides, and the method behind it. The descriptive core.</td>
+  <td class="oc"><a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/settles.acl16.pdf" target="_blank" rel="noopener" title="A Trainable Spaced Repetition Model for Language Learning — ACL 2016, 2016">settles16hlr</a> <a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/yancey.kdd20.pdf" target="_blank" rel="noopener" title="A Sleeping, Recovering Bandit Algorithm for Optimizing Recurring Notifications — KDD 2020, 2020">yancey20kdd</a> <a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/settles.tacl20.pdf" target="_blank" rel="noopener" title="Machine Learning-Driven Language Assessment — TACL 8, 2020">settles20tacl</a> <a class="cit pv-t-duolingo" href="https://doi.org/10.3389/frai.2022.903077" target="_blank" rel="noopener" title="The Interactive Reading Task: Transformer-Based Automatic Item Generation — Frontiers in Artificial Intelligence 5, 2022">attali22reading</a></td>
+</tr><tr>
+  <th scope="row">Before and after LLMs</th>
+  <td class="w">650</td>
+  <td>What generative models added, and what they did not replace.</td>
+  <td class="oc"><a class="cit pv-t-duolingo" href="https://aclanthology.org/2023.bea-1.49/" target="_blank" rel="noopener" title="Rating Short L2 Essays on the CEFR Scale with GPT-4 — BEA @ ACL 2023, 2023">yancey23bea</a> <a class="cit pv-t-duolingo" href="https://aclanthology.org/2024.findings-acl.926/" target="_blank" rel="noopener" title="From Tarzan to Tolkien: Controlling the Language Proficiency Level of LLMs for Content Generation — Findings of ACL 2024, 2024">malik24acl</a> <a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/settles.tacl20.pdf" target="_blank" rel="noopener" title="Machine Learning-Driven Language Assessment — TACL 8, 2020">settles20tacl</a></td>
+</tr><tr>
+  <th scope="row">AI that is not teaching</th>
+  <td class="w">500</td>
+  <td>Engagement, integrity, proctoring, content cost. The business layer.</td>
+  <td class="oc"><a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/yancey.kdd20.pdf" target="_blank" rel="noopener" title="A Sleeping, Recovering Bandit Algorithm for Optimizing Recurring Notifications — KDD 2020, 2020">yancey20kdd</a> <a class="cit pv-t-duolingo" href="https://aclanthology.org/2024.emnlp-industry.70/" target="_blank" rel="noopener" title="Detecting LLM-Assisted Cheating on Open-Ended Writing Tasks on Language Proficiency Tests — EMNLP 2024 Industry Track, 2024">niu24emnlp</a></td>
+</tr><tr>
+  <th scope="row">Claims and evidence</th>
+  <td class="w">600</td>
+  <td>What the company says the AI achieves, set against what has been shown.</td>
+  <td class="oc"><a class="cit pv-t-duolingo" href="https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2025.1499497/full" target="_blank" rel="noopener" title="Mobile language app learners&#x27; self-efficacy increases after using generative AI — Frontiers in Education, 2025">kittredge25selfeff</a> <a class="cit pv-t-independent" href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5691722" target="_blank" rel="noopener" title="A Lesson with Your Artificial Language Tutor: Analyzing Conversational AI in Duolingo, Speakology, and ChatGPT — SSRN working paper, 2025">harrison25tutor</a> <a class="cit pv-t-independent" href="https://doi.org/10.1073/pnas.1815156116" target="_blank" rel="noopener" title="Enhancing human learning via spaced repetition optimization — PNAS 116(10), 2019">tabibian19pnas</a> <a class="cit pv-t-duolingo" href="https://investors.duolingo.com/news-releases/news-release-details/duolingo-launches-148-new-language-courses" target="_blank" rel="noopener" title="Duolingo Launches 148 New Language Courses — Duolingo IR, 2025">pr-148</a></td>
+</tr><tr>
+  <th scope="row">The documentation gap</th>
+  <td class="w">500</td>
+  <td>Your argument section: visibility runs inverse to reach, and why that is a defensible reading.</td>
+  <td class="oc"><a class="cit pv-t-duolingo" href="https://spectrum.ieee.org/duolingo" target="_blank" rel="noopener" title="How Duolingo&#x27;s AI Learns What You Need to Learn — IEEE Spectrum 60(3), 2023">bicknell23spectrum</a> <a class="cit pv-t-duolingo" href="https://research.duolingo.com/papers/settles.tacl20.pdf" target="_blank" rel="noopener" title="Machine Learning-Driven Language Assessment — TACL 8, 2020">settles20tacl</a></td>
+</tr><tr>
+  <th scope="row">Conclusion</th>
+  <td class="w">300</td>
+  <td>What a well-run AI company chooses to publish, and what that tells you.</td>
+  <td class="oc"><span class="none">your own argument</span></td>
+</tr></tbody>
+      <tfoot><tr><td>Total</td><td class="w">3,800</td>
+        <td colspan="2">Cut &ldquo;AI that is not teaching&rdquo; first if you are over; keep the stack and the gap.</td></tr></tfoot>
+    </table>
+  </div>
+  <p class="caveat"><b>The one thing to get right</b>
+  Say once, early, that most of your sources are written by the company you are studying, and that
+  this is appropriate for describing what the systems do but not for judging whether they work. Then
+  hold that line. The moment the paper starts claiming Duolingo <em>teaches well</em>, you need
+  <a class="cit pv-t-independent" href="https://www.tandfonline.com/doi/full/10.1080/09588221.2021.1933540" target="_blank" rel="noopener" title="Gamification in mobile-assisted language learning: a systematic review of Duolingo literature from public release of 2012 to early 2020 — Computer Assisted Language Learning 36(3), 2023">shortt23review</a> <a class="cit pv-t-mixed" href="https://doi.org/10.1558/cj.26704" target="_blank" rel="noopener" title="The Effectiveness of Duolingo English Courses in Developing Reading and Listening Proficiency — CALICO Journal 41(1), 2024">jiang24calico</a> and a different kind of evidence &mdash; and
+  jiang24calico has Duolingo employees among its authors, so it needs the caveat too.</p>
+</section>
+
+<section>
+  <div class="shead"><h2>Supporting sources</h2><p class="note">Cited, not read closely</p></div>
+  <p class="lede">Business context, primary announcements, and the outside check. The 10-K is the
+  most useful single item here: it is the only place the company states its AI strategy under legal
+  liability, and it discloses the dependence on third-party model providers.</p>
+  <ul class="support"><li>
+  <p class="sp-h"><code class="pv-t-duolingo">10k-2025</code>
+    <a href="https://www.sec.gov/Archives/edgar/data/1562088/000162828026012494/duol-20251231.htm" target="_blank" rel="noopener">Duolingo Form 10-K, FY2025</a></p>
+  <p class="sp-m">SEC EDGAR, 2026</p>
+  <p>The legally vetted version of the AI strategy, including the vendor-dependency risk the company discloses to investors. The most citable business source in the set.</p>
+</li><li>
+  <p class="sp-h"><code class="pv-t-duolingo">pr-148</code>
+    <a href="https://investors.duolingo.com/news-releases/news-release-details/duolingo-launches-148-new-language-courses" target="_blank" rel="noopener">Duolingo Launches 148 New Language Courses</a></p>
+  <p class="sp-m">Duolingo IR, 2025</p>
+  <p>The headline claim to test: twelve years for the first 100 courses, roughly one year for the next 148.</p>
+</li><li>
+  <p class="sp-h"><code class="pv-t-duolingo">blog-llmlessons</code>
+    <a href="https://blog.duolingo.com/large-language-model-duolingo-lessons/" target="_blank" rel="noopener">How Duolingo uses AI to create lessons faster</a></p>
+  <p class="sp-m">Duolingo blog, 2024</p>
+  <p>The content-generation pipeline described first-hand — the deployment story that malik24acl only gives the method for.</p>
+</li><li>
+  <p class="sp-h"><code class="pv-t-duolingo">blog-birdbrain</code>
+    <a href="https://blog.duolingo.com/learning-how-to-help-you-learn-introducing-birdbrain/" target="_blank" rel="noopener">Learning how to help you learn: Introducing Birdbrain!</a></p>
+  <p class="sp-m">Duolingo blog, 2020</p>
+  <p>The original announcement of the personalisation model. Primary source for a system that has no paper.</p>
+</li><li>
+  <p class="sp-h"><code class="pv-t-duolingo">blog-max</code>
+    <a href="https://blog.duolingo.com/duolingo-max/" target="_blank" rel="noopener">Introducing Duolingo Max, a learning experience powered by GPT-4</a></p>
+  <p class="sp-m">Duolingo blog, 2023</p>
+  <p>The GPT-4 launch post, dated 14 March 2023. Fixes the start of the evidence clock.</p>
+</li><li>
+  <p class="sp-h"><code class="pv-t-duolingo">belzak25fairness</code>
+    <a href="https://proceedings.mlr.press/v273/belzak25a.html" target="_blank" rel="noopener">Evaluating Fairness in AI-Assisted Remote Proctoring</a></p>
+  <p class="sp-m">PMLR 273, 2025</p>
+  <p>An in-house audit asking whether AI proctoring flags some nationalities more than others. Use it if you take the governance angle further.</p>
+</li><li>
+  <p class="sp-h"><code class="pv-t-independent">shortt23review</code>
+    <a href="https://www.tandfonline.com/doi/full/10.1080/09588221.2021.1933540" target="_blank" rel="noopener">Gamification in mobile-assisted language learning: a systematic review of Duolingo literature from public release of 2012 to early 2020</a></p>
+  <p class="sp-m">Computer Assisted Language Learning 36(3), 2023</p>
+  <p>The canonical independent systematic review, 35 studies. Your outside anchor on whether any of this teaches.</p>
+</li><li>
+  <p class="sp-h"><code class="pv-t-mixed">jiang24calico</code>
+    <a href="https://doi.org/10.1558/cj.26704" target="_blank" rel="noopener">The Effectiveness of Duolingo English Courses in Developing Reading and Listening Proficiency</a></p>
+  <p class="sp-m">CALICO Journal 41(1), 2024</p>
+  <p>The most-cited effectiveness study. Two authors are Duolingo employees — cite it, and say so.</p>
+</li></ul>
+</section>
+
+<section>
+  <div class="shead"><h2>Going one level deeper</h2><p class="note">Optional, and it upgrades the paper</p></div>
+  <div class="depth">
+    <h3>If you want one section that is genuinely deep</h3>
+    <p>Pick the scheduler and go one level further than description. The 2016 traces are public (13M user-word records on Harvard Dataverse), Duolingo&#x27;s reference implementation ships with the Leitner, Pimsleur and logistic-regression baselines already wired up, and an independent PyTorch port exists to check yourself against. Reproducing the comparison table turns one section of the paper into your own result rather than a summary — and it sets up the PNAS critique, which beat that model using the very data release that made the critique possible. Budget an evening; scope it to the baseline table and say explicitly that the full optimal-control result is out of scope.</p>
+    <p class="qcite"><a class="cit pv-t-duolingo" href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/N8XJME" target="_blank" rel="noopener" title="Replication Data for: A Trainable Spaced Repetition Model for Language Learning — Harvard Dataverse, 2016">ds-hlr</a> <a class="cit pv-t-duolingo" href="https://github.com/duolingo/halflife-regression" target="_blank" rel="noopener" title="duolingo/halflife-regression (reference implementation) — GitHub, 2016">code-hlr</a> <a class="cit pv-t-independent" href="https://github.com/phcavelar/duolingo-spaced-repetition" target="_blank" rel="noopener" title="Replication of Duolingo&#x27;s Half-Life Regression in PyTorch — GitHub, 2021">avelar-hlr</a> <a class="cit pv-t-independent" href="https://doi.org/10.1073/pnas.1815156116" target="_blank" rel="noopener" title="Enhancing human learning via spaced repetition optimization — PNAS 116(10), 2019">tabibian19pnas</a></p>
+  </div>
+</section>
+
+<footer>
+  <span>Every paper verified against the source inventory.</span>
+  <a href="https://claude.ai/code/artifact/f4ef4e4e-d851-404a-b39d-9c23d947543f" target="_blank" rel="noopener">Topic assessment &rarr;</a>
+  <a href="https://claude.ai/code/artifact/e81f9ef3-15af-4f7e-980d-51f152f087a9" target="_blank" rel="noopener">Full source index &rarr;</a>
+  <span>Rebuild with <code>python make_brief_page.py</code>.</span>
+</footer>
+
+</div>
