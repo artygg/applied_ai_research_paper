@@ -1,3 +1,5 @@
+> Applies to the archived confidence-and-engagement version in `archive/confidence-engagement-version/`. The current `main.tex` (user-experience version, 14 September 2026) is documented in `ux-source-log.md`.
+
 # Focused confidence-and-engagement review
 
 Revision date: September 11, 2026. This audit supersedes `ux-review-audit.md` for the current manuscript. Historical files preserve earlier scope and decisions, not independent verification of the current draft.
