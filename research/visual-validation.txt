@@ -1,0 +1,30 @@
+Visual revision validation - 16 September 2026
+
+Final artifact: output/pdf/duolingo-research-paper.pdf
+Build: latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
+Result: successful pdflatex + biber build; existing latexmkrc retained.
+PDF: 22 total pages.
+Results body: printed pages 4-13 inclusive (PDF pages 7-16), exactly 10 pages.
+Conclusion and Discussion starts on printed page 14 (PDF page 17).
+Figures: 4; tables: 3. Each has a numbered caption, a title, a note, and a text cross-reference.
+Figure pages (printed): 1=6, 2=9, 3=11, 4=13.
+Table pages (printed): 1=5, 2=10, 3=12.
+Cited bibliography keys: 45. Missing keys: 0. Duplicate bibliography keys: 0.
+Undefined references/citations: 0. LaTeX/package warnings: 0. Overfull boxes: 0.
+Underfull spacing notices remain in the build log; page images were inspected for readable layout.
+Numeric chart input: 12 CSV records. Study condition counts sum to 658 / 567 / 558 as reported.
+All 22 pages rendered for visual QA; every figure/table page also inspected at larger scale.
+No clipped or overlapping visual elements observed in the final rendering.
+APA figure/table numbering, title placement, notes, source attribution, and bibliography rendering checked.
+Rubric review: all 35 substantive items and all 12 form-check items addressed.
+No automated test suite added, as requested. Build/data/layout checks are artifact validation.
+Existing application scripts were not modified. No autoformatter used.
+
+Limitations: the review is not an official grade or the required assigned student peer review.
+Not every cited source was newly checked in full text; source access is documented in the audits.
+Lecturer approval, portfolio feedback evidence, and live Teams submission instructions remain unverified.
+
+SHA-256 hashes:
+main.tex: 12bd2b89b1f4dfdbbf55c43f0468d91ffc5fe44435d5bd90ba662894a06f2ea5
+references.bib: 77982cc9ce9421ba380766ca7350d5e748ed72a6fc779c3eaee36e355c30ab28
+output/pdf/duolingo-research-paper.pdf: b45e5b6c76c81edc0fa1445ccdebc02bf78fa2db3b483987018274682f712b02

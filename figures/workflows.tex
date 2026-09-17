@@ -1,0 +1,28 @@
+% Original schematic based on Henry (2023, 2025); see the figure note in main.tex.
+\begin{tikzpicture}[
+    box/.style={draw,align=center,text width=2.9cm,minimum height=1.05cm,
+        font=\sffamily\footnotesize,inner sep=5pt},
+    flow/.style={-{Latex[length=2mm]},thick},
+    label/.style={font=\sffamily\footnotesize,align=left}]
+\node[label,anchor=west] at (-1.65,1.3) {\textbf{A. Lesson production: before the learner encounters an exercise}};
+\node[box,fill=black!6] (design) at (0,0) {Designer specifies\\theme, level, grammar\\and exercise type};
+\node[box] (draft) at (4,0) {Language model\\drafts candidate\\exercises};
+\node[box,fill=black!6] (edit) at (8,0) {Designer selects\\and edits\\the candidates};
+\node[box] (lesson) at (12,0) {Selected exercises\\enter the app};
+\draw[flow] (design) -- (draft);
+\draw[flow] (draft) -- (edit);
+\draw[flow] (edit) -- (lesson);
+
+\node[label,anchor=west] at (-1.65,-1.45) {\textbf{B. Video Call: a structured conversation with information carried between calls}};
+\node[box,fill=black!6] (system) at (0,-2.5) {Designer instructions\\set character, level\\and support};
+\node[box] (start) at (4,-2.5) {Greeting and\\prepared first\\question};
+\node[box] (chat) at (8,-2.5) {Learner and Lily\\exchange turns};
+\node[box] (close) at (12,-2.5) {Program signals\\the call to end};
+\node[box,text width=6.5cm,minimum height=0.8cm] (memory) at (8,-4.15)
+    {After the call, a model extracts facts from its transcript;\\the facts enter the instructions for the next call};
+\draw[flow] (system) -- (start);
+\draw[flow] (start) -- (chat);
+\draw[flow] (chat) -- (close);
+\draw[flow] (close.south) |- (memory.east);
+\draw[flow] (memory.west) -| (system.south);
+\end{tikzpicture}

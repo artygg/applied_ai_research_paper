@@ -1,0 +1,13 @@
+figure,series,measure,value,qualifier,unit,citation_key,source_locator
+video-sample,Video Call,Entered 30-day conditions,329,reported count,learners,kittredge2025video,Figure 2 (report p. 5; indexed original)
+video-sample,Regular lessons,Entered 30-day conditions,329,reported count,learners,kittredge2025video,Figure 2 (report p. 5; indexed original)
+video-sample,Video Call,Speaking analysis,263,reported count,learners,kittredge2025video,Figure 2 (report p. 5; indexed original)
+video-sample,Regular lessons,Speaking analysis,304,reported count,learners,kittredge2025video,Figure 2 (report p. 5; indexed original)
+video-sample,Video Call,Survey analysis,261,reported count,learners,kittredge2025video,Figure 2 (report p. 5; indexed original)
+video-sample,Regular lessons,Survey analysis,297,reported count,learners,kittredge2025video,Figure 2 (report p. 5; indexed original)
+duoradio,Before scaling,Episodes,300,reported count,episodes,duoradio,Course content expansion
+duoradio,After scaling,Episodes,15000,lower bound (+),episodes,duoradio,Course content expansion
+duoradio,Before scaling,Courses,2,reported count,courses,duoradio,Course content expansion
+duoradio,After scaling,Courses,25,lower bound (+),courses,duoradio,Course content expansion
+duoradio,Before scaling,Daily sessions,500000,rounded reported value,sessions per day,duoradio,Reaching More Learners Faster
+duoradio,After scaling,Daily sessions,5000000,rounded reported value,sessions per day,duoradio,Reaching More Learners Faster

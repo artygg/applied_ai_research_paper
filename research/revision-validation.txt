@@ -1,0 +1,24 @@
+Final substantive revision validation - 16 September 2026
+
+LaTeX/Biber build: successful; no undefined citations/references, LaTeX/package warnings, or overfull boxes.
+PDF: 22 physical pages. Results: PDF pages 7-16 / printed pages 4-13 = 10 pages.
+Introduction and Method: printed pp. 1-3. Conclusion/Discussion: 14-15. References: 16-19.
+Cited sources: 45; register rows: 45; complete one-to-one coverage; no missing bibliography keys or duplicate keys.
+Discovery inventory: 222 records. Current correspondence: 32 cited documents map to 31 distinct inventory records.
+Visuals: 4 figures and 3 tables; all have numbered captions, explanatory/source notes, and narrative callouts.
+Sample percentages recalculated: 263/329=79.9%; 304/329=92.4%; 261/329=79.3%; 297/329=90.3%.
+Speaking analysis n=567; survey n=558; both distinguish the 658 entering population.
+DuoRadio lower-bound multipliers: episodes >=50; courses >=12.5; reported daily sessions 10.
+Visual QA: all 22 final PDF pages rendered and inspected, including chart/table text, section transitions and intact bibliography entries.
+Independent review: separate AI agent evaluated 12 form checks and 35 substantive criteria; verdict Sufficient with methodological reservations.
+Scope: manuscript, bibliography and research/supporting output files. No existing application, build-script, or chart-rendering code modified in this substantive revision.
+No software tests requested or added. Validation comprises build, artifact consistency, arithmetic, visual QA and scholarly review.
+Course approval, assigned student peer review, portfolio and submission steps remain unverified.
+
+SHA-256:
+9c8e3a24646d6866ddc96c2f533a70293c2c1298896b71142d62072b690d4bc2  main.tex
+a52d907dec7295eedbc3a782e8b0c2822de244aeefe65968a3d85f96dfa650a0  references.bib
+cd6c3309ce57fa79197c11408a4df38f6ed82b41ba95c8f84ed8f10313165902  research/current-source-register.csv
+e4dbe391715f1112472d6f75eb0d0f66fde287f5c183368ec4caec0af6ced9a8  research/method-supplement.md
+686f17ea3a0ecdb50ba973f74b2c6a5b532c77fc94dbd4bb369f3f83fa5bb8c3  research/independent-lecturer-review.md
+50e6e5e5bd2b3e4b9915f4f4f2f2f9329eb0247e509d7579ae311af9df1f9295  output/pdf/duolingo-research-paper.pdf
