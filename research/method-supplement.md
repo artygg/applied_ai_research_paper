@@ -1,5 +1,7 @@
 # Research-method supplement
 
+Status after the 27 September 2026 peer-review revision: this is an internal historical record of the 16 September version, not a submission supplement. Its 45-source counts and packaging instructions below describe that earlier version. The revised paper contains the essential method, provenance table, recorded queries, and worked example. The current internal CSV covers 46 citations (32 documents linked to 31 inventory records, 14 without an identified match). The authors subsequently clarified that they checked sources separately but retained no separate checking notes; overlap and agreement cannot be reconstructed. See `peer-review-response.md` for the revision record.
+
 Paper: *How Generative AI Transforms the Duolingo User Experience: What Changed, What Can Be Shown, and Whom It Serves*. Revision: 16 September 2026.
 
 This supplement and [current-source-register.csv](current-source-register.csv) accompany the paper. They document a focused, purposive documentary review. The register was reconstructed on 16 September from the final citations, the existing inventory, and saved verification logs; it is not a contemporaneous screening export. It does not claim exhaustive retrieval, duplicate human extraction, learner observation, or a new meta-analysis.
